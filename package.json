@@ -1,0 +1,43 @@
+{
+  "name": "felt-template",
+  "description": "a static website template with SvelteKit, Gro, and Felt",
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "node": ">= 16.6"
+  },
+  "scripts": {
+    "dev": "gro dev",
+    "build": "gro build",
+    "test": "gro test",
+    "deploy": "gro deploy"
+  },
+  "devDependencies": {
+    "@feltcoop/felt": "^0.13.0",
+    "@feltcoop/gro": "^0.44.0",
+    "@sveltejs/adapter-static": "^1.0.0-next.21",
+    "@sveltejs/kit": "^1.0.0-next.183",
+    "prettier": "^2.4.1",
+    "prettier-plugin-svelte": "^2.4.0",
+    "svelte": "^3.43.2",
+    "svelte-preprocess-esbuild": "^2.0.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "prettier": {
+    "useTabs": true,
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false,
+    "svelteBracketNewLine": true,
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "useTabs": false
+        }
+      }
+    ]
+  }
+}
