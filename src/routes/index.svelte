@@ -1,14 +1,15 @@
 <script lang="ts">
-	// ...
+	import Iframe from '$lib/ui/Iframe.svelte';
 </script>
 
 <main class="column markup">
 	<section>
 		<h1 class="panel-inset">spiderspace</h1>
-		<img class="pixelated" src="/favicon.png" />
+		<img class="pixelated" alt="spiderspace logo" src="/favicon.png" />
 	</section>
-	<!-- TODO show spinner while iframe is loading -->
-	<iframe class="panel-outset" src="https://spiderspace.github.io/about" />
+	<div class="portal panel-outset">
+		<Iframe src="https://spiderspace.github.io/about" />
+	</div>
 </main>
 
 <style>
@@ -23,10 +24,10 @@
 		width: 256px;
 		height: 256px;
 	}
-	iframe {
-		border: none;
-		/* TODO hardcoding as a shortcut */
+	/* TODO */
+	.portal {
 		width: 380px;
 		height: 180px;
+		display: flex;
 	}
 </style>
