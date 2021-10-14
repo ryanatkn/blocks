@@ -42,6 +42,6 @@ gro deploy
 [@lukeed\/\*](https://github.com/lukeed)
 & [more](package.json)
 
-## [🐦](https://wikipedia.org/wiki/Free_and_open-source_software)
+## license [🐦](https://wikipedia.org/wiki/Free_and_open-source_software)
 
 public domain ([The Unlicense](license))
