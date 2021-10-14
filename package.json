@@ -1,6 +1,7 @@
 {
-  "name": "felt-template",
-  "description": "a static website template with SvelteKit, Gro, and Felt",
+  "name": "spiderspace",
+  "description": "...",
+  "license": "Unlicense",
   "version": "0.0.1",
   "type": "module",
   "engines": {

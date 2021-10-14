@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>felt-template</title>
+	<title>spiderspace</title>
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 
