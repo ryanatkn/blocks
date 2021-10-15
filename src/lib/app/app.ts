@@ -17,7 +17,7 @@ export const getApp = (): App => {
 export type App = ReturnType<typeof createApp>;
 
 export const createApp = () => {
-	const blocks: Writable<Block[]> = writable([]);
+	const blocks: Writable<Record<string, Block>> = writable({});
 
 	return {
 		blocks,

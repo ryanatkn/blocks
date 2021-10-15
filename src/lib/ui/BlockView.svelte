@@ -7,6 +7,8 @@
 	export let block: Block;
 </script>
 
+<!-- TODO not sure about any of this, what I probably want is a subset of the Svelte AST -->
+
 <!-- TODO could do a generic lookup and use `svelte:component` for the non-element ones -->
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -19,6 +21,10 @@
 		{...block.props}
 	>
 		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-	</h1>{:else if block.type === 'Blockquote'}<blockquote {...block.props}>
+	</h1>{:else if block.type === 'H2'}<h2 {...block.props}>
+		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+	</h2>{:else if block.type === 'H3'}<h3 {...block.props}>
+		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+	</h3>{:else if block.type === 'Blockquote'}<blockquote {...block.props}>
 		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
 	</blockquote>{/if}

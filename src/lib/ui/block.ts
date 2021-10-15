@@ -1,10 +1,17 @@
-export type Block = ComponentBlock | ImageBlock | TextBlock | BlockquoteBlock | H1Block;
+export type Block =
+	| ComponentBlock
+	| ImageBlock
+	| TextBlock
+	| BlockquoteBlock
+	| H1Block
+	| H2Block
+	| H3Block;
 
 export interface ComponentBlock {
 	id: string;
 	type: 'Component';
 	component: string;
-	props: {src: string};
+	props: any; //{src: string}; // TODO do a union of component block types?
 }
 
 export interface ImageBlock {
@@ -27,9 +34,23 @@ export interface BlockquoteBlock {
 	children: Block[];
 }
 
+// TODO consider a generic `Element` instead of these? A problem is divergent behavior
+// for things like "Iframe" and "Image", gets complicated.
 export interface H1Block {
 	id: string;
 	type: 'H1';
+	props?: {class?: string};
+	children: Block[];
+}
+export interface H2Block {
+	id: string;
+	type: 'H2';
+	props?: {class?: string};
+	children: Block[];
+}
+export interface H3Block {
+	id: string;
+	type: 'H3';
 	props?: {class?: string};
 	children: Block[];
 }
