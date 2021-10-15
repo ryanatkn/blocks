@@ -1,49 +1,20 @@
 <script lang="ts">
 	import BlockView from '$lib/ui/BlockView.svelte';
-	import {toToClientId} from '@feltcoop/felt/util/id.js';
 	import type {Block} from '$lib/ui/block';
+	import {getApp} from '$lib/app/app';
+	import {toBlockId, defaultBlocks} from '$lib/app/blocks';
 
-	const toBlockId = toToClientId('block');
+	const {blocks} = getApp();
 
-	let blocks: Block[] = [
-		{
-			id: toBlockId(),
-			type: 'H1',
-			props: {class: 'panel-inset markup'},
-			children: [
-				{
-					id: toBlockId(),
-					type: 'Text',
-					content: 'spiderspace',
-				},
-			],
-		},
-		{
-			id: toBlockId(),
-			type: 'Image',
-			props: {
-				class: 'pixelated',
-				alt: 'spiderspace logo',
-				src: '/favicon.png',
-				width: 256,
-				height: 256,
-			},
-		},
-		{
-			id: toBlockId(),
-			type: 'Component',
-			component: 'Iframe',
-			props: {src: 'https://spiderspace.github.io/about'},
-		},
-	];
+	$blocks = defaultBlocks;
 
 	const addBlock = (block: Block) => {
-		blocks = blocks.concat(block);
+		$blocks = $blocks.concat(block);
 	};
 </script>
 
 <main class="column markup">
-	{#each blocks as block (block.id)}
+	{#each $blocks as block (block.id)}
 		{#if block.type === 'Component' && block.component === 'Iframe'}
 			<section class="portal portal-iframe panel-outset">
 				<BlockView {block} />

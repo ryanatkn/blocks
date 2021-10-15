@@ -1,6 +1,8 @@
 <script lang="ts">
+	import {getApp} from '$lib/app/app';
 	import type {Block} from '$lib/ui/block';
-	import {components} from '$lib/ui/components'; // TODO maybe set this in context
+
+	const {components} = getApp();
 
 	export let block: Block;
 </script>
