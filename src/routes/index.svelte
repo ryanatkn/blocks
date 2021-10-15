@@ -3,20 +3,25 @@
 	import {defaultBlocks} from '$lib/app/blocks';
 	import BlockView from '$lib/ui/BlockView.svelte';
 	import BlockEditor from '$lib/ui/BlockEditor.svelte';
+	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
 	const {blocks} = getApp();
+
+	const devmode = getDevmode();
 
 	$blocks = defaultBlocks;
 </script>
 
 <!-- TODO maybe don't show editor when !$editing -->
-<main>
+<main class:devmode={$devmode}>
 	<section class="content">
 		<BlockView block={$blocks['/']} />
 	</section>
-	<section class="editor">
-		<BlockEditor block={$blocks['/']} />
-	</section>
+	{#if $devmode}
+		<section class="editor">
+			<BlockEditor block={$blocks['/']} />
+		</section>
+	{/if}
 </main>
 
 <style>
@@ -26,8 +31,11 @@
 		display: flex;
 	}
 	main > section {
-		width: 50%;
+		width: 100%;
 		height: 100%;
+	}
+	.devmode > section {
+		width: 50%;
 	}
 	.content {
 		display: flex;
