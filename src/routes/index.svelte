@@ -31,7 +31,8 @@
 		},
 		{
 			id: toBlockId(),
-			type: 'Iframe',
+			type: 'Component',
+			component: 'Iframe',
 			props: {src: 'https://spiderspace.github.io/about'},
 		},
 	];
@@ -43,7 +44,7 @@
 
 <main class="column markup">
 	{#each blocks as block (block.id)}
-		{#if block.type === 'Iframe'}
+		{#if block.type === 'Component' && block.component === 'Iframe'}
 			<section class="portal portal-iframe panel-outset">
 				<BlockView {block} />
 			</section>
@@ -60,7 +61,8 @@
 				if (!src) return;
 				addBlock({
 					id: toBlockId(),
-					type: 'Iframe',
+					type: 'Component',
+					component: 'Iframe',
 					props: {src},
 				});
 			}}
@@ -77,6 +79,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding-left: 0;
+		padding-right: 0;
 	}
 	/* TODO */
 	.portal {
@@ -87,6 +91,7 @@
 	/* TODO hacky, need to figure out where this info belongs */
 	.portal-iframe {
 		width: 380px;
-		min-height: 170px;
+		height: 170px;
+		flex-shrink: 0;
 	}
 </style>

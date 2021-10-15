@@ -29,7 +29,8 @@
 		position: relative; /* for the absolute positioned pending animation */
 	}
 	iframe {
-		flex: 1;
+		width: 100%;
+		height: 100%;
 		border: none;
 	}
 </style>

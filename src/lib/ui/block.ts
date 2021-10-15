@@ -1,8 +1,9 @@
-export type Block = IframeBlock | ImageBlock | TextBlock | BlockquoteBlock | H1Block;
+export type Block = ComponentBlock | ImageBlock | TextBlock | BlockquoteBlock | H1Block;
 
-export interface IframeBlock {
+export interface ComponentBlock {
 	id: string;
-	type: 'Iframe';
+	type: 'Component';
+	component: string;
 	props: {src: string};
 }
 
