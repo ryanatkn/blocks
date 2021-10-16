@@ -6,6 +6,7 @@
 	const {blocks} = getApp();
 
 	export let block: Block;
+	export let blockKey: string;
 
 	// TODO extract this behavior to a component
 	let editingBlocks = true;
@@ -22,10 +23,10 @@
 	const addBlock = (block: Block) => {
 		// TODO this is hardcoded for one block
 		// TODO yikes -- immer?
-		const selectedBlock: any = $blocks['/'];
+		const selectedBlock: any = $blocks[blockKey];
 		$blocks = {
 			...$blocks,
-			'/': {
+			[blockKey]: {
 				...selectedBlock,
 				props: {...selectedBlock.props, blocks: selectedBlock.props.blocks.concat(block)},
 			},

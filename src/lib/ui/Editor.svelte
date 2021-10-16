@@ -6,16 +6,28 @@
 	import {writable} from 'svelte/store';
 
 	export let block: Block;
+	export let selectedBlockKey: Writable<string>;
 
 	let view: Writable<'page' | 'app'> = writable('page');
 </script>
 
 <div class="editor">
 	<EditorNav {view} />
+	<nav>
+		<button class:selected={$selectedBlockKey === '/'} on:click={() => ($selectedBlockKey = '/')}
+			>Column</button
+		>
+		<button class:selected={$selectedBlockKey === '2'} on:click={() => ($selectedBlockKey = '2')}
+			>Dash</button
+		>
+		<button class:selected={$selectedBlockKey === '3'} on:click={() => ($selectedBlockKey = '3')}
+			>Full</button
+		>
+	</nav>
 	{#if $view === 'page'}
-		<BlockEditor {block} />
+		<BlockEditor {block} blockKey={$selectedBlockKey} />
 	{:else if $view === 'app'}
-		TODO present at least 3 layouts (blocks) that can be clicked to activate
+		...
 	{:else}
 		unhandled view: '{$view}'
 	{/if}

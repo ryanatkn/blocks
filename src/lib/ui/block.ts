@@ -1,6 +1,10 @@
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
-export type ComponentBlock = ColumnComponentBlock | IframeComponentBlock;
+export type ComponentBlock =
+	| ColumnComponentBlock
+	| IframeComponentBlock
+	| DashComponentBlock
+	| FullComponentBlock;
 export interface ColumnComponentBlock {
 	id: string;
 	type: 'Component';
@@ -13,6 +17,18 @@ export interface IframeComponentBlock {
 	component: 'Iframe';
 	props: {src: string};
 }
+export interface DashComponentBlock {
+	id: string;
+	type: 'Component';
+	component: 'Dash';
+	props: {};
+}
+export interface FullComponentBlock {
+	id: string;
+	type: 'Component';
+	component: 'Full';
+	props: {};
+}
 
 export type ElementBlock = OtherElementBlock | ImgElementBlock;
 
@@ -20,6 +36,7 @@ export interface OtherElementBlock {
 	id: string;
 	type: 'Element';
 	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div';
+	// TODO should `props` be `attributes` or `attrs` for `Element` types?
 	props?: {class?: string};
 	children: Block[];
 }

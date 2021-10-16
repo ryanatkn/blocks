@@ -5,7 +5,7 @@
 	import Editor from '$lib/ui/Editor.svelte';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
-	const {blocks} = getApp();
+	const {blocks, selectedBlockKey} = getApp();
 
 	const devmode = getDevmode();
 
@@ -15,11 +15,11 @@
 <!-- TODO maybe don't show editor when !$editing -->
 <main class:devmode={$devmode}>
 	<section class="content">
-		<BlockView block={$blocks['/']} />
+		<BlockView block={$blocks[$selectedBlockKey]} />
 	</section>
 	{#if $devmode}
 		<section class="editor">
-			<Editor block={$blocks['/']} />
+			<Editor block={$blocks[$selectedBlockKey]} {selectedBlockKey} />
 		</section>
 	{/if}
 </main>
