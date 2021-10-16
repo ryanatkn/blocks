@@ -13,7 +13,8 @@ export const defaultBlocks: Record<string, Block> = defaultBlocksJson || {
 			blocks: [
 				{
 					id: toBlockId(),
-					type: 'H1',
+					type: 'Element',
+					name: 'h1',
 					props: {class: 'panel-inset markup'},
 					children: [
 						{

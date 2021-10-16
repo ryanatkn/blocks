@@ -1,18 +1,28 @@
-export type Block =
-	| ComponentBlock
-	| ImageBlock
-	| TextBlock
-	| BlockquoteBlock
-	| H1Block
-	| H2Block
-	| H3Block;
+export type Block = ComponentBlock | ImageBlock | TextBlock | ElementBlock;
 
-export interface ComponentBlock {
+export type ComponentBlock = ColumnComponentBlock | IframeComponentBlock;
+export interface ColumnComponentBlock {
 	id: string;
 	type: 'Component';
-	component: string;
-	props: any; //{src: string}; // TODO do a union of component block types?
+	component: 'Column';
+	props: {blocks: Block[]};
 }
+export interface IframeComponentBlock {
+	id: string;
+	type: 'Component';
+	component: 'Iframe';
+	props: {src: string};
+}
+
+export interface ElementBlock {
+	id: string;
+	type: 'Element';
+	name: 'h1' | 'h2' | 'h3' | 'blockquote';
+	props?: {class?: string};
+	children: Block[];
+}
+
+// TODO should these be part of `ElementBlock`?
 
 export interface ImageBlock {
 	id: string;
@@ -25,32 +35,4 @@ export interface TextBlock {
 	type: 'Text';
 	// props?: {class?: string}; // TODO to support this, need to add a span wrapper
 	content: string;
-}
-
-export interface BlockquoteBlock {
-	id: string;
-	type: 'Blockquote';
-	props?: {class?: string};
-	children: Block[];
-}
-
-// TODO consider a generic `Element` instead of these? A problem is divergent behavior
-// for things like "Iframe" and "Image", gets complicated.
-export interface H1Block {
-	id: string;
-	type: 'H1';
-	props?: {class?: string};
-	children: Block[];
-}
-export interface H2Block {
-	id: string;
-	type: 'H2';
-	props?: {class?: string};
-	children: Block[];
-}
-export interface H3Block {
-	id: string;
-	type: 'H3';
-	props?: {class?: string};
-	children: Block[];
 }

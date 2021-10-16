@@ -17,6 +17,8 @@ export const getApp = (): App => {
 export type App = ReturnType<typeof createApp>;
 
 export const createApp = () => {
+	// TODO `block` that gets updated from the page store
+	// TODO should probably be `Writable<Block>`?
 	const blocks: Writable<Record<string, Block>> = writable({});
 
 	return {

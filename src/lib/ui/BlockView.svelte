@@ -17,14 +17,14 @@
 		{...block.props}
 	/>{:else if block.type === 'Image'}<img
 		{...block.props}
-	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'H1'}<h1
-		{...block.props}
-	>
-		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-	</h1>{:else if block.type === 'H2'}<h2 {...block.props}>
-		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-	</h2>{:else if block.type === 'H3'}<h3 {...block.props}>
-		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-	</h3>{:else if block.type === 'Blockquote'}<blockquote {...block.props}>
-		{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-	</blockquote>{/if}
+	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'h1'}<h1
+			{...block.props}
+		>
+			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+		</h1>{:else if block.name === 'h2'}<h2 {...block.props}>
+			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+		</h2>{:else if block.name === 'h3'}<h3 {...block.props}>
+			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+		</h3>{:else if block.name === 'blockquote'}<blockquote {...block.props}>
+			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+		</blockquote>{/if}{/if}
