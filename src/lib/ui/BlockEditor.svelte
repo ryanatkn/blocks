@@ -49,7 +49,7 @@
 	add block
 </button>
 <button on:click={() => (editingBlocks = !editingBlocks)}>
-	{#if editingBlocks}stop editing{:else}edit blocks{/if}
+	{#if editingBlocks}close{:else}open{/if} block editor
 </button>
 {#if editingBlocks}
 	<pre>

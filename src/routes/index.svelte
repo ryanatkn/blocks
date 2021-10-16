@@ -2,7 +2,7 @@
 	import {getApp} from '$lib/app/app';
 	import {defaultBlocks} from '$lib/app/blocks';
 	import BlockView from '$lib/ui/BlockView.svelte';
-	import BlockEditor from '$lib/ui/BlockEditor.svelte';
+	import Editor from '$lib/ui/Editor.svelte';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
 	const {blocks} = getApp();
@@ -19,7 +19,7 @@
 	</section>
 	{#if $devmode}
 		<section class="editor">
-			<BlockEditor block={$blocks['/']} />
+			<Editor block={$blocks['/']} />
 		</section>
 	{/if}
 </main>
