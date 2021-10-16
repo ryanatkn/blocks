@@ -1,4 +1,4 @@
-export type Block = ComponentBlock | ImageBlock | TextBlock | ElementBlock;
+export type Block = ComponentBlock | TextBlock | ElementBlock;
 
 export type ComponentBlock = ColumnComponentBlock | IframeComponentBlock;
 export interface ColumnComponentBlock {
@@ -14,25 +14,25 @@ export interface IframeComponentBlock {
 	props: {src: string};
 }
 
-export interface ElementBlock {
+export type ElementBlock = OtherElementBlock | ImgElementBlock;
+
+export interface OtherElementBlock {
 	id: string;
 	type: 'Element';
-	name: 'h1' | 'h2' | 'h3' | 'blockquote';
+	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div';
 	props?: {class?: string};
 	children: Block[];
 }
 
-// TODO should these be part of `ElementBlock`?
-
-export interface ImageBlock {
+export interface ImgElementBlock {
 	id: string;
-	type: 'Image';
+	type: 'Element';
+	name: 'img';
 	props: {src: string; alt: string; class?: string; width?: number; height?: number};
 }
 
 export interface TextBlock {
 	id: string;
 	type: 'Text';
-	// props?: {class?: string}; // TODO to support this, need to add a span wrapper
 	content: string;
 }

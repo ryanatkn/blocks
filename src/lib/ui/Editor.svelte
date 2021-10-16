@@ -15,7 +15,7 @@
 	{#if $view === 'page'}
 		<BlockEditor {block} />
 	{:else if $view === 'app'}
-		...
+		TODO present at least 3 layouts (blocks) that can be clicked to activate
 	{:else}
 		unhandled view: '{$view}'
 	{/if}

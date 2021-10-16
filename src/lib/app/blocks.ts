@@ -26,7 +26,8 @@ export const defaultBlocks: Record<string, Block> = defaultBlocksJson || {
 				},
 				{
 					id: toBlockId(),
-					type: 'Image',
+					type: 'Element',
+					name: 'img',
 					props: {
 						class: 'pixelated',
 						alt: 'spiderspace logo',
