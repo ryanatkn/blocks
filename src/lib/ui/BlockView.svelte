@@ -17,21 +17,21 @@
 		this={components[block.component]}
 		{...block.props}
 	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'h1'}<h1
-			{...block.props}
+			{...block.attributes}
 		>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</h1>{:else if block.name === 'h2'}<h2 {...block.props}>
+		</h1>{:else if block.name === 'h2'}<h2 {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</h2>{:else if block.name === 'h3'}<h3 {...block.props}>
+		</h2>{:else if block.name === 'h3'}<h3 {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</h3>{:else if block.name === 'blockquote'}<blockquote {...block.props}>
+		</h3>{:else if block.name === 'blockquote'}<blockquote {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</blockquote>{:else if block.name === 'p'}<p {...block.props}>
+		</blockquote>{:else if block.name === 'p'}<p {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</p>{:else if block.name === 'span'}<span {...block.props}>
+		</p>{:else if block.name === 'span'}<span {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</span>{:else if block.name === 'div'}<div {...block.props}>
+		</span>{:else if block.name === 'div'}<div {...block.attributes}>
 			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
-		</div>{:else if block.name === 'img'}<img {...block.props} />{:else}<Message status="error"
+		</div>{:else if block.name === 'img'}<img {...block.attributes} />{:else}<Message status="error"
 			>unknown block name '{block.name}'</Message
 		>{/if}{/if}

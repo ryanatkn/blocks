@@ -36,8 +36,7 @@ export interface OtherElementBlock {
 	id: string;
 	type: 'Element';
 	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div';
-	// TODO should `props` be `attributes` or `attrs` for `Element` types?
-	props?: {class?: string};
+	attributes?: {class?: string; style?: string};
 	children: Block[];
 }
 
@@ -45,7 +44,14 @@ export interface ImgElementBlock {
 	id: string;
 	type: 'Element';
 	name: 'img';
-	props: {src: string; alt: string; class?: string; width?: number; height?: number};
+	attributes: {
+		src: string;
+		alt: string;
+		class?: string;
+		style?: string;
+		width?: number;
+		height?: number;
+	};
 }
 
 export interface TextBlock {

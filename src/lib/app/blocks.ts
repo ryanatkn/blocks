@@ -9,7 +9,7 @@ const blocks: Block[] = [
 		id: toBlockId(),
 		type: 'Element',
 		name: 'h1',
-		props: {class: 'panel-inset markup'},
+		attributes: {class: 'panel-inset markup'},
 		children: [
 			{
 				id: toBlockId(),
@@ -22,7 +22,7 @@ const blocks: Block[] = [
 		id: toBlockId(),
 		type: 'Element',
 		name: 'img',
-		props: {
+		attributes: {
 			class: 'pixelated',
 			alt: 'spiderspace logo',
 			src: '/favicon.png',
