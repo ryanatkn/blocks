@@ -12,11 +12,11 @@
 	let editingBlocks = true;
 
 	// TODO problem is this doesn't update when `$blocks` changes
-	let blocksStr = JSON.stringify($blocks, null, 2);
+	$: blocksStr = JSON.stringify($blocks[blockKey], null, 2);
 
 	const updateBlocks = (str: string) => {
 		try {
-			$blocks = JSON.parse(str);
+			$blocks = {...$blocks, [blockKey]: JSON.parse(str)};
 		} catch (err) {}
 	};
 
@@ -31,7 +31,7 @@
 				props: {...selectedBlock.props, blocks: selectedBlock.props.blocks.concat(block)},
 			},
 		};
-		blocksStr = JSON.stringify($blocks, null, 2); // TODO make reactive
+		blocksStr = JSON.stringify($blocks[blockKey], null, 2); // TODO make reactive
 	};
 </script>
 

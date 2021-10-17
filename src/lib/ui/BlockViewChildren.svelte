@@ -5,9 +5,7 @@
 	export let block: Block;
 </script>
 
-{#if 'children' in block}
-	{#each block.children as child (child.id)}<svelte:component
+{#if 'children' in block}{#each block.children as child (child.id)}<svelte:component
 			this={BlockView}
 			block={child}
-		/>{/each}
-{/if}
+		/>{/each}{/if}
