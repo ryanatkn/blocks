@@ -2,6 +2,7 @@
 	import {getApp} from '$lib/app/app';
 	import type {Block} from '$lib/ui/block';
 	import Message from '@feltcoop/felt/ui/Message.svelte';
+	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
 	const {components} = getApp();
 
@@ -19,19 +20,19 @@
 	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'h1'}<h1
 			{...block.attributes}
 		>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</h1>{:else if block.name === 'h2'}<h2 {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</h2>{:else if block.name === 'h3'}<h3 {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</h3>{:else if block.name === 'blockquote'}<blockquote {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</blockquote>{:else if block.name === 'p'}<p {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</p>{:else if block.name === 'span'}<span {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</span>{:else if block.name === 'div'}<div {...block.attributes}>
-			{#each block.children as child (child.id)}<svelte:self block={child} />{/each}
+			<BlockViewChildren {block} />
 		</div>{:else if block.name === 'img'}<img {...block.attributes} />{:else}<Message status="error"
 			>unknown block name '{block.name}'</Message
 		>{/if}{/if}
