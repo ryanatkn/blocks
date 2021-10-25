@@ -10,7 +10,7 @@
 
 <div class="iframe-wrapper">
 	<iframe
-		sandbox="allow-scripts allow-pointer-lock"
+		sandbox="allow-scripts allow-pointer-lock allow-popups allow-popups-to-escape-sandbox"
 		frameborder="0"
 		title="iframe"
 		{...$$restProps}
