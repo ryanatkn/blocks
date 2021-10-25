@@ -41,7 +41,7 @@
 	/* TODO hacky, need to figure out where this info belongs */
 	.portal-iframe {
 		width: 380px;
-		height: 170px;
+		height: 300px;
 		flex-shrink: 0;
 	}
 </style>
