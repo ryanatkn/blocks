@@ -2,7 +2,7 @@
 
 > spiderspace is web prototypes
 
-- [spiderspace.org](https://www.spiderspace.org)
+- [www.spiderspace.org](https://www.spiderspace.org)
 
 ## usage
 
