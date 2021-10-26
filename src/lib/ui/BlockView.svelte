@@ -9,10 +9,6 @@
 	export let block: Block;
 </script>
 
-<!-- TODO not sure about any of this, what I probably want is a subset of the Svelte AST -->
-
-<!-- TODO could do a generic lookup and use `svelte:component` for the non-element ones -->
-
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}<svelte:component
 		this={components[block.component]}
