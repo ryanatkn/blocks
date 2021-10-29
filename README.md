@@ -8,6 +8,8 @@
 
 - sanitize element attributes - whitelist, start with `class`
 - ensure `src` is a relative or absolute url, and maybe whitelisted domains?
+- make all blocks responsive
+- let the iframes request their layout dimensions
 
 ## usage
 

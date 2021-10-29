@@ -18,8 +18,8 @@
 -->
 
 <div class="iframe-wrapper">
-	<header class="markup">
-		<blockquote><a href={src}>{stripStart(src, 'https://')}</a></blockquote>
+	<header>
+		<a class="markup panel-inset" href={src}>{stripStart(src, 'https://')}</a>
 	</header>
 	<iframe
 		{...$$restProps}
