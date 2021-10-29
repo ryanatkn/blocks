@@ -4,6 +4,11 @@
 
 - [www.spiderspace.org](https://www.spiderspace.org)
 
+## todo
+
+- sanitize element attributes - whitelist, start with `class`
+- ensure `src` is a relative or absolute url, and maybe whitelisted domains?
+
 ## usage
 
 ```bash
