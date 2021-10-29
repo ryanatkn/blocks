@@ -55,7 +55,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/px',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 454, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 510, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -66,7 +66,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/color',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 520, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 580, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -77,7 +77,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/string',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 280, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 335, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
