@@ -25,7 +25,7 @@ const blocks: Block[] = [
 		attributes: {
 			class: 'pixelated',
 			alt: 'spiderspace logo',
-			src: '/favicon.png',
+			src: 'favicon.png',
 			width: 256,
 			height: 256,
 		},
@@ -44,7 +44,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 1420, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 1510, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -55,7 +55,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/px',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 510, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 600, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -66,7 +66,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/color',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 580, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 670, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -77,7 +77,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars/type/string',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 335, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 425, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -93,7 +93,7 @@ const blocks: Block[] = [
 		attributes: {
 			class: 'pixelated',
 			alt: 'spiderspace logo',
-			src: '/favicon.png',
+			src: 'favicon.png',
 			width: 256,
 			height: 256,
 		},
