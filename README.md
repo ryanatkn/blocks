@@ -3,6 +3,8 @@
 > spiderspace is web prototypes
 
 - [www.spiderspace.org](https://www.spiderspace.org)
+- [spiderspace.github.io/about](https://spiderspace.github.io/about)
+- [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars)
 
 ## todo
 
