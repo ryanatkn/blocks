@@ -44,7 +44,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 980,
+			height: 1145,
 		},
 	},
 	{
