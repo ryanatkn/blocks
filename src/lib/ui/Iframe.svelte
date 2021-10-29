@@ -5,6 +5,7 @@
 	export let src: string;
 	export let width: number | string = '100%';
 	export let height: number | string = '100%';
+	// TODO consider `export let showHeader: boolean = true;`
 
 	$: widthCss = typeof width === 'number' ? width + 'px' : width;
 	$: heightCss = typeof height === 'number' ? height + 'px' : height;
