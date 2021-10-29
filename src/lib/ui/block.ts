@@ -15,7 +15,7 @@ export interface IframeComponentBlock {
 	id: string;
 	type: 'Component';
 	component: 'Iframe';
-	props: {src: string};
+	props: {src: string; width?: number | string; height?: number | string; class?: string};
 }
 export interface DashComponentBlock {
 	id: string;

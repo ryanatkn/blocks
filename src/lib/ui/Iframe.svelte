@@ -1,5 +1,13 @@
 <script lang="ts">
 	import PendingAnimationOverlay from '$lib/ui/PendingAnimationOverlay.svelte';
+	import {stripStart} from '@feltcoop/felt/util/string.js';
+
+	export let src: string;
+	export let width: number | string = '100%';
+	export let height: number | string = '100%';
+
+	$: widthCss = typeof width === 'number' ? width + 'px' : width;
+	$: heightCss = typeof height === 'number' ? height + 'px' : height;
 
 	let loaded = false;
 </script>
@@ -10,12 +18,17 @@
 -->
 
 <div class="iframe-wrapper">
+	<header class="markup">
+		<blockquote><a href={src}>{stripStart(src, 'https://')}</a></blockquote>
+	</header>
 	<iframe
+		{...$$restProps}
+		{src}
 		sandbox="allow-downloads-without-user-activation allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-scripts allow-storage-access-by-user-activation"
 		frameborder="0"
 		title="iframe"
-		{...$$restProps}
 		on:load={() => (loaded = true)}
+		style="width: {widthCss}; height: {heightCss};"
 	/>
 	{#if !loaded}
 		<PendingAnimationOverlay />
@@ -24,10 +37,12 @@
 
 <style>
 	.iframe-wrapper {
-		width: 100%;
-		height: 100%;
 		display: flex;
 		position: relative; /* for the absolute positioned pending animation */
+		flex-direction: column;
+	}
+	header {
+		text-align: center;
 	}
 	iframe {
 		width: 100%;

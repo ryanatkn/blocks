@@ -25,7 +25,6 @@
 
 <style>
 	.column {
-		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -37,11 +36,5 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-	/* TODO hacky, need to figure out where this info belongs */
-	.portal-iframe {
-		width: 380px;
-		height: 300px;
-		flex-shrink: 0;
 	}
 </style>

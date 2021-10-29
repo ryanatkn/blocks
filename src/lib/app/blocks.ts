@@ -34,7 +34,36 @@ const blocks: Block[] = [
 		id: toBlockId(),
 		type: 'Component',
 		component: 'Iframe',
-		props: {src: 'https://spiderspace.github.io/about'},
+		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
+	},
+	{
+		id: toBlockId(),
+		type: 'Component',
+		component: 'Iframe',
+		props: {
+			src: 'https://spiderspace.github.io/css-vars',
+			class: 'column',
+			width: 'var(--column_width)',
+			height: 980,
+		},
+	},
+	{
+		id: toBlockId(),
+		type: 'Component',
+		component: 'Iframe',
+		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
+	},
+	{
+		id: toBlockId(),
+		type: 'Element',
+		name: 'img',
+		attributes: {
+			class: 'pixelated',
+			alt: 'spiderspace logo',
+			src: '/favicon.png',
+			width: 256,
+			height: 256,
+		},
 	},
 ];
 
