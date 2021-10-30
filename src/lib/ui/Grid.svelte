@@ -9,7 +9,7 @@
 	$: console.log('blocks', blocks);
 </script>
 
-<!-- TODO instead of this, maybe pass a slot to `BlockView` to wrap the section -->
+<!-- TODO lay out with 2d translates -->
 
 <div class="grid">
 	{#each blocks as block (block.id)}

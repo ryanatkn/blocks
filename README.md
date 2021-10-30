@@ -6,6 +6,15 @@
 - [spiderspace.github.io/about](https://spiderspace.github.io/about)
 - [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars)
 
+## design
+
+- create layouts, spaces, and documents with the same data structure
+  - safe to share (e.g. sanitized style attributes) (currently insecure, relies on
+    [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+    to block external network connections,
+    and maybe we'll want to stick with this and add trusted domains as a UX affordance)
+  - ultimately should this be a mdsvex+Svelte AST?
+
 ## todo
 
 - sanitize element attributes - allowlist, start with `class`
