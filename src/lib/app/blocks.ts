@@ -44,7 +44,7 @@ const blocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 1510, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 1580, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
