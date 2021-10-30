@@ -35,7 +35,7 @@ export type ElementBlock = OtherElementBlock | ImgElementBlock;
 export interface OtherElementBlock {
 	id: string;
 	type: 'Element';
-	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div';
+	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
 	attributes?: {class?: string; style?: string};
 	children: Block[];
 }

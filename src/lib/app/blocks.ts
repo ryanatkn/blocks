@@ -21,6 +21,36 @@ const blocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
+		name: 'blockquote',
+		children: [
+			{
+				id: toBlockId(),
+				type: 'Text',
+				content: 'be advised: press ',
+			},
+			{
+				id: toBlockId(),
+				type: 'Element',
+				name: 'code',
+				children: [
+					// TODO make this a button with a declarative action that triggers that event?
+					{
+						id: toBlockId(),
+						type: 'Text',
+						content: 'Backtick',
+					},
+				],
+			},
+			{
+				id: toBlockId(),
+				type: 'Text',
+				content: ' ` at your own risk',
+			},
+		],
+	},
+	{
+		id: toBlockId(),
+		type: 'Element',
 		name: 'img',
 		attributes: {
 			class: 'pixelated rotating-hue',

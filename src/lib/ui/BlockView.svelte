@@ -25,7 +25,9 @@
 			<BlockViewChildren {block} />
 		</blockquote>{:else if block.name === 'p'}<p {...block.attributes}>
 			<BlockViewChildren {block} />
-		</p>{:else if block.name === 'span'}<span {...block.attributes}>
+		</p>{:else if block.name === 'code'}<code {...block.attributes}>
+			<BlockViewChildren {block} />
+		</code>{:else if block.name === 'span'}<span {...block.attributes}>
 			<BlockViewChildren {block} />
 		</span>{:else if block.name === 'div'}<div {...block.attributes}>
 			<BlockViewChildren {block} />
