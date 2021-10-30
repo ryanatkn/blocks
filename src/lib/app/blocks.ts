@@ -62,28 +62,6 @@ const blocks: Block[] = [
 		id: toBlockId(),
 		type: 'Component',
 		component: 'Iframe',
-		props: {
-			src: 'https://spiderspace.github.io/css-vars/type/color',
-			class: 'column',
-			width: 'var(--column_width)',
-			height: 670, // TODO hacky -- let the iframe request a size, and enforce min/max
-		},
-	},
-	{
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Iframe',
-		props: {
-			src: 'https://spiderspace.github.io/css-vars/type/string',
-			class: 'column',
-			width: 'var(--column_width)',
-			height: 425, // TODO hacky -- let the iframe request a size, and enforce min/max
-		},
-	},
-	{
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Iframe',
 		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
 	},
 	{
