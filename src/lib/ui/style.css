@@ -15,3 +15,16 @@
 	image-rendering: pixelated; /* in case crisp-edges isn't supported */
 	image-rendering: crisp-edges; /* the recommended pixel art setting according to MDN */
 }
+
+.rotating-hue {
+	animation: rotating-hue var(--animation_duration, 20s) infinite;
+}
+
+@keyframes rotating-hue {
+	from {
+		filter: hue-rotate(0deg);
+	}
+	from {
+		filter: hue-rotate(360deg);
+	}
+}

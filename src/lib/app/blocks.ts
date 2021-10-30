@@ -23,11 +23,13 @@ const blocks: Block[] = [
 		type: 'Element',
 		name: 'img',
 		attributes: {
-			class: 'pixelated',
+			class: 'pixelated rotating-hue',
+			// TODO I think we can safely support inline styles this with the CSP? see the main `__layout` for more
+			// an alternative would be going to a more constrained interface, with structured access to style properties?
+			style:
+				'width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;',
 			alt: 'spiderspace logo',
 			src: 'favicon.png',
-			width: 256,
-			height: 256,
 		},
 	},
 	{
@@ -69,7 +71,7 @@ const blocks: Block[] = [
 		type: 'Element',
 		name: 'img',
 		attributes: {
-			class: 'pixelated',
+			class: 'pixelated rotating-hue',
 			alt: 'spiderspace logo',
 			src: 'favicon.png',
 			width: 256,

@@ -12,6 +12,8 @@
   - ensure `src` is a relative or absolute url, and maybe allowlisted domains? or CSP?
 - each iframe on the page eats at least one press of the back button, not good!
 - sync `Iframe` header with navigation inside the iframe
+- sort/dragndrop blocks
+- 2d block view (add optional `x`/`y` properties or maybe `location.x/y`)
 - make all blocks responsive
 - let the iframes request their layout dimensions
 
