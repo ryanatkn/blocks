@@ -4,7 +4,6 @@
 	import {createApp, setApp} from '$lib/app/app';
 	import {setDevmode} from '@feltcoop/felt/ui/devmode.js';
 	import Devmode from '@feltcoop/felt/ui/Devmode.svelte';
-	import {dev} from '$app/env';
 
 	const app = createApp();
 	setApp(app);
@@ -15,7 +14,7 @@
 	// with a strict Content-Security-Policy until we add sanitization:
 	// for more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 	const trustedHosts = "'self' https://www.spiderspace.org/ https://spiderspace.github.io/";
-	const unsafe = dev;
+	const unsafe = true; // TODO should be `dev;` but that requires the hash of the scripts or a nonce
 	const csp = [
 		`default-src ${trustedHosts}`,
 		`connect-src ${trustedHosts}`,
