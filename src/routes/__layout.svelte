@@ -4,6 +4,7 @@
 	import {createApp, setApp} from '$lib/app/app';
 	import {setDevmode} from '@feltcoop/felt/ui/devmode.js';
 	import Devmode from '@feltcoop/felt/ui/Devmode.svelte';
+	// import FeltWindowHost from '@feltcoop/felt/ui/FeltWindowHost.svelte';
 
 	const app = createApp();
 	setApp(app);
@@ -30,5 +31,7 @@
 </svelte:head>
 
 <slot />
+
+<!-- <FeltWindowHost query={} /> -->
 
 <Devmode {devmode} />

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BlockView from '$lib/ui/BlockView.svelte';
 	import type {Block} from '$lib/ui/block';
+	import BlockSummary from './BlockSummary.svelte';
 
 	export let blocks: Block[];
 
@@ -12,9 +13,14 @@
 <div class="dashboard">
 	<div class="column-min">
 		<nav>
-			<button>todo</button><button>add</button><button>these</button><button>as</button><button
-				>props</button
-			>
+			<!-- TODO show nested items -->
+			<ol>
+				{#each blocks as block (block.id)}
+					<li>
+						<BlockSummary {block} />
+					</li>
+				{/each}
+			</ol>
 		</nav>
 	</div>
 	<div class="content markup">
