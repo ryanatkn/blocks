@@ -9,7 +9,7 @@
 ## todo
 
 - sanitize element attributes - allowlist, start with `class`
-  - ensure `src` is a relative or absolute url, and maybe allowlisted domains?
+  - ensure `src` is a relative or absolute url, and maybe allowlisted domains? or CSP?
 - each iframe on the page eats at least one press of the back button, not good!
 - sync `Iframe` header with navigation inside the iframe
 - make all blocks responsive
