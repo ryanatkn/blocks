@@ -11,7 +11,7 @@
 <!-- TODO instead of this, maybe pass a slot to `BlockView` to wrap the section -->
 
 <div class="dashboard">
-	<div class="column-min">
+	<div class="nav column-min">
 		<nav>
 			<!-- TODO show nested items -->
 			<ol>
@@ -44,8 +44,14 @@
 		width: 100%;
 		height: 100%;
 	}
+	.nav {
+		height: 100%;
+		overflow: auto;
+	}
 	.content {
+		height: 100%;
 		flex: 1;
+		overflow: auto;
 	}
 	/* TODO */
 	.portal {
