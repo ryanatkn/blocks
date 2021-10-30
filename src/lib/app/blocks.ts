@@ -122,7 +122,7 @@ export const defaultBlocks: Record<string, Block> = defaultBlocksJson || {
 	'2': {
 		id: toBlockId(),
 		type: 'Component',
-		component: 'Dash',
+		component: 'Dashboard',
 		props: {
 			blocks,
 		},
@@ -130,7 +130,7 @@ export const defaultBlocks: Record<string, Block> = defaultBlocksJson || {
 	'3': {
 		id: toBlockId(),
 		type: 'Component',
-		component: 'Full',
+		component: 'Grid',
 		props: {
 			blocks,
 		},

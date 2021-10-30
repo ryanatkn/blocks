@@ -3,8 +3,8 @@ export type Block = ComponentBlock | TextBlock | ElementBlock;
 export type ComponentBlock =
 	| ColumnComponentBlock
 	| IframeComponentBlock
-	| DashComponentBlock
-	| FullComponentBlock;
+	| DashboardComponentBlock
+	| GridComponentBlock;
 export interface ColumnComponentBlock {
 	id: string;
 	type: 'Component';
@@ -17,16 +17,16 @@ export interface IframeComponentBlock {
 	component: 'Iframe';
 	props: {src: string; width?: number | string; height?: number | string; class?: string};
 }
-export interface DashComponentBlock {
+export interface DashboardComponentBlock {
 	id: string;
 	type: 'Component';
-	component: 'Dash';
+	component: 'Dashboard';
 	props: {};
 }
-export interface FullComponentBlock {
+export interface GridComponentBlock {
 	id: string;
 	type: 'Component';
-	component: 'Full';
+	component: 'Grid';
 	props: {};
 }
 

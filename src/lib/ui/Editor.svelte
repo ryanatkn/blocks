@@ -18,10 +18,10 @@
 			>Column</button
 		>
 		<button class:selected={$selectedBlockKey === '2'} on:click={() => ($selectedBlockKey = '2')}
-			>Dash</button
+			>Dashboard</button
 		>
 		<button class:selected={$selectedBlockKey === '3'} on:click={() => ($selectedBlockKey = '3')}
-			>Full</button
+			>Grid</button
 		>
 	</nav>
 	{#if $view === 'page'}

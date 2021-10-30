@@ -30,16 +30,20 @@
 		height: 100%;
 		display: flex;
 	}
-	main > section {
+	section {
 		width: 100%;
 		height: 100%;
 	}
-	.devmode > section {
+	.devmode section {
 		width: 50%;
 	}
 	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+	.editor {
+		position: sticky;
+		top: 0;
 	}
 </style>

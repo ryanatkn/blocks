@@ -1,7 +1,7 @@
 import type {SvelteComponent} from 'svelte';
 import Iframe from '$lib/ui/Iframe.svelte';
 import Column from '$lib/ui/Column.svelte';
-import Dash from '$lib/ui/Dash.svelte';
-import Full from '$lib/ui/Full.svelte';
+import Dashboard from '$lib/ui/Dashboard.svelte';
+import Grid from '$lib/ui/Grid.svelte';
 
-export const components: Record<string, typeof SvelteComponent> = {Iframe, Column, Dash, Full};
+export const components: Record<string, typeof SvelteComponent> = {Iframe, Column, Dashboard, Grid};

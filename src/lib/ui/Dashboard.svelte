@@ -9,7 +9,7 @@
 
 <!-- TODO instead of this, maybe pass a slot to `BlockView` to wrap the section -->
 
-<div class="dash">
+<div class="dashboard">
 	<div class="column-min">
 		<nav>
 			<button>todo</button><button>add</button><button>these</button><button>as</button><button
@@ -17,10 +17,10 @@
 			>
 		</nav>
 	</div>
-	<div class="content">
+	<div class="content markup">
 		{#each blocks as block (block.id)}
 			{#if block.type === 'Component' && block.component === 'Iframe'}
-				<section class="portal portal-iframe panel-outset">
+				<section class="portal">
 					<BlockView {block} />
 				</section>
 			{:else}
@@ -33,7 +33,7 @@
 </div>
 
 <style>
-	.dash {
+	.dashboard {
 		display: flex;
 		width: 100%;
 		height: 100%;
@@ -46,11 +46,5 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-	/* TODO hacky, need to figure out where this info belongs */
-	.portal-iframe {
-		width: 380px;
-		height: 300px;
-		flex-shrink: 0;
 	}
 </style>
