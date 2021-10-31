@@ -30,7 +30,7 @@
     - 📁 **[ui](/src/lib/ui)** — generic reusable frontend things that may be upstreamed to other libraries
       - 🔷 **[block.ts](/src/lib/ui/block.ts)** — block types
       - 🔶 **[BlockView.svelte](/src/lib/ui/BlockView.svelte)** — render block data
-  - 📁 **[routes](/src/routes)** — [SvelteKit](https://github.com/sveltejs/kit) frontend
+  - 📁 **[routes](/src/routes)** — [SvelteKit frontend](https://kit.svelte.dev/docs#routing)
 
 ## todo
 
