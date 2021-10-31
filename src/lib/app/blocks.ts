@@ -26,7 +26,7 @@ const blocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Text',
-				content: 'be advised: press ',
+				content: 'be advised: press ` ',
 			},
 			{
 				id: toBlockId(),
@@ -44,7 +44,7 @@ const blocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Text',
-				content: ' ` at your own risk',
+				content: ' at your own risk',
 			},
 		],
 	},
