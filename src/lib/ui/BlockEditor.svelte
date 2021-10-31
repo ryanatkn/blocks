@@ -18,13 +18,7 @@
 	};
 
 	const addBlock = (block: Block) => {
-		// TODO this is hardcoded for one block
-		// TODO yikes -- immer?
-		const selectedBlock: any = $blocks;
-		$blocks = $blocks.concat({
-			...selectedBlock,
-			props: {...selectedBlock.props, blocks: selectedBlock.props.blocks.concat(block)},
-		});
+		$blocks = $blocks.concat(block);
 		blocksStr = JSON.stringify($blocks, null, 2); // TODO make reactive
 	};
 </script>
