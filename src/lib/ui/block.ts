@@ -30,6 +30,7 @@ export interface GridComponentBlock {
 	props: {};
 }
 
+// TODO not sure about this definition, maybe make it generic
 export type ElementBlock = OtherElementBlock | ImgElementBlock;
 
 export interface OtherElementBlock {
