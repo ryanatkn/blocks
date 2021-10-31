@@ -4,9 +4,12 @@
 	import type {Block} from '$lib/ui/block';
 	import type {Writable} from 'svelte/store';
 	import {writable} from 'svelte/store';
+	import type {Profile} from '$lib/app/profiles';
 
 	export let block: Block;
-	export let selectedBlockKey: Writable<string>;
+	export let blocks: Writable<Block[]>;
+	export let selectedProfile: Writable<string>;
+	export let profiles: Writable<Profile[]>;
 
 	let view: Writable<'page' | 'app'> = writable('page');
 </script>
@@ -14,18 +17,15 @@
 <div class="editor">
 	<EditorNav {view} />
 	<nav>
-		<button class:selected={$selectedBlockKey === '/'} on:click={() => ($selectedBlockKey = '/')}
-			>Column</button
-		>
-		<button class:selected={$selectedBlockKey === '2'} on:click={() => ($selectedBlockKey = '2')}
-			>Dashboard</button
-		>
-		<button class:selected={$selectedBlockKey === '3'} on:click={() => ($selectedBlockKey = '3')}
-			>Grid</button
-		>
+		{#each $profiles as profile (profile)}
+			<button
+				class:selected={$selectedProfile === profile}
+				on:click={() => ($selectedProfile = profile)}>{profile}</button
+			>
+		{/each}
 	</nav>
 	{#if $view === 'page'}
-		<BlockEditor {block} blockKey={$selectedBlockKey} />
+		<BlockEditor {blocks} />
 	{:else if $view === 'app'}
 		...
 	{:else}

@@ -1,3 +1,5 @@
+// TODO add `type: 'Fragment'` to handle arrays?
+
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
 export type ComponentBlock =

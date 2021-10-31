@@ -1,25 +1,34 @@
 <script lang="ts">
 	import {getApp} from '$lib/app/app';
-	import {defaultBlocks} from '$lib/app/blocks';
+	import {toBlockId} from '$lib/app/blocks';
+	import type {Block} from '$lib/ui/block';
 	import BlockView from '$lib/ui/BlockView.svelte';
 	import Editor from '$lib/ui/Editor.svelte';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
-	const {blocks, selectedBlockKey} = getApp();
+	const {blocks, selectedProfile, profiles} = getApp();
 
 	const devmode = getDevmode();
 
-	$blocks = defaultBlocks;
+	let block: Block;
+	$: block = {
+		id: toBlockId(),
+		type: 'Component',
+		component: $selectedProfile,
+		props: {
+			blocks: $blocks,
+		},
+	};
 </script>
 
 <!-- TODO maybe don't show editor when !$editing -->
 <main class:devmode={$devmode}>
 	<section class="content">
-		<BlockView block={$blocks[$selectedBlockKey]} />
+		<BlockView {block} />
 	</section>
 	{#if $devmode}
 		<section class="editor">
-			<Editor block={$blocks[$selectedBlockKey]} {selectedBlockKey} />
+			<Editor {blocks} {block} {selectedProfile} {profiles} />
 		</section>
 	{/if}
 </main>

@@ -1,37 +1,31 @@
 <script lang="ts">
 	import type {Block} from '$lib/ui/block';
-	import {getApp} from '$lib/app/app';
 	import {toBlockId} from '$lib/app/blocks';
+	import type {Writable} from 'svelte/store';
 
-	const {blocks} = getApp();
-
-	export let block: Block;
-	export let blockKey: string;
+	export let blocks: Writable<Block[]>;
 
 	// TODO extract this behavior to a component
 	let editingBlocks = true;
 
 	// TODO problem is this doesn't update when `$blocks` changes
-	$: blocksStr = JSON.stringify($blocks[blockKey], null, 2);
+	$: blocksStr = JSON.stringify($blocks, null, 2);
 
 	const updateBlocks = (str: string) => {
 		try {
-			$blocks = {...$blocks, [blockKey]: JSON.parse(str)};
+			$blocks = JSON.parse(str);
 		} catch (err) {}
 	};
 
 	const addBlock = (block: Block) => {
 		// TODO this is hardcoded for one block
 		// TODO yikes -- immer?
-		const selectedBlock: any = $blocks[blockKey];
-		$blocks = {
-			...$blocks,
-			[blockKey]: {
-				...selectedBlock,
-				props: {...selectedBlock.props, blocks: selectedBlock.props.blocks.concat(block)},
-			},
-		};
-		blocksStr = JSON.stringify($blocks[blockKey], null, 2); // TODO make reactive
+		const selectedBlock: any = $blocks;
+		$blocks = $blocks.concat({
+			...selectedBlock,
+			props: {...selectedBlock.props, blocks: selectedBlock.props.blocks.concat(block)},
+		});
+		blocksStr = JSON.stringify($blocks, null, 2); // TODO make reactive
 	};
 </script>
 

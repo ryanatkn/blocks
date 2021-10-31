@@ -1,10 +1,9 @@
 import type {Block} from '$lib/ui/block';
 import {toToClientId} from '@feltcoop/felt/util/id.js';
-import defaultBlocksJson from '$lib/blocks.json';
 
 export const toBlockId = toToClientId('block', undefined, '');
 
-const blocks: Block[] = [
+export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
@@ -109,30 +108,3 @@ const blocks: Block[] = [
 		},
 	},
 ];
-
-export const defaultBlocks: Record<string, Block> = defaultBlocksJson || {
-	'/': {
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Column',
-		props: {
-			blocks,
-		},
-	},
-	'2': {
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Dashboard',
-		props: {
-			blocks,
-		},
-	},
-	'3': {
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Grid',
-		props: {
-			blocks,
-		},
-	},
-};
