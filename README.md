@@ -2,11 +2,26 @@
 
 > spiderspace is web prototypes
 
+> **work in progress**
+
 - [www.spiderspace.org](https://www.spiderspace.org)
 - [spiderspace.github.io/about](https://spiderspace.github.io/about)
 - [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars)
 
+## design
+
+- create layouts, spaces, and documents with a serializable JSON data structure
+  - simpler than Svelte AST (though this may change)
+  - safe to share (e.g. sanitized style attributes)
+    (currently insecure by splatting attributes on DOM elements, relies on
+    [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+    to block external network connections,
+    and maybe we'll want to stick with this and add trusted domains as a UX affordance)
+  - ultimately should this be a mdsvex+Svelte AST?
+
 ## innards
+
+> very much a _work in progress_
 
 - 📁 **[src](/src)**
   - 📁 **[lib](/src/lib)** — SvelteKit [$lib directory](https://kit.svelte.dev/docs#modules-$lib)
@@ -16,15 +31,6 @@
       - 🔷 **[block.ts](/src/lib/ui/block.ts)** — block types
       - 🔶 **[BlockView.svelte](/src/lib/ui/BlockView.svelte)** — render block data
   - 📁 **[routes](/src/routes)** — [SvelteKit](https://github.com/sveltejs/kit) frontend
-
-## design
-
-- create layouts, spaces, and documents with the same data structure
-  - safe to share (e.g. sanitized style attributes) (currently insecure, relies on
-    [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
-    to block external network connections,
-    and maybe we'll want to stick with this and add trusted domains as a UX affordance)
-  - ultimately should this be a mdsvex+Svelte AST?
 
 ## todo
 
