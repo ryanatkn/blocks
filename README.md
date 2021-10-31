@@ -6,6 +6,17 @@
 - [spiderspace.github.io/about](https://spiderspace.github.io/about)
 - [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars)
 
+## innards
+
+- 📁 **[src](/src)**
+  - 📁 **[lib](/src/lib)** — SvelteKit [$lib directory](https://kit.svelte.dev/docs#modules-$lib)
+    - 📁 **[app](/src/lib/app)** — modules and data specific to this app, not expected to be portable or exported
+      - 🔷 **[blocks.ts](/src/lib/app/blocks.ts)** — block data for the current layouts
+    - 📁 **[ui](/src/lib/ui)** — generic reusable frontend things that may be upstreamed to other libraries
+      - 🔷 **[block.ts](/src/lib/ui/block.ts)** — block types
+      - 🔶 **[BlockView.svelte](/src/lib/ui/BlockView.svelte)** — render block data
+  - 📁 **[routes](/src/routes)** — [SvelteKit](https://github.com/sveltejs/kit) frontend
+
 ## design
 
 - create layouts, spaces, and documents with the same data structure
@@ -17,8 +28,9 @@
 
 ## todo
 
-- sanitize element attributes - allowlist, start with `class`
-  - ensure `src` is a relative or absolute url, and maybe allowlisted domains? or CSP?
+- block rendering security
+  - sanitize element attributes?
+  - currently uses a CSP. maybe keep it, and allowlist domains?
 - each iframe on the page eats at least one press of the back button, not good!
 - sync `Iframe` header with navigation inside the iframe
 - sort/dragndrop blocks

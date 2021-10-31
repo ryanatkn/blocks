@@ -51,6 +51,7 @@
 	.content {
 		height: 100%;
 		flex: 1;
+		/* TODO do we need to focus() the .content on mount and add `tabindex="-1"`?  */
 		overflow: auto;
 	}
 	/* TODO */

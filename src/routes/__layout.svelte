@@ -11,7 +11,7 @@
 
 	const devmode = setDevmode(import.meta.env.DEV);
 
-	// For security, we're locking things down
+	// To meet some minimum level of security, we're locking things down
 	// with a strict Content-Security-Policy until we add sanitization:
 	// for more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 	const trustedHosts = "'self' https://www.spiderspace.org/ https://spiderspace.github.io/";
