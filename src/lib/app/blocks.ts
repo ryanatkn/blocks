@@ -3,9 +3,11 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 export const toBlockId = toToClientId('block', undefined, '');
 
+// TODO make a schema for this and use it to validate/parse
+
 /*
 
-TODO the ideal "block language" is going to be the MDSveX/Svelte AST I think?
+TODO the ideal "block language" is going to be the MDsveX/Svelte AST I think?
 
 The equivalent Svelte:
 

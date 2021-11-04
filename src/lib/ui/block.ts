@@ -62,3 +62,8 @@ export interface TextBlock {
 	type: 'Text';
 	content: string;
 }
+
+// TODO schema. and parse instead? return a partial array?
+export const validateBlocks: (value: unknown) => asserts value is Block[] = (value) => {
+	value; // TODO
+};
