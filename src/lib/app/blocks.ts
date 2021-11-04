@@ -3,6 +3,56 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 export const toBlockId = toToClientId('block', undefined, '');
 
+/*
+
+TODO the ideal "block language" is going to be the MDSveX/Svelte AST I think?
+
+The equivalent Svelte:
+
+<h1 class="panel-inset markup">
+	spiderspace
+<h1>
+<blockquote>
+	be advised: press ` <code>Backtick</code> at your own risk
+</blockquote>
+<img
+	class="pixelated rotating-hue"
+	style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;"
+	alt="spiderspace logo"
+	src="favicon.png"
+/>
+<Iframe
+	src="https://spiderspace.github.io/about"
+	width=380
+	height=300
+/>
+<Iframe
+	src="https://spiderspace.github.io/css-vars"
+	class="column"
+	width="var(--column_width)"
+	height=1580
+/>
+<Iframe
+	src: "https://spiderspace.github.io/css-vars/type/px"
+	class: "column"
+	width: "var(--column_width)"
+	height: 600
+/>
+<Iframe
+  src: "https://spiderspace.github.io/about"
+  width: 380
+  height: 300
+/>
+<img
+	class: "pixelated rotating-hue"
+	alt: "spiderspace logo"
+	src: "favicon.png"
+	width: 256
+	height: 256
+/>
+
+*/
+
 export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
