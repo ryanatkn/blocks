@@ -26,11 +26,12 @@
 		<a class="markup panel-inset" href={src}>{stripStart(src, 'https://')}</a>
 	</header>
 	<iframe
+		loading="lazy"
+		title="iframe"
 		{...$$restProps}
 		{src}
 		sandbox="allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-scripts"
 		frameborder="0"
-		title="iframe"
 		on:load={() => (loaded = true)}
 		style="width: {widthCss}; height: {heightCss};"
 	/>
