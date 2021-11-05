@@ -4,7 +4,7 @@
 
 > **work in progress**
 
-| 🕸️                                                                       | 🐙🐱                                                            |
+| [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
 | [www.spiderspace.org](https://www.spiderspace.org)                       | spiderspace/spiderspace                                         |
 | [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       |
