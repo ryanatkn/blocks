@@ -4,9 +4,11 @@
 
 > **work in progress**
 
-- [www.spiderspace.org](https://www.spiderspace.org)
-- [spiderspace.github.io/about](https://spiderspace.github.io/about)
-- [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars)
+| 🕸️                                                                       | 🐙🐱                                                                  |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| [www.spiderspace.org](https://www.spiderspace.org)                       | [spiderspace/spiderspace](https://github.com/spiderspace/spiderspace) |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)             |
+| [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars) | [spiderspace/css-vars](https://github.com/spiderspace/css-vars)       |
 
 ## design
 
