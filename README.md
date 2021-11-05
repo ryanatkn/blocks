@@ -13,13 +13,12 @@
 ## design
 
 - create layouts, spaces, and documents with a serializable JSON data structure
-  - simpler than Svelte AST (though this may change)
+  - simpler than Svelte AST (though this may change? ultimately should this be a mdsvex+Svelte AST?)
   - safe to share (e.g. sanitized style attributes)
     (currently insecure by splatting attributes on DOM elements, relies on
     [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
     to block external network connections,
     and maybe we'll want to stick with this and add trusted domains as a UX affordance)
-  - ultimately should this be a mdsvex+Svelte AST?
 
 ## innards
 
