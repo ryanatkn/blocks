@@ -13,6 +13,7 @@
 ## design
 
 - create layouts, spaces, and documents with a serializable JSON data structure
+  that's safe to share with strangers
   - simpler than Svelte AST (though this may change? ultimately should this be a mdsvex+Svelte AST?)
   - safe to share (e.g. sanitized style attributes)
     (currently insecure by splatting attributes on DOM elements, relies on
