@@ -32,7 +32,7 @@ The equivalent Svelte:
 	src="https://spiderspace.github.io/css-vars"
 	class="column"
 	width="var(--column_width)"
-	height=1580
+	height=1640
 />
 <Iframe
 	src: "https://spiderspace.github.io/css-vars/type/px"
@@ -127,7 +127,7 @@ export const defaultBlocks: Block[] = [
 			src: 'https://spiderspace.github.io/css-vars',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 1580, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 1640, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{

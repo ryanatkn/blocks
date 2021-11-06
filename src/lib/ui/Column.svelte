@@ -1,8 +1,17 @@
 <script lang="ts">
 	import BlockView from '$lib/ui/BlockView.svelte';
+	import {fly} from 'svelte/transition';
 	import type {Block} from '$lib/ui/block';
+	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
+	import {stripStart} from '@feltcoop/felt/util/string.js';
+
+	const devmode = getDevmode(); // TODO maybe make this a prop instead?
+
+	$: controls = $devmode;
 
 	export let blocks: Block[];
+
+	// TODO consider `export let controls: boolean = true;`
 
 	$: console.log('blocks', blocks);
 </script>
@@ -11,15 +20,23 @@
 
 <div class="column markup">
 	{#each blocks as block (block.id)}
-		{#if block.type === 'Component' && block.component === 'Iframe'}
-			<section class="portal portal-iframe panel-outset">
-				<BlockView {block} />
-			</section>
-		{:else}
-			<section>
-				<BlockView {block} />
-			</section>
-		{/if}
+		<div
+			class="block {block.type === 'Component' && block.component === 'Iframe'
+				? 'portal portal-iframe panel-outset'
+				: ''}"
+		>
+			{#if controls}
+				<div class="controls panel-inset" transition:fly|local={{y: 25, duration: 500}}>
+					<!-- TODO generic component -->
+					{#if block.type === 'Component' && block.component === 'Iframe'}
+						<a href={block.props.src}>{stripStart(block.props.src, 'https://')}</a>
+					{:else}
+						<code>TODO</code> controls
+					{/if}
+				</div>
+			{/if}
+			<BlockView {block} />
+		</div>
 	{/each}
 </div>
 
@@ -28,11 +45,24 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-left: 0;
-		padding-right: 0;
+		padding: var(--spacing_xl5) 0;
 	}
-	/* TODO */
+	.block {
+		margin-bottom: var(--spacing_xl7);
+		position: relative; /* for the absolute positioned controls */
+	}
 	.portal {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.controls {
+		text-align: center;
+		height: var(--nav_height);
+		position: absolute;
+		left: 0;
+		top: calc(var(--nav_height) * -1);
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;

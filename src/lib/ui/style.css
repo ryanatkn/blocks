@@ -1,12 +1,8 @@
 /* global stylesheet imported by `src/routes/__layout.svelte */
 
-/*
-
 :root {
-  --some_stylish_property: 100%;
+	--nav_height: var(--spacing_xl5);
 }
-
-*/
 
 /* TODO upstream */
 .pixelated {

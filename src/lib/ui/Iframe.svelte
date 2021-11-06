@@ -1,11 +1,9 @@
 <script lang="ts">
 	import PendingAnimationOverlay from '$lib/ui/PendingAnimationOverlay.svelte';
-	import {stripStart} from '@feltcoop/felt/util/string.js';
 
 	export let src: string;
 	export let width: number | string = '100%';
 	export let height: number | string = '100%';
-	// TODO consider `export let showHeader: boolean = true;`
 
 	$: widthCss = typeof width === 'number' ? width + 'px' : width;
 	$: heightCss = typeof height === 'number' ? height + 'px' : height;
@@ -21,10 +19,8 @@
 	- `allow-storage-access-by-user-activation`
 -->
 
+<!-- TODO see about making a generic `loading` interface for block components -->
 <div class="iframe-wrapper">
-	<header>
-		<a class="markup panel-inset" href={src}>{stripStart(src, 'https://')}</a>
-	</header>
 	<iframe
 		loading="lazy"
 		title="iframe"
@@ -43,11 +39,8 @@
 <style>
 	.iframe-wrapper {
 		display: flex;
-		position: relative; /* for the absolute positioned pending animation */
+		position: relative; /* for the absolute positioned pending animation and controls */
 		flex-direction: column;
-	}
-	header {
-		text-align: center;
 	}
 	iframe {
 		width: 100%;
