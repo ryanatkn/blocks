@@ -29,13 +29,13 @@ The equivalent Svelte:
 	height=300
 />
 <Iframe
-	src="https://spiderspace.github.io/css-vars"
+	src="https://spiderspace.github.io/stylevar"
 	class="column"
 	width="var(--column_width)"
 	height=1640
 />
 <Iframe
-	src: "https://spiderspace.github.io/css-vars/type/px"
+	src: "https://spiderspace.github.io/stylevar/type/px"
 	class: "column"
 	width: "var(--column_width)"
 	height: 600
@@ -124,7 +124,7 @@ export const defaultBlocks: Block[] = [
 		type: 'Component',
 		component: 'Iframe',
 		props: {
-			src: 'https://spiderspace.github.io/css-vars',
+			src: 'https://spiderspace.github.io/stylevar',
 			class: 'column',
 			width: 'var(--column_width)',
 			height: 1640, // TODO hacky -- let the iframe request a size, and enforce min/max
@@ -135,7 +135,7 @@ export const defaultBlocks: Block[] = [
 		type: 'Component',
 		component: 'Iframe',
 		props: {
-			src: 'https://spiderspace.github.io/css-vars/type/px',
+			src: 'https://spiderspace.github.io/stylevar/type/px',
 			class: 'column',
 			width: 'var(--column_width)',
 			height: 600, // TODO hacky -- let the iframe request a size, and enforce min/max

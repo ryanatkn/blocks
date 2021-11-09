@@ -1,14 +1,23 @@
 # spiderspace
 
-> spiderspace is web prototypes
+> web prototypes
 
-> **work in progress**
+[www.spiderspace.org](https://www.spiderspace.org) is a collection of experiements
+in web software development
+with a focus on [Svelte](https://github.com/sveltejs/svelte) and
+[SvelteKit](https://github.com/sveltejs/kit).
+If you find yourself intrigued by any particular experiment,
+please open [discussions](https://github.com/spiderspace/spiderspace/discussions)
+and issues in the [appropriate repos](https://github.com/spiderspace),
+and use the public domain source code however you wish.
 
-| [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| [www.spiderspace.org](https://www.spiderspace.org)                       | spiderspace/spiderspace                                         |
-| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       |
-| [spiderspace.github.io/css-vars](https://spiderspace.github.io/css-vars) | [spiderspace/css-vars](https://github.com/spiderspace/css-vars) |
+> **experimental**: use at your own risk
+
+| [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          | 🧪                                              |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------- |
+| [**www.spiderspace.org**](https://www.spiderspace.org)                   | **spiderspace/spiderspace**                                     | Svelte; safe+serializable layout+content blocks |
+| [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties                   |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       |                                                 |
 
 ## design
 
