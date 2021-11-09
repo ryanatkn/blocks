@@ -21,6 +21,9 @@ and use the public domain source code however you wish.
 
 ## design
 
+The goal of this experiment is to create patterns, components, and helpers around
+a serializable block data structure that renders as Svelte components for layout and content.
+
 - create layouts, spaces, and documents with a serializable JSON data structure
   that's safe to share with strangers
   - simpler than Svelte AST (though this may change? ultimately should this be a mdsvex+Svelte AST?)
@@ -29,6 +32,8 @@ and use the public domain source code however you wish.
     [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
     to block external network connections,
     and maybe we'll want to stick with this and add trusted domains as a UX affordance)
+
+Is `block` the preferred word?
 
 ## innards
 
@@ -48,12 +53,17 @@ and use the public domain source code however you wish.
 - block rendering security
   - sanitize element attributes?
   - currently uses a CSP. maybe keep it, and allowlist domains?
-- each iframe on the page eats at least one press of the back button, not good!
-- sync `Iframe` header with navigation inside the iframe
-- sort/dragndrop blocks
-- 2d block view (add optional `x`/`y` properties or maybe `location.x/y`)
+- views
+  - 2d block view (add optional `x`/`y` properties or maybe `location.x/y`)
+- authoring
+  - include an "add block" button in devmode
+  - delete blocks
+  - edit blocks
+  - sort/dragndrop blocks
 - make all blocks responsive
 - let the iframes request their layout dimensions
+- hot swap block branches?
+- sync `Iframe` header with navigation inside the iframe?
 
 ## usage
 
