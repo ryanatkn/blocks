@@ -5,56 +5,6 @@ export const toBlockId = toToClientId('block', undefined, '');
 
 // TODO make a schema for this and use it to validate/parse
 
-/*
-
-TODO the ideal "block language" is going to be the MDsveX/Svelte AST I think?
-
-The equivalent Svelte:
-
-<h1 class="panel-inset markup">
-	spiderspace
-<h1>
-<blockquote>
-	be advised: press ` <code>Backtick</code> at your own risk
-</blockquote>
-<img
-	class="pixelated rotating-hue"
-	style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;"
-	alt="spiderspace logo"
-	src="favicon.png"
-/>
-<Iframe
-	src="https://spiderspace.github.io/about"
-	width=380
-	height=300
-/>
-<Iframe
-	src="https://spiderspace.github.io/stylevar"
-	class="column"
-	width="var(--column_width)"
-	height=1640
-/>
-<Iframe
-	src: "https://spiderspace.github.io/stylevar/type/px"
-	class: "column"
-	width: "var(--column_width)"
-	height: 600
-/>
-<Iframe
-  src: "https://spiderspace.github.io/about"
-  width: 380
-  height: 300
-/>
-<img
-	class: "pixelated rotating-hue"
-	alt: "spiderspace logo"
-	src: "favicon.png"
-	width: 256
-	height: 256
-/>
-
-*/
-
 export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
