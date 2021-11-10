@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {getApp} from '$lib/app/app';
 	import type {Block} from '$lib/ui/block';
-	import Message from '@feltcoop/felt/ui/Message.svelte';
+	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
 	const {components} = getApp();
