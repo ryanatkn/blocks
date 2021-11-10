@@ -34,6 +34,12 @@ export interface GridComponentBlock {
 	props: {};
 }
 
+export interface TextBlock {
+	id: string;
+	type: 'Text';
+	content: string;
+}
+
 // TODO not sure about this definition, maybe make it generic
 export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBlock | AElementBlock;
 
@@ -69,12 +75,6 @@ export interface AElementBlock extends BaseElementBlock {
 		href: string;
 	} & BaseElementBlock['attributes'];
 	children: Block[];
-}
-
-export interface TextBlock {
-	id: string;
-	type: 'Text';
-	content: string;
 }
 
 // TODO `sanitizeBlocks` probably
