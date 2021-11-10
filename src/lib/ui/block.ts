@@ -33,28 +33,35 @@ export interface GridComponentBlock {
 }
 
 // TODO not sure about this definition, maybe make it generic
-export type ElementBlock = OtherElementBlock | ImgElementBlock;
+export type ElementBlock = OtherElementBlock | ImgElementBlock | AElementBlock;
 
-export interface OtherElementBlock {
+// TODO uh oh complexity
+export interface BaseElementBlock {
 	id: string;
 	type: 'Element';
-	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
 	attributes?: {class?: string; style?: string};
+}
+
+export interface OtherElementBlock extends BaseElementBlock {
+	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
 	children: Block[];
 }
 
-export interface ImgElementBlock {
-	id: string;
-	type: 'Element';
+export interface ImgElementBlock extends BaseElementBlock {
 	name: 'img';
 	attributes: {
 		src: string;
 		alt: string;
-		class?: string;
-		style?: string;
 		width?: number;
 		height?: number;
-	};
+	} & BaseElementBlock['attributes'];
+}
+export interface AElementBlock extends BaseElementBlock {
+	name: 'a';
+	attributes: {
+		href: string;
+	} & BaseElementBlock['attributes'];
+	children: Block[];
 }
 
 export interface TextBlock {
@@ -63,6 +70,7 @@ export interface TextBlock {
 	content: string;
 }
 
+// TODO `sanitizeBlocks` probably
 // TODO schema. and parse instead? return a partial array?
 export const validateBlocks: (value: unknown) => asserts value is Block[] = (value) => {
 	value; // TODO

@@ -150,13 +150,23 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		name: 'img',
+		name: 'a',
 		attributes: {
-			class: 'pixelated rotating-hue',
-			alt: 'spiderspace logo',
-			src: 'favicon.png',
-			width: 256,
-			height: 256,
+			href: 'https://github.com/spiderspace',
 		},
+		children: [
+			{
+				id: toBlockId(),
+				type: 'Element',
+				name: 'img',
+				attributes: {
+					class: 'pixelated rotating-hue',
+					src: 'favicon.png',
+					alt: 'spiderspace logo',
+					width: 256,
+					height: 256,
+				},
+			},
+		],
 	},
 ];

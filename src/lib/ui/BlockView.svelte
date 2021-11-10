@@ -9,13 +9,19 @@
 	export let block: Block;
 </script>
 
+<!-- TODO maybe `a` should not override `target`/`rel` if it's an internal or trusted host -->
+
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}<svelte:component
 		this={components[block.component]}
 		{...block.props}
-	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'h1'}<h1
+	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'a'}<a
 			{...block.attributes}
+			target="_blank"
+			rel="noreferrer"
 		>
+			<BlockViewChildren {block} />
+		</a>{:else if block.name === 'h1'}<h1 {...block.attributes}>
 			<BlockViewChildren {block} />
 		</h1>{:else if block.name === 'h2'}<h2 {...block.attributes}>
 			<BlockViewChildren {block} />
