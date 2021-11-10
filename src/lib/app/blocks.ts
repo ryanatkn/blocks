@@ -77,7 +77,25 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Text',
-				content: 'be advised: press ` ',
+				content: 'be advised: press ',
+			},
+			{
+				id: toBlockId(),
+				type: 'Element',
+				name: 'button',
+				attributes: {
+					class: 'inline',
+				},
+				onClick: {
+					name: 'toggle_devmode', // TODO or `devmode.toggle` ?
+				},
+				children: [
+					{
+						id: toBlockId(),
+						type: 'Text',
+						content: '`',
+					},
+				],
 			},
 			{
 				id: toBlockId(),

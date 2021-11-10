@@ -1,5 +1,7 @@
 // TODO add `type: 'Fragment'` to handle arrays?
 
+type EventDoc = any; // TODO
+
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
 export type ComponentBlock =
@@ -33,7 +35,7 @@ export interface GridComponentBlock {
 }
 
 // TODO not sure about this definition, maybe make it generic
-export type ElementBlock = OtherElementBlock | ImgElementBlock | AElementBlock;
+export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBlock | AElementBlock;
 
 // TODO uh oh complexity
 export interface BaseElementBlock {
@@ -55,6 +57,11 @@ export interface ImgElementBlock extends BaseElementBlock {
 		width?: number;
 		height?: number;
 	} & BaseElementBlock['attributes'];
+}
+export interface ButtonElementBlock extends BaseElementBlock {
+	name: 'button';
+	children: Block[];
+	onClick?: EventDoc; // TODO rename? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
 	name: 'a';

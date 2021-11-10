@@ -8,7 +8,7 @@ web software experiments with a focus on [Svelte](https://github.com/sveltejs/sv
 If you find yourself intrigued by any particular experiment,
 visit the
 [discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
-and see issues in [the appropriate repos](https://github.com/spiderspace).
+and the issues in [the appropriate repos](https://github.com/spiderspace).
 
 Spiderspace does not publish to any package registries.
 The projects here are meant to be extracted and published to registries by people who want to,
