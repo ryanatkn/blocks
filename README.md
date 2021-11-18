@@ -21,7 +21,7 @@ The source code is all public domain so you may you use it however you wish. Use
 | ------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------- |
 | [**www.spiderspace.org**](https://www.spiderspace.org)                   | **spiderspace/spiderspace**                                     | Svelte; safe&serializable layout&content blocks |
 | [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties                   |
-| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       |                                                 |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       | spiderspace is web prototypes                   |
 
 ## design
 
