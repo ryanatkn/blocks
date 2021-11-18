@@ -11,7 +11,7 @@ visit the
 and the issues in [the appropriate repos](https://github.com/spiderspace).
 
 Spiderspace does not publish to any package registries.
-The projects here are meant to be extracted and published to registries by people who want to,
+The projects here are meant to be extracted and published to registries by anyone who wishes,
 which could include _you_.
 The source code is all public domain so you may you use it however you wish. Use wisely!
 
