@@ -50,8 +50,8 @@
 	}
 	.editor {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 20px;
+		right: 20px;
 		width: var(--column_width_min);
 	}
 </style>
