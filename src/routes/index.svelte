@@ -43,16 +43,15 @@
 		width: 100%;
 		height: 100%;
 	}
-	.devmode section {
-		width: 50%;
-	}
 	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 	.editor {
-		position: sticky;
+		position: absolute;
 		top: 0;
+		right: 0;
+		width: var(--column_width_min);
 	}
 </style>
