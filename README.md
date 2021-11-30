@@ -15,7 +15,7 @@ The projects here are meant to be extracted and published to registries by anyon
 which could include _you_.
 The source code is all public domain so you may you use it however you wish. Use wisely!
 
-> **experimental**: use at your own risk
+> **work in progress**: experimental
 
 | [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          | 🧪                                              |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------- |
