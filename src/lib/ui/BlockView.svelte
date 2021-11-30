@@ -11,16 +11,16 @@
 
 	const devmode = getDevmode();
 
-	const toClickHandler = (block: ButtonElementBlock): any => {
-		return (e: MouseEvent) => {
+	const toClickHandler =
+		(block: ButtonElementBlock): any =>
+		(e: MouseEvent) => {
 			// TOOD `dispatch(block.onClick.name)`
-			if (block.onClick.name === 'toggle_devmode') {
+			if (block.onClick!.name === 'toggle_devmode') {
 				$devmode = !$devmode;
 			} else {
 				console.log('handle button click', e, block.onClick);
 			}
 		};
-	};
 </script>
 
 <!-- TODO maybe `a` should not override `target`/`rel` if it's an internal or trusted host -->

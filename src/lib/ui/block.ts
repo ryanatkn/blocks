@@ -1,6 +1,10 @@
 // TODO add `type: 'Fragment'` to handle arrays?
 
-type EventDoc = any; // TODO
+// TODO
+type EventDoc = {
+	name: string;
+	params?: any;
+};
 
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
@@ -67,7 +71,7 @@ export interface ImgElementBlock extends BaseElementBlock {
 export interface ButtonElementBlock extends BaseElementBlock {
 	name: 'button';
 	children: Block[];
-	onClick?: EventDoc; // TODO rename? `action`? `click`? `onclick`?
+	onClick?: EventDoc; // TODO rename? `event`? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
 	name: 'a';
