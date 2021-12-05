@@ -1,19 +1,8 @@
 # spiderspace
 
-> web prototypes
-
 [www.spiderspace.org](https://www.spiderspace.org) is a collection of
-web software experiments with a focus on [Svelte](https://github.com/sveltejs/svelte) and
-[SvelteKit](https://github.com/sveltejs/kit).
-If you find yourself intrigued by any particular experiment,
-visit the
-[discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
-and the issues in [the appropriate repos](https://github.com/spiderspace).
-
-Spiderspace does not publish to any package registries.
-The projects here are meant to be extracted and published to registries by anyone who wishes,
-which could include _you_.
-The source code is all public domain so you may you use it however you wish. Use wisely!
+web prototypes with a focus on
+[Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit)
 
 > **work in progress**: experimental
 
@@ -22,6 +11,20 @@ The source code is all public domain so you may you use it however you wish. Use
 | [**www.spiderspace.org**](https://www.spiderspace.org)                   | **spiderspace/spiderspace**                                     | Svelte; safe&serializable layout&content blocks                             |
 | [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties in runtime JS                                 |
 | [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
+
+## motivation
+
+Spiderspace is a bunch of prototypes using a particular web software toolkit:
+Svelte, SvelteKit, [and more](#credits-).
+
+If you find yourself intrigued by any particular experiment, you can visit the
+[discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
+and the issues in [the appropriate repos](https://github.com/spiderspace).
+
+Spiderspace does not publish to any package registries.
+The projects here are meant to be extracted and published to registries by anyone who wishes,
+which could include _you_.
+The source code is all public domain so you may you use it however you wish. Use wisely!
 
 ## design
 
