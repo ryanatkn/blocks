@@ -17,11 +17,11 @@ The source code is all public domain so you may you use it however you wish. Use
 
 > **work in progress**: experimental
 
-| [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          | 🧪                                              |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------- |
-| [**www.spiderspace.org**](https://www.spiderspace.org)                   | **spiderspace/spiderspace**                                     | Svelte; safe&serializable layout&content blocks |
-| [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties in runtime JS     |
-| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       | spiderspace is web prototypes                   |
+| [🕸️](https://www.spiderspace.org)                                        | [🐙🐱](https://github.com/spiderspace)                          | 🧪                                                                          |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [**www.spiderspace.org**](https://www.spiderspace.org)                   | **spiderspace/spiderspace**                                     | Svelte; safe&serializable layout&content blocks                             |
+| [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties in runtime JS                                 |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
 
 ## design
 
