@@ -81,7 +81,7 @@ export interface AElementBlock extends BaseElementBlock {
 	children: Block[];
 }
 
-// TODO `sanitizeBlocks` probably
+// TODO `sanitizeBlocks` or `parseBlocks` probably
 // TODO schema. and parse instead? return a partial array?
 export const validateBlocks: (value: unknown) => asserts value is Block[] = (value) => {
 	value; // TODO
