@@ -1,8 +1,8 @@
 # spiderspace
 
-[www.spiderspace.org](https://www.spiderspace.org) is a collection of
-web prototypes with a focus on
-[Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit)
+> web prototypes: [www.spiderspace.org](https://www.spiderspace.org) is a collection of
+> web experiments with a focus on
+> [Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit)
 
 > **work in progress**: experimental
 
