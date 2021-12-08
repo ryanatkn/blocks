@@ -66,6 +66,7 @@ Is `block` the preferred word?
 
 ## todo
 
+- more direct manipulation
 - block rendering security
   - sanitize element attributes?
   - currently uses a CSP. maybe keep it, and allowlist domains?
