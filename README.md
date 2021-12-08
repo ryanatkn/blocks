@@ -14,7 +14,7 @@
 
 ## goals
 
-- explain spiderspace
+- introduce and explain Spiderspace
 - create patterns, components, and helpers around
   a serializable block data structure that renders as Svelte components for layout and content
 
