@@ -12,12 +12,18 @@
 | [spiderspace.github.io/stylevar](https://spiderspace.github.io/stylevar) | [spiderspace/stylevar](https://github.com/spiderspace/stylevar) | Svelte; CSS custom properties in runtime JS                                 |
 | [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)       | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
 
+## goals
+
+- explain spiderspace
+- create patterns, components, and helpers around
+  a serializable block data structure that renders as Svelte components for layout and content
+
 ## motivation
 
 Spiderspace is a bunch of prototypes using a particular web software toolkit:
 Svelte, SvelteKit, [and more](#credits-).
 
-If you find yourself intrigued by any particular experiment, you can visit the
+If you find yourself intrigued by any particular prototype, you can visit the
 [discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
 and the issues in [the appropriate repos](https://github.com/spiderspace).
 
@@ -26,9 +32,12 @@ The projects here are meant to be extracted and published to registries by anyon
 which could include _you_.
 The source code is all public domain so you may you use it however you wish. Use wisely!
 
+This repo's prototype explores data-driven rich text authoring and UI creation
+using the same data structure and rendering patterns.
+
 ## design
 
-The goal of this experiment is to create patterns, components, and helpers around
+The goal of this prototype is to create patterns, components, and helpers around
 a serializable block data structure that renders as Svelte components for layout and content.
 
 - create layouts, spaces, and documents with a serializable JSON data structure
