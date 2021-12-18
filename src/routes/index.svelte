@@ -49,7 +49,7 @@
 		align-items: center;
 	}
 	.editor {
-		position: absolute;
+		position: fixed;
 		top: 20px;
 		right: 20px;
 		width: var(--column_width_min);
