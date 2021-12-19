@@ -95,7 +95,7 @@ export const defaultBlocks: Block[] = [
 			src: 'https://spiderspace.github.io/stylevar',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 1800, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 1880, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
@@ -106,7 +106,7 @@ export const defaultBlocks: Block[] = [
 			src: 'https://spiderspace.github.io/stylevar/type/px',
 			class: 'column',
 			width: 'var(--column_width)',
-			height: 650, // TODO hacky -- let the iframe request a size, and enforce min/max
+			height: 730, // TODO hacky -- let the iframe request a size, and enforce min/max
 		},
 	},
 	{
