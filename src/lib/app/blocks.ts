@@ -10,7 +10,7 @@ export const defaultBlocks: Block[] = [
 		id: toBlockId(),
 		type: 'Element',
 		name: 'h1',
-		attributes: {class: 'panel-inset markup'},
+		attributes: {class: 'panel-inset markup', style: 'margin-bottom: 0'},
 		children: [
 			{
 				id: toBlockId(),
@@ -69,20 +69,6 @@ export const defaultBlocks: Block[] = [
 	},
 	{
 		id: toBlockId(),
-		type: 'Element',
-		name: 'img',
-		attributes: {
-			class: 'pixelated rotating-hue',
-			// TODO I think we can safely support inline styles this with the CSP? see the main `__layout` for more
-			// an alternative would be going to a more constrained interface, with structured access to style properties?
-			style:
-				'width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;',
-			alt: 'spiderspace logo',
-			src: 'favicon.png',
-		},
-	},
-	{
-		id: toBlockId(),
 		type: 'Component',
 		component: 'Iframe',
 		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
@@ -114,6 +100,20 @@ export const defaultBlocks: Block[] = [
 		type: 'Component',
 		component: 'Iframe',
 		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
+	},
+	{
+		id: toBlockId(),
+		type: 'Element',
+		name: 'img',
+		attributes: {
+			class: 'pixelated rotating-hue',
+			// TODO I think we can safely support inline styles this with the CSP? see the main `__layout` for more
+			// an alternative would be going to a more constrained interface, with structured access to style properties?
+			style:
+				'width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;',
+			alt: 'spiderspace logo',
+			src: 'favicon.png',
+		},
 	},
 	{
 		id: toBlockId(),

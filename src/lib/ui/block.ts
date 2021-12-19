@@ -6,6 +6,7 @@ type EventDoc = {
 	params?: any;
 };
 
+// TODO more types? `Html`, `Markdown` -- security tho
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
 export type ComponentBlock =
