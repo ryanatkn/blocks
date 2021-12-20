@@ -65,6 +65,7 @@ export const defaultBlocks: Block[] = [
 					class: 'inline',
 				},
 				onClick: {
+					// TODO `type: 'Event'` ?  (or `Command` and `Effect`?)
 					name: 'toggle_devmode', // TODO or `devmode.toggle` ?
 				},
 				children: [
