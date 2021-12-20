@@ -67,6 +67,7 @@ Is `block` the preferred word?
 ## todo
 
 - more direct manipulation
+- change block data structure to be Activity Streams?
 - block rendering security
   - sanitize element attributes?
   - currently uses a CSP. maybe keep it, and allowlist domains?

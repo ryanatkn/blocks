@@ -5,6 +5,21 @@ export const toBlockId = toToClientId('block', undefined, '');
 
 // TODO make a schema for this and use it to validate/parse
 
+// TODO maybe use Activity Streams?
+// {
+// 	id: toBlockId(),
+// 	type: 'Element', // extends `Collection`
+// 	name: 'h1',
+// 	attributes: {class: 'panel-inset markup', style: 'margin-bottom: 0'},
+// 	items: [
+// 		{
+// 			id: toBlockId(),
+// 			type: 'Text',
+// 			content: 'spiderspace',
+// 		},
+// 	],
+// },
+
 export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
@@ -16,6 +31,19 @@ export const defaultBlocks: Block[] = [
 				id: toBlockId(),
 				type: 'Text',
 				content: 'spiderspace',
+			},
+			{
+				id: toBlockId(),
+				type: 'Element',
+				name: 'img',
+				attributes: {
+					class: 'pixelated rotating-hue',
+					src: 'favicon.png',
+					alt: 'spiderspace logo',
+					style: 'position: absolute; right: var(--spacing_lg); bottom: var(--spacing_xl)',
+					width: 16,
+					height: 16,
+				},
 			},
 		],
 	},
