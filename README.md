@@ -15,9 +15,9 @@
 ## goals
 
 - introduce and explain Spiderspace
-- deploy Spiderspace and its repos to a static GitHub pages website so it's fork-friendly:
+- deploy Spiderspace and its repos to static GitHub Pages websites so it's fork-friendly:
   [www.spiderspace.org](https://www.spiderspace.org)
-- create patterns, components, and helpers around
+- in this repo, create patterns, components, and helpers around
   a serializable block data structure that renders as Svelte components for layout and content
 
 ## motivation
