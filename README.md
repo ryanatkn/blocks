@@ -18,7 +18,8 @@
 - deploy Spiderspace and its repos to static GitHub Pages websites so it's fork-friendly:
   [www.spiderspace.org](https://www.spiderspace.org)
 - in this repo, create patterns, components, and helpers around
-  a serializable block data structure that renders as Svelte components for layout and content
+  a serializable block data structure that renders as Svelte components for layout and content,
+  that can be safely used from untrusted sources
 
 ## motivation
 
