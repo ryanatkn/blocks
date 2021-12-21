@@ -15,13 +15,15 @@
 ## goals
 
 - introduce and explain Spiderspace
+- deploy Spiderspace and its repos to a static GitHub pages website so it's fork-friendly:
+  [www.spiderspace.org](https://www.spiderspace.org)
 - create patterns, components, and helpers around
   a serializable block data structure that renders as Svelte components for layout and content
 
 ## motivation
 
 Spiderspace is a bunch of prototypes using a particular web software toolkit:
-Svelte, SvelteKit, [and more](#credits-).
+Svelte, SvelteKit, [and more](#credits-). See the table above for the currently active repos.
 
 If you find yourself intrigued by any particular prototype, you can visit the
 [discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
@@ -34,6 +36,9 @@ The source code is all public domain so you may you use it however you wish. Use
 
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
+The goal is to support users authoring and sharing rich content and dynamic end-user-programmable UI.
+There are _many_ possible implementations that could support these affordances,
+and we would love to [hear about them](https://github.com/spiderspace/spiderspace/discussions)!
 
 ## design
 
