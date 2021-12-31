@@ -66,7 +66,7 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 			id: '1',
 			type: 'Component',
 			component: 'ComponentA',
-			props: {a: 1, b: 2},
+			props: {a: 1, b: 2, shouldBeRemoved: undefined},
 			extrajunk: {should: 'be removed'},
 		}),
 		{
@@ -103,7 +103,7 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 			id: '1',
 			type: 'Element',
 			tagname: 'div',
-			attributes: {class: 'c1'},
+			attributes: {class: 'c1', style: 'disabled_because_security_for_now', shouldBeRemoved: true},
 			extrajunk: {should: 'be removed'},
 		}),
 		{
