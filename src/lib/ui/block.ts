@@ -1,3 +1,8 @@
+// TODO where does this belong? `parse` module?
+
+export const parseString: (value: unknown) => string | undefined = (value) =>
+	typeof value === 'string' ? value : undefined;
+
 // TODO add `type: 'Fragment'` to handle arrays?
 
 // TODO
@@ -83,8 +88,8 @@ export interface AElementBlock extends BaseElementBlock {
 }
 
 // TODO schema
-export const parseBlocks: (value: unknown) => Block[] | null = (value) => {
-	if (!Array.isArray(value)) return null;
+export const parseBlocks: (value: unknown) => Block[] | undefined = (value) => {
+	if (!Array.isArray(value)) return undefined;
 	const parsed: Block[] = [];
 	for (const v of value) {
 		const p = parseBlock(v);
@@ -93,21 +98,35 @@ export const parseBlocks: (value: unknown) => Block[] | null = (value) => {
 	return parsed;
 };
 
-export const parseBlock: (value: unknown) => Block | null = (value) => {
+export const parseBlock: (value: unknown) => Block | undefined = (value) => {
 	const type = (value as Block)?.type;
-	let parsed: Block = {type} as any;
 	switch (type) {
 		case 'Element': {
-			break;
+			return value as Block; // TODO
 		}
 		case 'Component': {
-			break;
+			return value as Block; // TODO
 		}
 		case 'Text': {
-			break;
+			const v = value as Partial<TextBlock>; // TODO is just for type purposes
+			let parsed: TextBlock = {type} as any;
+
+			// TODO should ids be generated automatically?
+			const id = parseId(v.id);
+			if (id === undefined) return undefined;
+			parsed.id = id;
+
+			const content = parseContent(v.content);
+			if (content === undefined) return undefined;
+			parsed.content = content;
+
+			return parsed;
 		}
 		default:
-			return null;
+			return undefined;
 	}
-	return parsed;
 };
+
+export const parseContent: (value: unknown) => string | undefined = parseString;
+
+export const parseId: (value: unknown) => string | undefined = parseString;
