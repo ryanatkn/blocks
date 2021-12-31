@@ -50,8 +50,9 @@
 	}
 	.editor {
 		position: fixed;
-		top: 20px;
-		right: 20px;
-		width: var(--column_width_min);
+		top: 0;
+		right: 0;
+		/* TODO refactor */
+		width: calc(((100vw - (2 * (100vw - 100%))) - var(--column_width)) / 2);
 	}
 </style>

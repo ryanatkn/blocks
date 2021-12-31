@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {Block} from '$lib/ui/block';
-	import {validateBlocks} from '$lib/ui/block';
+	import {parseBlocks} from '$lib/ui/block';
 	import {toBlockId} from '$lib/app/blocks';
 	import type {Writable} from 'svelte/store';
 
@@ -14,9 +14,10 @@
 
 	const updateBlocks = (str: string) => {
 		try {
-			const value: unknown = JSON.parse(str);
-			validateBlocks(value);
-			$blocks = value;
+			const parsed = parseBlocks(JSON.parse(str));
+			if (parsed) {
+				parsed; // TODO
+			}
 		} catch (err) {}
 	};
 
