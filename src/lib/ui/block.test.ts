@@ -78,6 +78,8 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 	);
 });
 
+// TODO test children, other tags, ...
+
 test__parseBlock('parses data into an ElementBlock or not', () => {
 	assert.is(parseBlock(undefined), undefined);
 	assert.is(parseBlock({}), undefined);
