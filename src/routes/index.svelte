@@ -6,7 +6,7 @@
 	import Editor from '$lib/ui/Editor.svelte';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
-	const {blocks, selectedProfile, profiles} = getApp();
+	const {blocks, selectedLayout, layouts} = getApp();
 
 	const devmode = getDevmode();
 
@@ -14,7 +14,7 @@
 	$: block = {
 		id: toBlockId(),
 		type: 'Component',
-		component: $selectedProfile,
+		component: $selectedLayout,
 		props: {
 			blocks: $blocks,
 		},
@@ -28,7 +28,7 @@
 	</section>
 	{#if $devmode}
 		<section class="editor">
-			<Editor {blocks} {block} {selectedProfile} {profiles} />
+			<Editor {blocks} {block} {selectedLayout} {layouts} />
 		</section>
 	{/if}
 </main>
@@ -52,7 +52,7 @@
 		position: fixed;
 		top: 0;
 		right: 0;
-		/* TODO refactor */
+		/* TODO refactor -- only makes sense on the `Column` layout */
 		width: calc(((100vw - (2 * (100vw - 100%))) - var(--column_width)) / 2);
 	}
 </style>

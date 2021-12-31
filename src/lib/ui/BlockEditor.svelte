@@ -16,14 +16,13 @@
 		try {
 			const parsed = parseBlocks(JSON.parse(str));
 			if (parsed) {
-				parsed; // TODO
+				$blocks = parsed;
 			}
 		} catch (err) {}
 	};
 
 	const addBlock = (block: Block) => {
 		$blocks = $blocks.concat(block);
-		blocksStr = JSON.stringify($blocks, null, 2); // TODO make reactive
 	};
 </script>
 
@@ -47,7 +46,7 @@
 {#if editingBlocks}
 	<pre>
     <textarea value={blocksStr} on:input={(e) => {
-      updateBlocks(blocksStr = e.currentTarget.value);
+      updateBlocks(e.currentTarget.value);
     }}></textarea>
   </pre>
 {/if}
