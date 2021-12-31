@@ -101,7 +101,16 @@ export const parseBlocks: (value: unknown) => Block[] | undefined = (value) => {
 	return parsed;
 };
 
-export const parseBlock: (value: unknown) => Block | undefined = (value) => {
+export interface ParseBlockOptions {
+	toId?: () => string;
+}
+
+const DEFAULT_OPTIONS: ParseBlockOptions = {};
+
+export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block | undefined = (
+	value,
+	options = DEFAULT_OPTIONS,
+) => {
 	const type = (value as Block)?.type;
 	switch (type) {
 		case 'Element': {
@@ -111,8 +120,7 @@ export const parseBlock: (value: unknown) => Block | undefined = (value) => {
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
 			let parsed: BaseComponentBlock = {type} as any;
 
-			// TODO should ids be generated automatically?
-			const id = parseId(v.id);
+			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
@@ -130,9 +138,10 @@ export const parseBlock: (value: unknown) => Block | undefined = (value) => {
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
 			let parsed: TextBlock = {type} as any;
 
-			// TODO should ids be generated automatically?
-			const id = parseId(v.id);
-			if (id === undefined) return undefined;
+			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
+			if (id === undefined) {
+				return undefined;
+			}
 			parsed.id = id;
 
 			const content = parseContent(v.content);

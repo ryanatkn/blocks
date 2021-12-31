@@ -1,7 +1,10 @@
 import {suite} from 'uvu';
 import * as assert from 'uvu/assert';
+import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 import {parseBlock} from '$lib/ui/block';
+
+const toToId = (name = 'a') => toToClientId(name);
 
 // TODO schemas and then check with em
 
@@ -49,6 +52,10 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 	assert.is(
 		parseBlock({type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}}),
 		undefined,
+	);
+	assert.equal(
+		parseBlock({type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}}, {toId: toToId()}),
+		{id: 'a_0', type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}},
 	);
 	assert.equal(
 		parseBlock({
