@@ -1,7 +1,13 @@
+import {type Json} from '@feltcoop/felt/util/json.js';
+
 // TODO where does this belong? `parse` module?
 
 export const parseString: (value: unknown) => string | undefined = (value) =>
 	typeof value === 'string' ? value : undefined;
+
+// TODO does weird things like turn `NaN` into `null` but w/e (should prob be undefined?)
+export const parseJson: (value: unknown) => Json | undefined = (value) =>
+	value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 
 // TODO add `type: 'Fragment'` to handle arrays?
 
@@ -12,37 +18,34 @@ type EventDoc = {
 };
 
 // TODO more types? `Html`, `Markdown` -- security tho
+interface BaseBlock {
+	[key: string]: Json;
+}
 export type Block = ComponentBlock | TextBlock | ElementBlock;
 
+// TODO should this be a generic?
+export interface BaseComponentBlock<
+	TComponent extends string = string,
+	TProps extends {[key: string]: Json} = {[key: string]: Json},
+> {
+	id: string;
+	type: 'Component';
+	component: TComponent;
+	props: TProps;
+}
 export type ComponentBlock =
 	| ColumnComponentBlock
 	| IframeComponentBlock
 	| DashboardComponentBlock
 	| GridComponentBlock;
-export interface ColumnComponentBlock {
-	id: string;
-	type: 'Component';
-	component: 'Column';
-	props: {blocks: Block[]};
-}
-export interface IframeComponentBlock {
-	id: string;
-	type: 'Component';
-	component: 'Iframe';
-	props: {src: string; width?: number | string; height?: number | string; class?: string};
-}
-export interface DashboardComponentBlock {
-	id: string;
-	type: 'Component';
-	component: 'Dashboard';
-	props: {};
-}
-export interface GridComponentBlock {
-	id: string;
-	type: 'Component';
-	component: 'Grid';
-	props: {};
-}
+export interface ColumnComponentBlock extends BaseComponentBlock<'Column', {blocks: BaseBlock[]}> {}
+export interface IframeComponentBlock
+	extends BaseComponentBlock<
+		'Iframe',
+		{src: string; width?: number | string; height?: number | string; class?: string}
+	> {}
+export interface DashboardComponentBlock extends BaseComponentBlock<'Dashboard', {}> {}
+export interface GridComponentBlock extends BaseComponentBlock<'Grid', {}> {}
 
 export interface TextBlock {
 	id: string;
@@ -105,7 +108,23 @@ export const parseBlock: (value: unknown) => Block | undefined = (value) => {
 			return value as Block; // TODO
 		}
 		case 'Component': {
-			return value as Block; // TODO
+			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
+			let parsed: BaseComponentBlock = {type} as any;
+
+			// TODO should ids be generated automatically?
+			const id = parseId(v.id);
+			if (id === undefined) return undefined;
+			parsed.id = id;
+
+			const component = parseComponent(v.component);
+			if (component === undefined) return undefined;
+			parsed.component = component;
+
+			const props = parseProps(v.props);
+			if (props === undefined) return undefined;
+			parsed.props = props;
+
+			return parsed as ComponentBlock; // TODO hmm?
 		}
 		case 'Text': {
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
@@ -127,6 +146,19 @@ export const parseBlock: (value: unknown) => Block | undefined = (value) => {
 	}
 };
 
+export const parseId: (value: unknown) => string | undefined = parseString;
+
 export const parseContent: (value: unknown) => string | undefined = parseString;
 
-export const parseId: (value: unknown) => string | undefined = parseString;
+export const parseComponent: (value: unknown) => string | undefined = parseString;
+
+// TODO specific impls for each component type
+export const parseProps: (value: unknown) => {[key: string]: Json} | undefined = (value) => {
+	if (!value || typeof value !== 'object') return undefined;
+	const parsed: {[key: string]: Json} = {};
+	for (const key in value) {
+		const p = parseJson((value as {[key: string]: any})[key]); // TODO parse JSON?
+		if (p !== undefined) parsed[key] = p;
+	}
+	return parsed;
+};

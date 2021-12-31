@@ -45,9 +45,12 @@
 </button>
 {#if editingBlocks}
 	<pre>
-    <textarea value={blocksStr} on:input={(e) => {
-      updateBlocks(e.currentTarget.value);
-    }}></textarea>
+    <textarea
+			value={blocksStr}
+			on:input={(e) => {
+				updateBlocks(e.currentTarget.value);
+			}}
+		/>
   </pre>
 {/if}
 
