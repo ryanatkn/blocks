@@ -37,7 +37,9 @@ export type ComponentBlock =
 	| ColumnComponentBlock
 	| IframeComponentBlock
 	| DashboardComponentBlock
-	| GridComponentBlock;
+	| GridComponentBlock
+	| BackgroundComponentBlock;
+// TODO prop types of each impl are duplicated in their components
 export interface ColumnComponentBlock extends BaseComponentBlock<'Column', {blocks: BaseBlock[]}> {}
 export interface IframeComponentBlock
 	extends BaseComponentBlock<
@@ -46,6 +48,8 @@ export interface IframeComponentBlock
 	> {}
 export interface DashboardComponentBlock extends BaseComponentBlock<'Dashboard', {}> {}
 export interface GridComponentBlock extends BaseComponentBlock<'Grid', {}> {}
+export interface BackgroundComponentBlock
+	extends BaseComponentBlock<'Background', {src: string; alt: string; classes?: string}> {}
 
 export interface TextBlock {
 	id: string;

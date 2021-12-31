@@ -10,7 +10,7 @@ export const toBlockId = toToClientId('block', undefined, '');
 // 	id: toBlockId(),
 // 	type: 'Element', // extends `Collection`
 // 	name: 'h1',
-// 	attributes: {class: 'panel-inset markup', style: 'margin-bottom: 0'},
+// 	attributes: {class: 'panel-inset markup'},
 // 	items: [
 // 		{
 // 			id: toBlockId(),
@@ -25,7 +25,7 @@ export const defaultBlocks: Block[] = [
 		id: toBlockId(),
 		type: 'Element',
 		tagname: 'h1',
-		attributes: {class: 'panel-inset markup', style: 'margin-bottom: 0'},
+		attributes: {class: 'panel-inset markup'},
 		children: [
 			{
 				id: toBlockId(),
@@ -105,43 +105,11 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Component',
-		component: 'Iframe',
+		component: 'Background',
 		props: {
-			src: 'https://spiderspace.github.io/stylevar',
-			class: 'column',
-			width: 'var(--column_width)',
-			height: 1880, // TODO hacky -- let the iframe request a size, and enforce min/max
-		},
-	},
-	{
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Iframe',
-		props: {
-			src: 'https://spiderspace.github.io/stylevar/type/px',
-			class: 'column',
-			width: 'var(--column_width)',
-			height: 730, // TODO hacky -- let the iframe request a size, and enforce min/max
-		},
-	},
-	{
-		id: toBlockId(),
-		type: 'Component',
-		component: 'Iframe',
-		props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
-	},
-	{
-		id: toBlockId(),
-		type: 'Element',
-		tagname: 'img',
-		attributes: {
-			class: 'pixelated rotating-hue',
-			// TODO I think we can safely support inline styles this with the CSP? see the main `__layout` for more
-			// an alternative would be going to a more constrained interface, with structured access to style properties?
-			style:
-				'width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.05;',
-			alt: 'spiderspace logo',
 			src: 'favicon.png',
+			alt: 'spiderspace logo',
+			classes: 'pixelated rotating-hue',
 		},
 	},
 	{
