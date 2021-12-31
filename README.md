@@ -72,6 +72,7 @@ Is `block` the preferred word?
 
 ## todo
 
+- component children/slots (really creeping into AST territory...)
 - more direct manipulation
 - change block data structure to be Activity Streams?
 - dynamic async resolution (e.g. following Activity Streams URLs)

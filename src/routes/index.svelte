@@ -14,10 +14,8 @@
 	$: block = {
 		id: toBlockId(),
 		type: 'Component',
-		component: $selectedLayout,
-		props: {
-			blocks: $blocks,
-		},
+		component: $selectedLayout as any, // TODO hmmm
+		props: {blocks: $blocks},
 	};
 </script>
 
