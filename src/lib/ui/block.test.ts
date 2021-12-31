@@ -20,6 +20,11 @@ test__parseBlock('parses data into a TextBlock or not', () => {
 	assert.is(parseBlock({id: '1', type: 'Text'}), undefined);
 	assert.is(parseBlock({id: '1', content: '...'}), undefined);
 	assert.is(parseBlock({type: 'Text', content: '...'}), undefined);
+	assert.equal(parseBlock({type: 'Text', content: '...'}, {toId: toToId()}), {
+		id: 'a_0',
+		type: 'Text',
+		content: '...',
+	});
 	assert.equal(
 		parseBlock({
 			id: '1',
@@ -33,8 +38,6 @@ test__parseBlock('parses data into a TextBlock or not', () => {
 		},
 	);
 });
-
-// TODO `toId` as an option (opt into generating an id)
 
 test__parseBlock('parses data into a ComponentBlock or not', () => {
 	assert.is(parseBlock(undefined), undefined);
