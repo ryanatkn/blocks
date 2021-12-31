@@ -103,7 +103,12 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 			id: '1',
 			type: 'Element',
 			tagname: 'div',
-			attributes: {class: 'c1', style: 'disabled_because_security_for_now', shouldBeRemoved: true},
+			attributes: {
+				class: 'c1',
+				style: 'disabled_because_security_for_now', // disallow style (future: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API)
+				shouldBeRemoved: true, // remove unknown attributes
+				title: undefined, // remove `undefined`
+			},
 			extrajunk: {should: 'be removed'},
 		}),
 		{
