@@ -61,7 +61,10 @@ export interface BaseElementBlock {
 	id: string;
 	type: 'Element';
 	tagname: string;
-	attributes?: {class?: string; style?: string};
+	// TODO could support `style` if properly sanitized,
+	// but that's not a light process until it's builtin to the platform:
+	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
+	attributes?: {class?: string};
 }
 
 export interface OtherElementBlock extends BaseElementBlock {

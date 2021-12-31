@@ -30,6 +30,7 @@ test__parseBlock('parses data into a TextBlock or not', () => {
 			id: '1',
 			type: 'Text',
 			content: '...',
+			extrajunk: {should: 'be removed'},
 		}),
 		{
 			id: '1',
@@ -73,6 +74,41 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 			type: 'Component',
 			component: 'ComponentA',
 			props: {a: 1, b: 2},
+		},
+	);
+});
+
+test__parseBlock('parses data into an ElementBlock or not', () => {
+	assert.is(parseBlock(undefined), undefined);
+	assert.is(parseBlock({}), undefined);
+	assert.is(parseBlock({id: '1'}), undefined);
+	assert.is(parseBlock({type: 'Element'}), undefined);
+	assert.is(parseBlock({tagname: 'div'}), undefined);
+	assert.is(parseBlock({attributes: {class: 'c1'}}), undefined);
+	assert.is(parseBlock({id: '1', type: 'Element'}), undefined);
+	assert.is(parseBlock({id: '1', tagname: 'div'}), undefined);
+	assert.is(parseBlock({id: '1', attributes: {class: 'c1'}}), undefined);
+	assert.is(parseBlock({id: '1', type: 'Element', tagname: 'div'}), undefined);
+	assert.is(parseBlock({id: '1', type: 'Element', attributes: {class: 'c1'}}), undefined);
+	assert.is(parseBlock({id: '1', tagname: 'div', attributes: {class: 'c1'}}), undefined);
+	assert.is(parseBlock({type: 'Element', tagname: 'div', attributes: {class: 'c1'}}), undefined);
+	assert.equal(
+		parseBlock({type: 'Element', tagname: 'div', attributes: {class: 'c1'}}, {toId: toToId()}),
+		{id: 'a_0', type: 'Element', tagname: 'div', attributes: {class: 'c1'}},
+	);
+	assert.equal(
+		parseBlock({
+			id: '1',
+			type: 'Element',
+			tagname: 'div',
+			attributes: {class: 'c1'},
+			extrajunk: {should: 'be removed'},
+		}),
+		{
+			id: '1',
+			type: 'Element',
+			tagname: 'div',
+			attributes: {class: 'c1'},
 		},
 	);
 });
