@@ -139,9 +139,7 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 			let parsed: TextBlock = {type} as any;
 
 			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
-			if (id === undefined) {
-				return undefined;
-			}
+			if (id === undefined) return undefined;
 			parsed.id = id;
 
 			const content = parseContent(v.content);
