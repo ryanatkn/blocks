@@ -5,6 +5,9 @@
 	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
+	// TODO `a` should not override `target`/`rel` if it's an internal or trusted host
+	// TODO make the backtick-quoted entities in the error messages interactive UI components
+
 	const {components} = getApp();
 
 	export let block: Block;
@@ -23,39 +26,39 @@
 		};
 </script>
 
-<!-- TODO maybe `a` should not override `target`/`rel` if it's an internal or trusted host -->
-
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}<svelte:component
 		this={components[block.component]}
 		{...block.props}
-	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.name === 'a'}<a
+	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.tagname === 'a'}<a
 			{...block.attributes}
 			target="_blank"
-			rel="noreferrer"
+			rel="noreferrer noopener nofollow"
 		>
 			<BlockViewChildren {block} />
-		</a>{:else if block.name === 'button'}<button
+		</a>{:else if block.tagname === 'button'}<button
 			{...block.attributes}
 			on:click={block.onClick ? toClickHandler(block) : undefined}
 		>
 			<BlockViewChildren {block} />
-		</button>{:else if block.name === 'h1'}<h1 {...block.attributes}>
+		</button>{:else if block.tagname === 'h1'}<h1 {...block.attributes}>
 			<BlockViewChildren {block} />
-		</h1>{:else if block.name === 'h2'}<h2 {...block.attributes}>
+		</h1>{:else if block.tagname === 'h2'}<h2 {...block.attributes}>
 			<BlockViewChildren {block} />
-		</h2>{:else if block.name === 'h3'}<h3 {...block.attributes}>
+		</h2>{:else if block.tagname === 'h3'}<h3 {...block.attributes}>
 			<BlockViewChildren {block} />
-		</h3>{:else if block.name === 'blockquote'}<blockquote {...block.attributes}>
+		</h3>{:else if block.tagname === 'blockquote'}<blockquote {...block.attributes}>
 			<BlockViewChildren {block} />
-		</blockquote>{:else if block.name === 'p'}<p {...block.attributes}>
+		</blockquote>{:else if block.tagname === 'p'}<p {...block.attributes}>
 			<BlockViewChildren {block} />
-		</p>{:else if block.name === 'code'}<code {...block.attributes}>
+		</p>{:else if block.tagname === 'code'}<code {...block.attributes}>
 			<BlockViewChildren {block} />
-		</code>{:else if block.name === 'span'}<span {...block.attributes}>
+		</code>{:else if block.tagname === 'span'}<span {...block.attributes}>
 			<BlockViewChildren {block} />
-		</span>{:else if block.name === 'div'}<div {...block.attributes}>
+		</span>{:else if block.tagname === 'div'}<div {...block.attributes}>
 			<BlockViewChildren {block} />
-		</div>{:else if block.name === 'img'}<img {...block.attributes} />{:else}<Message status="error"
-			>unknown block name '{block.name}'</Message
+		</div>{:else if block.tagname === 'img'}<img {...block.attributes} />{:else}<Message
+			status="error"
+			>unknown tagname <code>'{block.tagname}'</code>
+			for <code>Block</code> <code>{block.id}</code></Message
 		>{/if}{/if}

@@ -24,7 +24,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		name: 'h1',
+		tagname: 'h1',
 		attributes: {class: 'panel-inset markup', style: 'margin-bottom: 0'},
 		children: [
 			{
@@ -35,7 +35,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				name: 'img',
+				tagname: 'img',
 				attributes: {
 					class: 'pixelated rotating-hue',
 					src: 'favicon.png',
@@ -50,7 +50,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		name: 'blockquote',
+		tagname: 'blockquote',
 		children: [
 			{
 				id: toBlockId(),
@@ -60,7 +60,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				name: 'button',
+				tagname: 'button',
 				attributes: {
 					class: 'inline',
 				},
@@ -79,7 +79,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				name: 'code',
+				tagname: 'code',
 				children: [
 					// TODO make this a button with a declarative action that triggers that event?
 					{
@@ -133,7 +133,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		name: 'img',
+		tagname: 'img',
 		attributes: {
 			class: 'pixelated rotating-hue',
 			// TODO I think we can safely support inline styles this with the CSP? see the main `__layout` for more
@@ -147,7 +147,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		name: 'a',
+		tagname: 'a',
 		attributes: {
 			href: 'https://github.com/spiderspace',
 		},
@@ -155,7 +155,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				name: 'img',
+				tagname: 'img',
 				attributes: {
 					class: 'pixelated rotating-hue',
 					src: 'favicon.png',

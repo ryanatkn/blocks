@@ -30,7 +30,7 @@ export interface BaseComponentBlock<
 > {
 	id: string;
 	type: 'Component';
-	component: TComponent;
+	component: TComponent; // TODO should this be `name`?
 	props: TProps;
 }
 export type ComponentBlock =
@@ -60,16 +60,17 @@ export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBl
 export interface BaseElementBlock {
 	id: string;
 	type: 'Element';
+	tagname: string;
 	attributes?: {class?: string; style?: string};
 }
 
 export interface OtherElementBlock extends BaseElementBlock {
-	name: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
+	tagname: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
 	children: Block[];
 }
 
 export interface ImgElementBlock extends BaseElementBlock {
-	name: 'img';
+	tagname: 'img';
 	attributes: {
 		src: string;
 		alt: string;
@@ -78,12 +79,12 @@ export interface ImgElementBlock extends BaseElementBlock {
 	} & BaseElementBlock['attributes'];
 }
 export interface ButtonElementBlock extends BaseElementBlock {
-	name: 'button';
+	tagname: 'button';
 	children: Block[];
 	onClick?: EventDoc; // TODO rename? `event`? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
-	name: 'a';
+	tagname: 'a';
 	attributes: {
 		href: string;
 	} & BaseElementBlock['attributes'];
