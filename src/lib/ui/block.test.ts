@@ -43,6 +43,9 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 	assert.is(parseBlock({id: '1', type: 'Component'}), undefined);
 	assert.is(parseBlock({id: '1', component: 'ComponentA'}), undefined);
 	assert.is(parseBlock({id: '1', props: {a: 1, b: 2}}), undefined);
+	assert.is(parseBlock({id: '1', type: 'Component', component: 'ComponentA'}), undefined);
+	assert.is(parseBlock({id: '1', type: 'Component', props: {a: 1, b: 2}}), undefined);
+	assert.is(parseBlock({id: '1', component: 'ComponentA', props: {a: 1, b: 2}}), undefined);
 	assert.is(
 		parseBlock({type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}}),
 		undefined,
@@ -53,6 +56,7 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 			type: 'Component',
 			component: 'ComponentA',
 			props: {a: 1, b: 2},
+			extrajunk: {should: 'be removed'},
 		}),
 		{
 			id: '1',
