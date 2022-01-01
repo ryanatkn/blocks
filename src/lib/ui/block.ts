@@ -1,12 +1,19 @@
 import {type Json} from '@feltcoop/felt/util/json.js';
 
-// TODO where does this belong? `parse` module?
+// TODO where do these belong? `parse` module?
 
-export const parseString: (value: unknown) => string | undefined = (value) =>
+export interface ValueParser<T extends Json> {
+	(value: unknown): T | undefined;
+}
+
+export const parseString: ValueParser<string> = (value) =>
 	typeof value === 'string' ? value : undefined;
 
+export const parseNumber: ValueParser<number> = (value) =>
+	typeof value === 'number' && !Number.isNaN(value) ? value : undefined;
+
 // TODO does weird things like turn `NaN` into `null` but w/e (should prob be undefined?)
-export const parseJson: (value: unknown) => Json | undefined = (value) =>
+export const parseJson: ValueParser<Json> = (value) =>
 	value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 
 // TODO add `type: 'Fragment'` to handle arrays?
@@ -122,7 +129,22 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 	const type = (value as Block)?.type;
 	switch (type) {
 		case 'Element': {
-			return value as Block; // TODO
+			const v = value as Partial<BaseElementBlock>; // TODO is just for type purposes
+			let parsed: BaseElementBlock = {type} as any;
+
+			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
+			if (id === undefined) return undefined;
+			parsed.id = id;
+
+			const tagname = parseTagname(v.tagname);
+			if (tagname === undefined) return undefined;
+			parsed.tagname = tagname;
+
+			const attributes = parseAttributes(v.attributes);
+			if (attributes === undefined) return undefined;
+			parsed.attributes = attributes;
+
+			return parsed as ElementBlock; // TODO hmm?
 		}
 		case 'Component': {
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
@@ -161,11 +183,12 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 	}
 };
 
-export const parseId: (value: unknown) => string | undefined = parseString;
+export const parseId: ValueParser<string> = parseString;
 
-export const parseContent: (value: unknown) => string | undefined = parseString;
+export const parseContent: ValueParser<string> = parseString;
 
-export const parseComponent: (value: unknown) => string | undefined = parseString;
+// TODO `components` lookup in parameterized options
+export const parseComponent: ValueParser<string> = parseString;
 
 // TODO specific impls for each component type
 export const parseProps: (value: unknown) => {[key: string]: Json} | undefined = (value) => {
@@ -173,6 +196,72 @@ export const parseProps: (value: unknown) => {[key: string]: Json} | undefined =
 	const parsed: {[key: string]: Json} = {};
 	for (const key in value) {
 		const p = parseJson((value as {[key: string]: any})[key]); // TODO parse JSON?
+		if (p !== undefined) parsed[key] = p;
+	}
+	return parsed;
+};
+
+// TODO parameterize in the options -- is associated with the `BlockView`
+const tagnames = new Set([
+	'h1',
+	'h2',
+	'h3',
+	'blockquote',
+	'p',
+	'span',
+	'div',
+	'code',
+	'img',
+	'button',
+	'a',
+]);
+
+export const parseTagname: ValueParser<string> = (value) =>
+	tagnames.has(value as string) ? (value as string) : undefined;
+
+export const parseClass: ValueParser<string> = parseString;
+
+// TODO rules for domains (outbound links are less sensitive than embedding)
+export const parseHref: ValueParser<string> = parseString;
+
+// TODO rules for domains (embedding is more sensitive than outbound links)
+export const parseSrc: ValueParser<string> = parseString;
+
+export const parseAlt: ValueParser<string> = parseString;
+
+export const parseDimension: ValueParser<number> = parseNumber;
+
+// TODO parameterize like `toId`?
+// TODO custom per `tagname`
+export const parseAttributes: (value: unknown) => {[key: string]: Json} | undefined = (value) => {
+	if (!value || typeof value !== 'object') return undefined;
+	const parsed: {[key: string]: Json} = {};
+	for (const key in value) {
+		const v = (value as {[key: string]: any})[key];
+		let p: Json | undefined;
+		switch (key) {
+			case 'class': {
+				p = parseSrc(v);
+				break;
+			}
+			case 'href': {
+				p = parseHref(v);
+				break;
+			}
+			case 'src': {
+				p = parseSrc(v);
+				break;
+			}
+			case 'alt': {
+				p = parseAlt(v);
+				break;
+			}
+			case 'width':
+			case 'height': {
+				p = parseDimension(v);
+				break;
+			}
+		}
 		if (p !== undefined) parsed[key] = p;
 	}
 	return parsed;
