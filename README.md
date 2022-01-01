@@ -85,6 +85,11 @@ Is `block` the preferred word?
   - edit blocks
   - sort/dragndrop blocks
   - generic collection actions
+- parse per-component props, per-element attributes, and per-event params
+- security
+  - allowlist domains for `src` and `href`
+  - somehow put governing handles on events
+- async data resolution (JSON URIs for sharing/persistance)
 - make all blocks responsive
 - let the iframes request their layout dimensions
 - hot swap block branches?
