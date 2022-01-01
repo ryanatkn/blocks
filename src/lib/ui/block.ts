@@ -2,7 +2,7 @@ import {type Json} from '@feltcoop/felt/util/json.js';
 
 // TODO where do these belong? `parse` module?
 
-export interface ParseValue<T extends Json> {
+export interface ParseValue<T> {
 	(value: unknown, options: ParseBlockOptions): T | undefined;
 }
 
