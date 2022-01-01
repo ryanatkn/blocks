@@ -24,13 +24,13 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		tagname: 'div',
+		element: 'div',
 		attributes: {class: 'panel-inset markup'},
 		children: [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				tagname: 'h1',
+				element: 'h1',
 				attributes: {class: 'flex'},
 				children: [
 					{
@@ -41,7 +41,7 @@ export const defaultBlocks: Block[] = [
 					{
 						id: toBlockId(),
 						type: 'Element',
-						tagname: 'img',
+						element: 'img',
 						attributes: {
 							class: 'pixelated rotating-hue',
 							src: 'favicon.png',
@@ -57,7 +57,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		tagname: 'blockquote',
+		element: 'blockquote',
 		children: [
 			{
 				id: toBlockId(),
@@ -67,7 +67,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				tagname: 'button',
+				element: 'button',
 				attributes: {
 					class: 'inline',
 				},
@@ -86,7 +86,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				tagname: 'code',
+				element: 'code',
 				children: [
 					// TODO make this a button with a declarative action that triggers that event?
 					{
@@ -122,7 +122,7 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		tagname: 'a',
+		element: 'a',
 		attributes: {
 			href: 'https://github.com/spiderspace',
 		},
@@ -130,7 +130,7 @@ export const defaultBlocks: Block[] = [
 			{
 				id: toBlockId(),
 				type: 'Element',
-				tagname: 'img',
+				element: 'img',
 				attributes: {
 					class: 'pixelated rotating-hue',
 					src: 'favicon.png',

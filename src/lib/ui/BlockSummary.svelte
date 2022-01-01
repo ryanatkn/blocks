@@ -11,4 +11,4 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}{block.component}{:else if block.type === 'Text'}text: <small
 		>{block.content}</small
-	>{:else if block.type === 'Element'}{block.tagname}{/if}
+	>{:else if block.type === 'Element'}{block.element}{/if}

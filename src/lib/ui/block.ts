@@ -2,18 +2,18 @@ import {type Json} from '@feltcoop/felt/util/json.js';
 
 // TODO where do these belong? `parse` module?
 
-export interface ValueParser<T extends Json> {
-	(value: unknown): T | undefined;
+export interface ParseValue<T extends Json> {
+	(value: unknown, options: ParseBlockOptions): T | undefined;
 }
 
-export const parseString: ValueParser<string> = (value) =>
+export const parseString: ParseValue<string> = (value) =>
 	typeof value === 'string' ? value : undefined;
 
-export const parseNumber: ValueParser<number> = (value) =>
+export const parseNumber: ParseValue<number> = (value) =>
 	typeof value === 'number' && !Number.isNaN(value) ? value : undefined;
 
 // TODO does weird things like turn `NaN` into `null` but w/e (should prob be undefined?)
-export const parseJson: ValueParser<Json> = (value) =>
+export const parseJson: ParseValue<Json> = (value) =>
 	value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 
 // TODO add `type: 'Fragment'` to handle arrays?
@@ -71,7 +71,7 @@ export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBl
 export interface BaseElementBlock {
 	id: string;
 	type: 'Element';
-	tagname: string;
+	element: string;
 	// TODO could support `style` if properly sanitized,
 	// but that's not a light process until it's builtin to the platform:
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
@@ -79,12 +79,12 @@ export interface BaseElementBlock {
 }
 
 export interface OtherElementBlock extends BaseElementBlock {
-	tagname: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
+	element: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
 	children: Block[];
 }
 
 export interface ImgElementBlock extends BaseElementBlock {
-	tagname: 'img';
+	element: 'img';
 	attributes: {
 		src: string;
 		alt?: string;
@@ -93,12 +93,12 @@ export interface ImgElementBlock extends BaseElementBlock {
 	} & BaseElementBlock['attributes'];
 }
 export interface ButtonElementBlock extends BaseElementBlock {
-	tagname: 'button';
+	element: 'button';
 	children: Block[];
 	onClick?: EventDoc; // TODO rename? `event`? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
-	tagname: 'a';
+	element: 'a';
 	attributes: {
 		href: string;
 	} & BaseElementBlock['attributes'];
@@ -106,11 +106,11 @@ export interface AElementBlock extends BaseElementBlock {
 }
 
 // TODO schema
-export const parseBlocks: (value: unknown) => Block[] | undefined = (value) => {
+export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 	if (!Array.isArray(value)) return undefined;
 	const parsed: Block[] = [];
 	for (const v of value) {
-		const p = parseBlock(v);
+		const p = parseBlock(v, options);
 		if (p) parsed.push(p);
 	}
 	return parsed;
@@ -118,29 +118,26 @@ export const parseBlocks: (value: unknown) => Block[] | undefined = (value) => {
 
 export interface ParseBlockOptions {
 	toId?: () => string;
+	components: Map<string, any>; // TODO what data structure? maybe a map where components are keys?
+	elements: Map<string, any>; // TODO what data structure? maybe a map where elements are keys?
 }
 
-const DEFAULT_OPTIONS: ParseBlockOptions = {};
-
-export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block | undefined = (
-	value,
-	options = DEFAULT_OPTIONS,
-) => {
+export const parseBlock: ParseValue<Block> = (value, options) => {
 	const type = (value as Block)?.type;
 	switch (type) {
 		case 'Element': {
 			const v = value as Partial<BaseElementBlock>; // TODO is just for type purposes
 			let parsed: BaseElementBlock = {type} as any;
 
-			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
-			const tagname = parseTagname(v.tagname);
-			if (tagname === undefined) return undefined;
-			parsed.tagname = tagname;
+			const element = parseElement(v.element, options);
+			if (element === undefined) return undefined;
+			parsed.element = element;
 
-			const attributes = parseAttributes(v.attributes);
+			const attributes = parseAttributes(v.attributes, options);
 			if (attributes !== undefined) parsed.attributes = attributes; // is optional (but not for `img`, need schemas)
 
 			return parsed as ElementBlock; // TODO hmm?
@@ -149,15 +146,15 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
 			let parsed: BaseComponentBlock = {type} as any;
 
-			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
-			const component = parseComponent(v.component);
+			const component = parseComponent(v.component, options);
 			if (component === undefined) return undefined;
 			parsed.component = component;
 
-			const props = parseProps(v.props);
+			const props = parseProps(v.props, options);
 			if (props === undefined) return undefined;
 			parsed.props = props;
 
@@ -167,11 +164,11 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
 			let parsed: TextBlock = {type} as any;
 
-			const id = parseId(v.id) ?? (options.toId ? options.toId() : undefined);
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
-			const content = parseContent(v.content);
+			const content = parseContent(v.content, options);
 			if (content === undefined) return undefined;
 			parsed.content = content;
 
@@ -182,57 +179,44 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 	}
 };
 
-export const parseId: ValueParser<string> = parseString;
+export const parseId: ParseValue<string> = parseString;
 
-export const parseContent: ValueParser<string> = parseString;
+export const parseContent: ParseValue<string> = parseString;
 
 // TODO `components` lookup in parameterized options
-export const parseComponent: ValueParser<string> = parseString;
+export const parseComponent: ParseValue<string> = parseString;
 
 // TODO specific impls for each component type
-export const parseProps: (value: unknown) => {[key: string]: Json} | undefined = (value) => {
+export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
 	const parsed: {[key: string]: Json} = {};
 	for (const key in value) {
-		const p = parseJson((value as {[key: string]: any})[key]); // TODO parse JSON?
+		const p = parseJson((value as {[key: string]: any})[key], options); // TODO parse JSON?
 		if (p !== undefined) parsed[key] = p;
 	}
 	return parsed;
 };
 
 // TODO parameterize in the options -- is associated with the `BlockView`
-const tagnames = new Set([
-	'h1',
-	'h2',
-	'h3',
-	'blockquote',
-	'p',
-	'span',
-	'div',
-	'code',
-	'img',
-	'button',
-	'a',
-]);
 
-export const parseTagname: ValueParser<string> = (value) =>
-	tagnames.has(value as string) ? (value as string) : undefined;
+export const parseElement: ParseValue<string> = (value, options) =>
+	options.elements.has(value as string) ? (value as string) : undefined;
 
-export const parseClass: ValueParser<string> = parseString;
+export const parseClass: ParseValue<string> = parseString;
 
 // TODO rules for domains (outbound links are less sensitive than embedding)
-export const parseHref: ValueParser<string> = parseString;
+export const parseHref: ParseValue<string> = parseString;
 
 // TODO rules for domains (embedding is more sensitive than outbound links)
-export const parseSrc: ValueParser<string> = parseString;
+export const parseSrc: ParseValue<string> = parseString;
 
-export const parseAlt: ValueParser<string> = parseString;
+export const parseAlt: ParseValue<string> = parseString;
 
-export const parseDimension: ValueParser<number> = parseNumber;
+export const parseDimension: ParseValue<number> = parseNumber;
 
 // TODO parameterize like `toId`?
-// TODO custom per `tagname`
-export const parseAttributes: (value: unknown) => {[key: string]: Json} | undefined = (value) => {
+// TODO custom per `element`
+export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
 	const parsed: {[key: string]: Json} = {};
 	for (const key in value) {
@@ -240,24 +224,24 @@ export const parseAttributes: (value: unknown) => {[key: string]: Json} | undefi
 		let p: Json | undefined;
 		switch (key) {
 			case 'class': {
-				p = parseSrc(v);
+				p = parseSrc(v, options);
 				break;
 			}
 			case 'href': {
-				p = parseHref(v);
+				p = parseHref(v, options);
 				break;
 			}
 			case 'src': {
-				p = parseSrc(v);
+				p = parseSrc(v, options);
 				break;
 			}
 			case 'alt': {
-				p = parseAlt(v);
+				p = parseAlt(v, options);
 				break;
 			}
 			case 'width':
 			case 'height': {
-				p = parseDimension(v);
+				p = parseDimension(v, options);
 				break;
 			}
 		}

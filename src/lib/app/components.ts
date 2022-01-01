@@ -5,10 +5,12 @@ import Dashboard from '$lib/ui/Dashboard.svelte';
 import Grid from '$lib/ui/Grid.svelte';
 import Background from '$lib/ui/Background.svelte';
 
-export const components: Record<string, typeof SvelteComponent> = {
-	Iframe,
-	Column,
-	Dashboard,
-	Grid,
-	Background,
-};
+export const components: Map<string, typeof SvelteComponent> = new Map(
+	Object.entries({
+		Iframe,
+		Column,
+		Dashboard,
+		Grid,
+		Background,
+	}),
+);
