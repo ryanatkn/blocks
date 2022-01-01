@@ -1,7 +1,7 @@
 import type {Block} from '$lib/ui/block';
 import {toToClientId} from '@feltcoop/felt/util/id.js';
 
-export const toBlockId = toToClientId('block', undefined, '');
+export const toBlockId = toToClientId('block');
 
 // TODO make a schema for this and use it to validate/parse
 

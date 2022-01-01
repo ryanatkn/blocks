@@ -207,6 +207,11 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 				element: 'div',
 				attributes: {
 					class: 'c1',
+					href: 'hrefA',
+					src: 'srcA',
+					alt: 'altA',
+					width: 210,
+					height: 210,
 					style: 'disabled_because_security_for_now', // disallow style (future: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API)
 					shouldBeRemoved: true, // remove unknown attributes
 					title: undefined, // remove `undefined`
@@ -219,7 +224,7 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 			id: '1',
 			type: 'Element',
 			element: 'div',
-			attributes: {class: 'c1'},
+			attributes: {class: 'c1', href: 'hrefA', src: 'srcA', alt: 'altA', width: 210, height: 210},
 		},
 	);
 });

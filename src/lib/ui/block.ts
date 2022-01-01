@@ -229,7 +229,7 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 		let p: Json | undefined;
 		switch (key) {
 			case 'class': {
-				p = parseSrc(v, options);
+				p = parseClass(v, options);
 				break;
 			}
 			case 'href': {

@@ -1,3 +1,5 @@
+// TODO per-tag attributes
+
 export const elements: Map<string, object> = new Map([
 	['h1', {}],
 	['h2', {}],
