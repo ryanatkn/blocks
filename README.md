@@ -83,6 +83,7 @@ Is `block` the preferred word?
   - delete blocks
   - edit blocks
   - sort/dragndrop blocks
+  - generic collection actions
 - make all blocks responsive
 - let the iframes request their layout dimensions
 - hot swap block branches?
