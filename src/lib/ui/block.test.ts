@@ -4,6 +4,10 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 import {parseBlock} from '$lib/ui/block';
 
+// TODO do this automatically
+import {install} from 'source-map-support';
+install();
+
 const toToId = (name = 'a') => toToClientId(name);
 
 // TODO schemas and then check with em
@@ -90,14 +94,24 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 	assert.is(parseBlock({id: '1', type: 'Element'}), undefined);
 	assert.is(parseBlock({id: '1', tagname: 'div'}), undefined);
 	assert.is(parseBlock({id: '1', attributes: {class: 'c1'}}), undefined);
-	assert.is(parseBlock({id: '1', type: 'Element', tagname: 'div'}), undefined);
+	assert.equal(parseBlock({id: '1', type: 'Element', tagname: 'div'}), {
+		id: '1',
+		type: 'Element',
+		tagname: 'div',
+	});
 	assert.is(parseBlock({id: '1', type: 'Element', attributes: {class: 'c1'}}), undefined);
 	assert.is(parseBlock({id: '1', tagname: 'div', attributes: {class: 'c1'}}), undefined);
 	assert.is(parseBlock({type: 'Element', tagname: 'div', attributes: {class: 'c1'}}), undefined);
+	assert.equal(parseBlock({type: 'Element', tagname: 'div'}, {toId: toToId()}), {
+		id: 'a_0',
+		type: 'Element',
+		tagname: 'div',
+	});
 	assert.equal(
 		parseBlock({type: 'Element', tagname: 'div', attributes: {class: 'c1'}}, {toId: toToId()}),
 		{id: 'a_0', type: 'Element', tagname: 'div', attributes: {class: 'c1'}},
 	);
+	assert.equal(parseBlock({type: 'Element', tagname: 'doesntexist'}, {toId: toToId()}), undefined);
 	assert.equal(
 		parseBlock({
 			id: '1',

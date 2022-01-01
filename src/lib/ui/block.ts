@@ -141,8 +141,7 @@ export const parseBlock: (value: unknown, options?: ParseBlockOptions) => Block 
 			parsed.tagname = tagname;
 
 			const attributes = parseAttributes(v.attributes);
-			if (attributes === undefined) return undefined;
-			parsed.attributes = attributes;
+			if (attributes !== undefined) parsed.attributes = attributes; // is optional (but not for `img`, need schemas)
 
 			return parsed as ElementBlock; // TODO hmm?
 		}
