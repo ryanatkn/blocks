@@ -12,19 +12,7 @@ export const parseOptions: ParseBlockOptions = {
 };
 
 // TODO make a schema for this and use it to validate/parse
-
-// TODO maybe use Activity Streams?
-// {
-// 	type: 'Element', // extends `Collection`
-// 	name: 'h1',
-// 	attributes: {class: 'panel-inset markup'},
-// 	items: [
-// 		{
-// 			type: 'Text',
-// 			content: 'spiderspace',
-// 		},
-// 	],
-// },
+// TODO should `children` instead be the Activity Streams `Collection` `items`?
 
 export const defaultBlocks: Block[] = parseBlocks(
 	[
