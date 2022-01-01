@@ -34,3 +34,11 @@
 		unhandled view: '{$view}'
 	{/if}
 </div>
+
+<style>
+	.editor {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+</style>

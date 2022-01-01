@@ -12,12 +12,16 @@
 	// TODO problem is this doesn't update when `$blocks` changes
 	$: blocksStr = JSON.stringify($blocks, null, '	');
 
+	let error: string | undefined;
+
 	const updateBlocks = (str: string) => {
 		let json: any;
 		try {
 			json = JSON.parse(str);
+			error = undefined;
 		} catch (err) {
 			// TODO display JSON parse error
+			error = 'failed to parse JSON';
 		}
 		const parsed = parseBlocks(json, parseOptions);
 		if (parsed) {
@@ -41,7 +45,7 @@
 	{#if editingBlocks}close{:else}open{/if} block editor
 </button>
 {#if editingBlocks}
-	<pre>
+	<pre class:error={!!error}>
     <textarea
 			value={blocksStr}
 			on:input={(e) => {
@@ -52,11 +56,17 @@
 {/if}
 
 <style>
+	pre {
+		flex: 1;
+	}
+	/* TODO style this better, it is really bad */
+	.error textarea {
+		background-color: var(--error_color);
+	}
 	textarea {
 		/* TODO remove font size after upgrading Felt */
 		font-size: var(--font_size_md);
-		/* TODO how to get good default sizing? */
-		height: 700px;
+		height: 100%;
 		tab-size: 2;
 	}
 </style>
