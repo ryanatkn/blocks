@@ -256,6 +256,7 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 				p = parseDimension(v, options);
 				break;
 			}
+			// TODO optionally return warnings for ignored attributes (other warnings/diagnostics too)
 		}
 		if (p !== undefined) parsed[key] = p;
 	}
