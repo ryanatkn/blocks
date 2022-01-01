@@ -111,6 +111,13 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 		parseBlock({type: 'Element', tagname: 'div', attributes: {class: 'c1'}}, {toId: toToId()}),
 		{id: 'a_0', type: 'Element', tagname: 'div', attributes: {class: 'c1'}},
 	);
+	assert.equal(
+		parseBlock(
+			{type: 'Element', tagname: 'div', attributes: {style: 'shouldBeRemoved'}},
+			{toId: toToId()},
+		),
+		{id: 'a_0', type: 'Element', tagname: 'div', attributes: {}},
+	);
 	assert.equal(parseBlock({type: 'Element', tagname: 'doesntexist'}, {toId: toToId()}), undefined);
 	assert.equal(
 		parseBlock({
