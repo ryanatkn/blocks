@@ -224,7 +224,14 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 			id: '1',
 			type: 'Element',
 			element: 'div',
-			attributes: {class: 'c1', href: 'hrefA', src: 'srcA', alt: 'altA', width: 210, height: 210},
+			attributes: {
+				class: 'c1',
+				href: 'hrefA',
+				src: 'srcA',
+				alt: 'altA',
+				width: 210,
+				height: 210,
+			},
 		},
 	);
 });
