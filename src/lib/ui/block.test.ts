@@ -214,8 +214,16 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 	);
 	assert.equal(parseBlock({type: 'Element', element: 'doesntexist'}, toOptions()), undefined);
 	assert.equal(
-		parseBlock({type: 'Element', element: 'div', onClick: {type: 'ToggleDevmode'}}, toOptions()),
-		{id: 'a_0', type: 'Element', element: 'div', onClick: {type: 'ToggleDevmode'}},
+		parseBlock(
+			{type: 'Element', element: 'div', onClick: {type: 'ClientEvent', name: 'ToggleDevmode'}},
+			toOptions(),
+		),
+		{
+			id: 'a_0',
+			type: 'Element',
+			element: 'div',
+			onClick: {type: 'ClientEvent', name: 'ToggleDevmode'},
+		},
 	);
 	assert.equal(
 		parseBlock(
@@ -234,7 +242,7 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 					shouldBeRemoved: true, // remove unknown attributes
 					title: undefined, // remove `undefined`
 				},
-				onClick: {type: 'UnregisteredEventShouldBeRemoved'},
+				onClick: {type: 'ClientEvent', name: 'UnregisteredEventShouldBeRemoved'},
 				extrajunk: {should: 'be removed'},
 			},
 			toOptions(),

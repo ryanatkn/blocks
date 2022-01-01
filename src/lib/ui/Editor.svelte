@@ -25,7 +25,7 @@
 			>
 		{/each}
 	</nav>
-	<pre>{JSON.stringify({...block, props: {blocks: `[${$blocks.length}]`}}, null, 2)}</pre>
+	<pre>{JSON.stringify({...block, props: {blocks: `[${$blocks.length}]`}}, null, '	')}</pre>
 	{#if $view === 'page'}
 		<BlockEditor {blocks} {parseOptions} />
 	{:else if $view === 'app'}

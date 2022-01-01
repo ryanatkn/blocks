@@ -17,8 +17,8 @@
 	const toClickHandler =
 		(block: ButtonElementBlock): any =>
 		(e: MouseEvent) => {
-			// TOOD `dispatch(block.onClick.type)` ?
-			if (block.onClick!.type === 'ToggleDevmode') {
+			// TOOD `dispatch(block.onClick.name)` ?
+			if (block.onClick!.name === 'ToggleDevmode') {
 				$devmode = !$devmode;
 			} else {
 				console.log('handle button click', e, block.onClick);

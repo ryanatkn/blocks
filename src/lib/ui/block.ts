@@ -1,4 +1,4 @@
-import type {AppEvent} from '$lib/app/events';
+import type {ClientEvent} from '$lib/app/events';
 import {type Json} from '@feltcoop/felt/util/json.js';
 import {type SvelteComponent} from 'svelte';
 
@@ -73,7 +73,7 @@ export interface BaseElementBlock {
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
 	attributes?: {class?: string};
 	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
-	onClick?: AppEvent;
+	onClick?: ClientEvent;
 }
 
 export interface OtherElementBlock extends BaseElementBlock {
@@ -93,7 +93,7 @@ export interface ImgElementBlock extends BaseElementBlock {
 export interface ButtonElementBlock extends BaseElementBlock {
 	element: 'button';
 	children: Block[];
-	onClick?: AppEvent; // TODO rename? `event`? `action`? `click`? `onclick`?
+	onClick?: ClientEvent; // TODO rename? `event`? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
 	element: 'a';
@@ -116,9 +116,9 @@ export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 
 export interface ParseBlockOptions {
 	toId?: () => string;
-	components: Map<string, typeof SvelteComponent>; // TODO value type?
-	elements: Map<string, any>; // TODO value type?
-	events: Map<string, any>; // TODO value type?
+	components: Map<string, typeof SvelteComponent>; // TODO value type? make it generic?
+	elements: Map<string, any>; // TODO value type? make it generic?
+	events: Map<string, any>; // TODO value type? make it generic?
 }
 
 export const parseBlock: ParseValue<Block> = (value, options) => {
@@ -211,8 +211,8 @@ export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) =>
 export const parseElement: ParseValue<string> = (value, options) =>
 	options.elements.has(value as string) ? (value as string) : undefined;
 
-export const parseEvent: ParseValue<AppEvent> = (value, options) =>
-	value && options.events.has((value as AppEvent).type) ? (value as AppEvent) : undefined;
+export const parseEvent: ParseValue<ClientEvent> = (value, options) =>
+	value && options.events.has((value as ClientEvent).name) ? (value as ClientEvent) : undefined;
 
 export const parseClass: ParseValue<string> = parseString;
 
@@ -267,4 +267,4 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 export const parseChildren: ParseValue<Block[]> = parseBlocks;
 
 // TODO should this even exist? maybe as a lookup in a map from the string `'onClick'`
-export const parseOnClick: ParseValue<AppEvent> = parseEvent;
+export const parseOnClick: ParseValue<ClientEvent> = parseEvent;

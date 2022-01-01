@@ -62,7 +62,8 @@ export const defaultBlocks: Block[] = parseBlocks(
 						class: 'inline',
 					},
 					onClick: {
-						type: 'ToggleDevmode',
+						type: 'ClientEvent',
+						name: 'ToggleDevmode',
 					},
 					children: [
 						{

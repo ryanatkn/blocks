@@ -10,7 +10,7 @@
 	let editingBlocks = true;
 
 	// TODO problem is this doesn't update when `$blocks` changes
-	$: blocksStr = JSON.stringify($blocks, null, 2);
+	$: blocksStr = JSON.stringify($blocks, null, '	');
 
 	const updateBlocks = (str: string) => {
 		let json: any;
@@ -57,5 +57,6 @@
 		font-size: var(--font_size_md);
 		/* TODO how to get good default sizing? */
 		height: 700px;
+		tab-size: 2;
 	}
 </style>
