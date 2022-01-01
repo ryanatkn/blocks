@@ -1,11 +1,10 @@
-import type {Block} from '$lib/ui/block';
 import {getContext, setContext} from 'svelte';
-import type {Writable} from 'svelte/store';
 import {writable} from 'svelte/store';
-import {components} from '$lib/app/components';
-import {defaultBlocks} from '$lib/app/blocks';
-import {defaultProfiles} from '$lib/app/profiles';
-import type {Profile} from '$lib/app/profiles';
+import type {Writable} from 'svelte/store';
+
+import type {Block} from '$lib/ui/block';
+import {defaultBlocks, parseOptions} from '$lib/app/blocks';
+import {defaultLayouts, type Layout} from '$lib/app/layouts';
 
 const KEY = Symbol();
 
@@ -23,13 +22,15 @@ export const createApp = () => {
 	// TODO `block` that gets updated from the page store
 	// TODO should probably be `Writable<Block>`?
 	const blocks: Writable<Block[]> = writable(defaultBlocks);
-	const profiles: Writable<Profile[]> = writable(defaultProfiles); // TODO use path?
-	const selectedProfile: Writable<Profile> = writable(defaultProfiles[0]); // TODO use path?
+	// const profiles: Writable<Profile[]> = writable(defaultProfiles); // TODO use path?
+	const layouts: Writable<Layout[]> = writable(defaultLayouts); // TODO use path?
+	const selectedLayout: Writable<Layout> = writable(defaultLayouts[0]); // TODO use path?
 
 	return {
 		blocks,
-		profiles,
-		selectedProfile,
-		components,
+		// profiles,
+		layouts,
+		selectedLayout,
+		parseOptions,
 	};
 };

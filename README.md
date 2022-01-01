@@ -72,12 +72,11 @@ Is `block` the preferred word?
 
 ## todo
 
+- should `Element` `children` be `items`?
+- component children/slots (really creeping into AST territory...)
 - more direct manipulation
 - change block data structure to be Activity Streams?
 - dynamic async resolution (e.g. following Activity Streams URLs)
-- block rendering security
-  - sanitize element attributes?
-  - currently uses a CSP. maybe keep it, and allowlist domains?
 - views
   - 2d block view (add optional `x`/`y` properties or maybe `location.x/y`)
 - authoring
@@ -85,6 +84,7 @@ Is `block` the preferred word?
   - delete blocks
   - edit blocks
   - sort/dragndrop blocks
+  - generic collection actions
 - make all blocks responsive
 - let the iframes request their layout dimensions
 - hot swap block branches?

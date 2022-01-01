@@ -16,3 +16,10 @@
 		filter: hue-rotate(360deg);
 	}
 }
+
+/* TODO utility classes */
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

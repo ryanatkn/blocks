@@ -3,9 +3,11 @@
 	import BlockView from '$lib/ui/BlockView.svelte';
 
 	export let block: Block;
+
+	$: ({children} = block as any);
 </script>
 
-{#if 'children' in block}{#each block.children as child (child.id)}<svelte:component
+{#if children}{#each children as child (child.id)}<svelte:component
 			this={BlockView}
 			block={child}
 		/>{/each}{/if}

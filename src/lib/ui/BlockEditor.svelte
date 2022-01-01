@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type {Block} from '$lib/ui/block';
-	import {validateBlocks} from '$lib/ui/block';
-	import {toBlockId} from '$lib/app/blocks';
-	import type {Writable} from 'svelte/store';
+	import {type Writable} from 'svelte/store';
+
+	import {parseBlock, parseBlocks, type Block, type ParseBlockOptions} from '$lib/ui/block';
 
 	export let blocks: Writable<Block[]>;
+	export let parseOptions: ParseBlockOptions;
 
 	// TODO extract this behavior to a component
 	let editingBlocks = true;
@@ -13,41 +13,41 @@
 	$: blocksStr = JSON.stringify($blocks, null, 2);
 
 	const updateBlocks = (str: string) => {
+		let json: any;
 		try {
-			const value: unknown = JSON.parse(str);
-			validateBlocks(value);
-			$blocks = value;
-		} catch (err) {}
+			json = JSON.parse(str);
+		} catch (err) {
+			// TODO display JSON parse error
+		}
+		const parsed = parseBlocks(json, parseOptions);
+		if (parsed) {
+			$blocks = parsed;
+		}
 	};
 
 	const addBlock = (block: Block) => {
 		$blocks = $blocks.concat(block);
-		blocksStr = JSON.stringify($blocks, null, 2); // TODO make reactive
+	};
+
+	const onClickAdd = () => {
+		const src = prompt('enter iframe src:', 'https://spiderspace.github.io/about');
+		if (!src) return;
+		addBlock(parseBlock({type: 'Component', component: 'Iframe', props: {src}}, parseOptions)!);
 	};
 </script>
 
-<button
-	on:click={() => {
-		const src = prompt('enter iframe src:', 'https://spiderspace.github.io/about');
-		if (!src) return;
-		addBlock({
-			id: toBlockId(),
-			type: 'Component',
-			component: 'Iframe',
-			props: {src},
-		});
-	}}
->
-	add block
-</button>
+<button on:click={onClickAdd}> add block </button>
 <button on:click={() => (editingBlocks = !editingBlocks)}>
 	{#if editingBlocks}close{:else}open{/if} block editor
 </button>
 {#if editingBlocks}
 	<pre>
-    <textarea value={blocksStr} on:input={(e) => {
-      updateBlocks(blocksStr = e.currentTarget.value);
-    }}></textarea>
+    <textarea
+			value={blocksStr}
+			on:input={(e) => {
+				updateBlocks(e.currentTarget.value);
+			}}
+		/>
   </pre>
 {/if}
 
