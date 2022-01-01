@@ -1,4 +1,5 @@
-import type {SvelteComponent} from 'svelte';
+import {type SvelteComponent} from 'svelte';
+
 import Iframe from '$lib/ui/Iframe.svelte';
 import Column from '$lib/ui/Column.svelte';
 import Dashboard from '$lib/ui/Dashboard.svelte';
