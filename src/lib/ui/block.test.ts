@@ -2,9 +2,10 @@ import {suite} from 'uvu';
 import * as assert from 'uvu/assert';
 import {toToClientId} from '@feltcoop/felt/util/id.js';
 
-import {parseBlock, parseBlocks} from '$lib/ui/block';
+import {parseBlock, parseBlocks, type ParseBlockOptions} from '$lib/ui/block';
 import {components} from '$lib/app/componentsTestHack';
 import {elements} from '$lib/app/elements';
+import {events} from '$lib/app/events';
 
 // TODO do this automatically
 import {install} from 'source-map-support';
@@ -12,16 +13,19 @@ install();
 
 const toToId = (name = 'a') => toToClientId(name);
 
-const toOptions = () => ({
+const toOptions = (): ParseBlockOptions => ({
 	toId: toToId(),
 	components,
 	elements,
+	events,
 });
 
 const toOptionsWithoutId = () => ({
 	...toOptions(),
 	toId: undefined,
 });
+
+const TEST_COMPONENT_NAME = Array.from(components.keys())[0];
 
 // TODO schemas and then check with em
 
@@ -65,37 +69,47 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 	assert.is(parseBlock({}, toOptions()), undefined);
 	assert.is(parseBlock({id: '1'}, toOptions()), undefined);
 	assert.is(parseBlock({type: 'Component'}, toOptions()), undefined);
-	assert.is(parseBlock({component: 'ComponentA'}, toOptions()), undefined);
+	assert.is(parseBlock({component: TEST_COMPONENT_NAME}, toOptions()), undefined);
 	assert.is(parseBlock({props: {a: 1, b: 2}}, toOptions()), undefined);
 	assert.is(parseBlock({id: '1', type: 'Component'}, toOptions()), undefined);
-	assert.is(parseBlock({id: '1', component: 'ComponentA'}, toOptions()), undefined);
+	assert.is(parseBlock({id: '1', component: TEST_COMPONENT_NAME}, toOptions()), undefined);
 	assert.is(parseBlock({id: '1', props: {a: 1, b: 2}}, toOptions()), undefined);
 	assert.is(
-		parseBlock({id: '1', type: 'Component', component: 'ComponentA'}, toOptions()),
+		parseBlock({id: '1', type: 'Component', component: TEST_COMPONENT_NAME}, toOptions()),
 		undefined,
 	);
 	assert.is(parseBlock({id: '1', type: 'Component', props: {a: 1, b: 2}}, toOptions()), undefined);
 	assert.is(
-		parseBlock({id: '1', component: 'ComponentA', props: {a: 1, b: 2}}, toOptions()),
+		parseBlock({id: '1', component: TEST_COMPONENT_NAME, props: {a: 1, b: 2}}, toOptions()),
 		undefined,
 	);
 	assert.is(
 		parseBlock(
-			{type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}},
+			{type: 'Component', component: TEST_COMPONENT_NAME, props: {a: 1, b: 2}},
 			toOptionsWithoutId(),
 		),
 		undefined,
 	);
 	assert.equal(
-		parseBlock({type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}}, toOptions()),
-		{id: 'a_0', type: 'Component', component: 'ComponentA', props: {a: 1, b: 2}},
+		parseBlock(
+			{type: 'Component', component: TEST_COMPONENT_NAME, props: {a: 1, b: 2}},
+			toOptions(),
+		),
+		{id: 'a_0', type: 'Component', component: TEST_COMPONENT_NAME, props: {a: 1, b: 2}},
+	);
+	assert.equal(
+		parseBlock(
+			{type: 'Component', component: 'MissingComponentShouldBeIgnored', props: {a: 1, b: 2}},
+			toOptions(),
+		),
+		undefined,
 	);
 	assert.equal(
 		parseBlock(
 			{
 				id: '1',
 				type: 'Component',
-				component: 'ComponentA',
+				component: TEST_COMPONENT_NAME,
 				props: {a: 1, b: 2, shouldBeRemoved: undefined},
 				extrajunk: {should: 'be removed'},
 			},
@@ -104,7 +118,7 @@ test__parseBlock('parses data into a ComponentBlock or not', () => {
 		{
 			id: '1',
 			type: 'Component',
-			component: 'ComponentA',
+			component: TEST_COMPONENT_NAME,
 			props: {a: 1, b: 2},
 		},
 	);
@@ -200,6 +214,10 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 	);
 	assert.equal(parseBlock({type: 'Element', element: 'doesntexist'}, toOptions()), undefined);
 	assert.equal(
+		parseBlock({type: 'Element', element: 'div', onClick: {type: 'ToggleDevmode'}}, toOptions()),
+		{id: 'a_0', type: 'Element', element: 'div', onClick: {type: 'ToggleDevmode'}},
+	);
+	assert.equal(
 		parseBlock(
 			{
 				id: '1',
@@ -216,6 +234,7 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 					shouldBeRemoved: true, // remove unknown attributes
 					title: undefined, // remove `undefined`
 				},
+				onClick: {type: 'UnregisteredEventShouldBeRemoved'},
 				extrajunk: {should: 'be removed'},
 			},
 			toOptions(),

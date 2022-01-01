@@ -3,12 +3,14 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 import {type Block, parseBlocks, type ParseBlockOptions} from '$lib/ui/block';
 import {components} from '$lib/app/components';
 import {elements} from '$lib/app/elements';
+import {events} from '$lib/app/events';
 
 // TODO where does this belong?
 export const parseOptions: ParseBlockOptions = {
 	toId: toToClientId('block'),
 	components,
 	elements,
+	events,
 };
 
 // TODO make a schema for this and use it to validate/parse
@@ -60,8 +62,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 						class: 'inline',
 					},
 					onClick: {
-						// TODO `type: 'Event'` ?  (or `Command` and `Effect`?)
-						name: 'toggle_devmode', // TODO or `devmode.toggle` ?
+						type: 'ToggleDevmode',
 					},
 					children: [
 						{

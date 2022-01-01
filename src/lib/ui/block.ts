@@ -1,4 +1,6 @@
+import type {AppEvent} from '$lib/app/events';
 import {type Json} from '@feltcoop/felt/util/json.js';
+import {type SvelteComponent} from 'svelte';
 
 // TODO where do these belong? `parse` module?
 
@@ -17,12 +19,6 @@ export const parseJson: ParseValue<Json> = (value) =>
 	value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 
 // TODO add `type: 'Fragment'` to handle arrays?
-
-// TODO
-type EventDoc = {
-	name: string;
-	params?: any;
-};
 
 // TODO more types? `Html`, `Markdown` -- security tho
 interface BaseBlock {
@@ -77,6 +73,7 @@ export interface BaseElementBlock {
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
 	attributes?: {class?: string};
 	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
+	onClick?: AppEvent;
 }
 
 export interface OtherElementBlock extends BaseElementBlock {
@@ -96,7 +93,7 @@ export interface ImgElementBlock extends BaseElementBlock {
 export interface ButtonElementBlock extends BaseElementBlock {
 	element: 'button';
 	children: Block[];
-	onClick?: EventDoc; // TODO rename? `event`? `action`? `click`? `onclick`?
+	onClick?: AppEvent; // TODO rename? `event`? `action`? `click`? `onclick`?
 }
 export interface AElementBlock extends BaseElementBlock {
 	element: 'a';
@@ -119,8 +116,9 @@ export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 
 export interface ParseBlockOptions {
 	toId?: () => string;
-	components: Map<string, any>; // TODO what data structure? maybe a map where components are keys?
-	elements: Map<string, any>; // TODO what data structure? maybe a map where elements are keys?
+	components: Map<string, typeof SvelteComponent>; // TODO value type?
+	elements: Map<string, any>; // TODO value type?
+	events: Map<string, any>; // TODO value type?
 }
 
 export const parseBlock: ParseValue<Block> = (value, options) => {
@@ -134,12 +132,20 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			if (element === undefined) return undefined;
 			parsed.element = element;
 
-			const attributes = parseAttributes(v.attributes, options);
-			if (attributes !== undefined) parsed.attributes = attributes; // is optional (but not for `img`, need schemas)
+			if (v.attributes) {
+				const attributes = parseAttributes(v.attributes, options);
+				if (attributes !== undefined) parsed.attributes = attributes;
+			}
 
-			// TODO should it only call `parseChildren` (and `parseAttributes`) if the value is defined? not sure which is optimal
-			const children = parseChildren(v.children, options);
-			if (children !== undefined) parsed.children = children; // is optional (but not for `img`, need schemas)
+			if (v.children) {
+				const children = parseChildren(v.children, options);
+				if (children !== undefined) parsed.children = children;
+			}
+
+			if (v.onClick) {
+				const onClick = parseOnClick(v.onClick, options);
+				if (onClick !== undefined) parsed.onClick = onClick;
+			}
 
 			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
 			if (id === undefined) return undefined;
@@ -188,8 +194,8 @@ export const parseId: ParseValue<string> = parseString;
 
 export const parseContent: ParseValue<string> = parseString;
 
-// TODO `components` lookup in parameterized options
-export const parseComponent: ParseValue<string> = parseString;
+export const parseComponent: ParseValue<string> = (value, options) =>
+	options.components.has(value as string) ? (value as string) : undefined;
 
 // TODO specific impls for each component type
 export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) => {
@@ -202,10 +208,11 @@ export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) =>
 	return parsed;
 };
 
-// TODO parameterize in the options -- is associated with the `BlockView`
-
 export const parseElement: ParseValue<string> = (value, options) =>
 	options.elements.has(value as string) ? (value as string) : undefined;
+
+export const parseEvent: ParseValue<AppEvent> = (value, options) =>
+	value && options.events.has((value as AppEvent).type) ? (value as AppEvent) : undefined;
 
 export const parseClass: ParseValue<string> = parseString;
 
@@ -255,4 +262,8 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 	return parsed;
 };
 
+// TODO should this even exist? maybe as a lookup in a map from the string `'children'`
 export const parseChildren: ParseValue<Block[]> = parseBlocks;
+
+// TODO should this even exist? maybe as a lookup in a map from the string `'onClick'`
+export const parseOnClick: ParseValue<AppEvent> = parseEvent;
