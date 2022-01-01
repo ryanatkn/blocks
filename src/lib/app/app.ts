@@ -26,6 +26,7 @@ export const createApp = () => {
 	const layouts: Writable<Layout[]> = writable(defaultLayouts); // TODO use path?
 	const selectedLayout: Writable<Layout> = writable(defaultLayouts[0]); // TODO use path?
 
+	// TODO expose this in app panel
 	return {
 		blocks,
 		// profiles,

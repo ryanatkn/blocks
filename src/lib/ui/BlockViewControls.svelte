@@ -7,8 +7,9 @@
 
 	const onInput = (e: Event) => {
 		// TODO dispatch event? use immer to change immutably
-		const value = (e as any).target.value;
-		console.log('value', value);
+		// store dispatch pattern?
+		const src = (e as any).target.value;
+		dispatch('SetBlockProps', {block: block.id, props: {src}}); // TODO name ? `block_id`?
 	};
 </script>
 
