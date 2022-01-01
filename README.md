@@ -36,23 +36,29 @@ The source code is all public domain so you may you use it however you wish. Use
 
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
-The goal is to support users authoring and sharing rich content and dynamic end-user-programmable UI.
+The goal is to support users authoring and sharing rich content
+and dynamic end-user-programmable UI.
 There are _many_ possible implementations that could support these affordances,
 and we would love to [hear about them](https://github.com/spiderspace/spiderspace/discussions)!
+The current implementation prioritizes security,
+and has reduced capability compared to what's possible.
 
 ## design
 
 The goal of this prototype is to create patterns, components, and helpers around
-a serializable block data structure that renders as Svelte components for layout and content.
+a serializable "block" data structure that renders as Svelte components,
+for the purposes of both layout and content.
 
-- create layouts, spaces, and documents with a serializable JSON data structure
-  that's safe to share with strangers
-  - simpler than Svelte AST (though this may change? ultimately should this be a mdsvex+Svelte AST?)
+- create layouts, spaces, and documents with an "executable" JSON data structure
+  that's safe to share with the public internet
+  - simpler than Svelte AST (though should this change? ultimately should this be a mdsvex+Svelte AST?
+    see [the discussion](https://github.com/spiderspace/spiderspace/discussions/4))
   - safe to share (e.g. sanitized style attributes)
     (currently insecure by splatting attributes on DOM elements, relies on
     [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
     to block external network connections,
     and maybe we'll want to stick with this and add trusted domains as a UX affordance)
+  - probability capability based; fine-grained permissions
 
 Is `block` the preferred word?
 

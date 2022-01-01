@@ -25,8 +25,21 @@ export const createApp = () => {
 	const layouts: Writable<Layout[]> = writable(defaultLayouts); // TODO use path?
 	const selectedLayout: Writable<Layout> = writable(defaultLayouts[0]); // TODO use path?
 
+	// TODO hacky -- this is actually really terrible but it's fine for a proof of concept
+	const setBlockProps = (blockId: string, props: any) => {
+		console.log('setBlockProps blockId, props', blockId, props);
+		// TODO maybe get a keypath string[] for `blockId` and then immer `produce`?
+	};
+
 	// TODO expose this in app panel
 	return {
+		// TODO hacky
+		dispatch: (event: string, params: any) => {
+			console.log('event, params', event, params);
+			if (event === 'SetBlockProps') {
+				setBlockProps(params.block, params.props);
+			}
+		},
 		blocks,
 		// profiles,
 		layouts,

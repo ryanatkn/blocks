@@ -2,10 +2,15 @@
 	import {fly} from 'svelte/transition';
 
 	import {type Block} from '$lib/ui/block';
+	import {getApp} from '$lib/app/app';
 
 	export let block: Block;
 
+	const {dispatch} = getApp();
+
 	const onInput = (e: Event) => {
+		// TODO what should this data structure be? immutable plain JSON with immer? reactive stores all the way down?
+		// how to update the tree from an id at arbitrary depth?
 		// TODO dispatch event? use immer to change immutably
 		// store dispatch pattern?
 		const src = (e as any).target.value;
