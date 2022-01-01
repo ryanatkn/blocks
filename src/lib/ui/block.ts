@@ -76,6 +76,7 @@ export interface BaseElementBlock {
 	// but that's not a light process until it's builtin to the platform:
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
 	attributes?: {class?: string};
+	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
 }
 
 export interface OtherElementBlock extends BaseElementBlock {
@@ -139,6 +140,10 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 
 			const attributes = parseAttributes(v.attributes, options);
 			if (attributes !== undefined) parsed.attributes = attributes; // is optional (but not for `img`, need schemas)
+
+			// TODO should it only call `parseChildren` (and `parseAttributes`) if the value is defined? not sure which is optimal
+			const children = parseChildren(v.children, options);
+			if (children !== undefined) parsed.children = children; // is optional (but not for `img`, need schemas)
 
 			return parsed as ElementBlock; // TODO hmm?
 		}
@@ -246,6 +251,16 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 			}
 		}
 		if (p !== undefined) parsed[key] = p;
+	}
+	return parsed;
+};
+
+export const parseChildren: ParseValue<Block[]> = (value, options) => {
+	if (!Array.isArray(value)) return undefined;
+	const parsed: Block[] = [];
+	for (const v of value) {
+		const p = parseBlock(v, options);
+		if (p !== undefined) parsed.push(p);
 	}
 	return parsed;
 };

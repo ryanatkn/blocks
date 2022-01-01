@@ -150,6 +150,49 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 	);
 	assert.equal(
 		parseBlock(
+			{
+				type: 'Element',
+				element: 'div',
+				attributes: {class: 'c1'},
+				children: [
+					{type: 'Text', content: '...'},
+					{
+						type: 'Element',
+						element: 'div',
+						attributes: {class: 'c1'},
+						children: [
+							{type: 'Text', content: '...'},
+							{type: 'Text', content: '...'},
+						],
+					},
+					{type: 'Text', content: '...'},
+				],
+			},
+			toOptions(),
+		),
+		{
+			id: 'a_0',
+			type: 'Element',
+			element: 'div',
+			attributes: {class: 'c1'},
+			children: [
+				{id: 'a_1', type: 'Text', content: '...'},
+				{
+					id: 'a_2',
+					type: 'Element',
+					element: 'div',
+					attributes: {class: 'c1'},
+					children: [
+						{id: 'a_3', type: 'Text', content: '...'},
+						{id: 'a_4', type: 'Text', content: '...'},
+					],
+				},
+				{id: 'a_5', type: 'Text', content: '...'},
+			],
+		},
+	);
+	assert.equal(
+		parseBlock(
 			{type: 'Element', element: 'div', attributes: {style: 'shouldBeRemoved'}},
 			toOptions(),
 		),
