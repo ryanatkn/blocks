@@ -24,26 +24,32 @@ export const defaultBlocks: Block[] = [
 	{
 		id: toBlockId(),
 		type: 'Element',
-		tagname: 'h1',
+		tagname: 'div',
 		attributes: {class: 'panel-inset markup'},
 		children: [
 			{
 				id: toBlockId(),
-				type: 'Text',
-				content: 'spiderspace',
-			},
-			{
-				id: toBlockId(),
 				type: 'Element',
-				tagname: 'img',
-				attributes: {
-					class: 'pixelated rotating-hue',
-					src: 'favicon.png',
-					alt: 'spiderspace logo',
-					style: 'position: absolute; right: var(--spacing_lg); bottom: var(--spacing_xl)',
-					width: 16,
-					height: 16,
-				},
+				tagname: 'h1',
+				children: [
+					{
+						id: toBlockId(),
+						type: 'Text',
+						content: 'spiderspace',
+					},
+					{
+						id: toBlockId(),
+						type: 'Element',
+						tagname: 'img',
+						attributes: {
+							class: 'pixelated rotating-hue',
+							src: 'favicon.png',
+							alt: 'spiderspace logo',
+							width: 16,
+							height: 16,
+						},
+					},
+				],
 			},
 		],
 	},

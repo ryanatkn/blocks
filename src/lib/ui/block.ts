@@ -80,7 +80,7 @@ export interface ImgElementBlock extends BaseElementBlock {
 	tagname: 'img';
 	attributes: {
 		src: string;
-		alt: string;
+		alt?: string;
 		width?: number;
 		height?: number;
 	} & BaseElementBlock['attributes'];

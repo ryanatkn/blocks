@@ -8,6 +8,11 @@
 	animation: rotating-hue var(--animation_duration, 20s) infinite;
 }
 
+img {
+	/* TODO hmm? */
+	display: inline-block;
+}
+
 @keyframes rotating-hue {
 	from {
 		filter: hue-rotate(0deg);
