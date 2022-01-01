@@ -112,7 +112,7 @@ export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 	const parsed: Block[] = [];
 	for (const v of value) {
 		const p = parseBlock(v, options);
-		if (p) parsed.push(p);
+		if (p !== undefined) parsed.push(p);
 	}
 	return parsed;
 };
@@ -255,12 +255,4 @@ export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, option
 	return parsed;
 };
 
-export const parseChildren: ParseValue<Block[]> = (value, options) => {
-	if (!Array.isArray(value)) return undefined;
-	const parsed: Block[] = [];
-	for (const v of value) {
-		const p = parseBlock(v, options);
-		if (p !== undefined) parsed.push(p);
-	}
-	return parsed;
-};
+export const parseChildren: ParseValue<Block[]> = parseBlocks;

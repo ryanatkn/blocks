@@ -2,7 +2,7 @@ import {suite} from 'uvu';
 import * as assert from 'uvu/assert';
 import {toToClientId} from '@feltcoop/felt/util/id.js';
 
-import {parseBlock} from '$lib/ui/block';
+import {parseBlock, parseBlocks} from '$lib/ui/block';
 import {components} from '$lib/app/componentsTestHack';
 import {elements} from '$lib/app/elements';
 
@@ -155,17 +155,17 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 				element: 'div',
 				attributes: {class: 'c1'},
 				children: [
-					{type: 'Text', content: '...'},
+					{type: 'Text', content: '1'},
 					{
 						type: 'Element',
 						element: 'div',
 						attributes: {class: 'c1'},
 						children: [
-							{type: 'Text', content: '...'},
-							{type: 'Text', content: '...'},
+							{type: 'Text', content: '3'},
+							{type: 'Text', content: '4'},
 						],
 					},
-					{type: 'Text', content: '...'},
+					{type: 'Text', content: '5'},
 				],
 			},
 			toOptions(),
@@ -176,18 +176,18 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 			element: 'div',
 			attributes: {class: 'c1'},
 			children: [
-				{id: 'a_1', type: 'Text', content: '...'},
+				{id: 'a_1', type: 'Text', content: '1'},
 				{
 					id: 'a_2',
 					type: 'Element',
 					element: 'div',
 					attributes: {class: 'c1'},
 					children: [
-						{id: 'a_3', type: 'Text', content: '...'},
-						{id: 'a_4', type: 'Text', content: '...'},
+						{id: 'a_3', type: 'Text', content: '3'},
+						{id: 'a_4', type: 'Text', content: '4'},
 					],
 				},
-				{id: 'a_5', type: 'Text', content: '...'},
+				{id: 'a_5', type: 'Text', content: '5'},
 			],
 		},
 	);
@@ -239,3 +239,29 @@ test__parseBlock('does not parse arrays', () => {
 
 test__parseBlock.run();
 /* test__parseBlock */
+
+/* test__parseBlocks */
+const test__parseBlocks = suite('parseBlocks');
+
+test__parseBlocks('parses an array of blocks', () => {
+	assert.is(parseBlocks(undefined, toOptions()), undefined);
+	assert.is(parseBlocks({}, toOptions()), undefined);
+	assert.equal(parseBlocks([], toOptions()), []);
+	assert.equal(parseBlocks([{type: 'Text'}], toOptions()), []);
+	assert.equal(
+		parseBlocks(
+			[
+				{type: 'Text', content: 'a'},
+				{type: 'Text', content: 'b'},
+			],
+			toOptions(),
+		),
+		[
+			{id: 'a_0', type: 'Text', content: 'a'},
+			{id: 'a_1', type: 'Text', content: 'b'},
+		],
+	);
+});
+
+test__parseBlocks.run();
+/* test__parseBlocks */
