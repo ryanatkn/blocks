@@ -72,6 +72,7 @@ Is `block` the preferred word?
 
 ## todo
 
+- should `Element` `children` be `items`?
 - component children/slots (really creeping into AST territory...)
 - more direct manipulation
 - change block data structure to be Activity Streams?
