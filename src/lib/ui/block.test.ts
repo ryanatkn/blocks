@@ -155,39 +155,39 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 				element: 'div',
 				attributes: {class: 'c1'},
 				children: [
-					{type: 'Text', content: '1'},
+					{type: 'Text', content: '0'},
 					{
 						type: 'Element',
 						element: 'div',
 						attributes: {class: 'c1'},
 						children: [
-							{type: 'Text', content: '3'},
-							{type: 'Text', content: '4'},
+							{type: 'Text', content: '1'},
+							{type: 'Text', content: '2'},
 						],
 					},
-					{type: 'Text', content: '5'},
+					{type: 'Text', content: '4'},
 				],
 			},
 			toOptions(),
 		),
 		{
-			id: 'a_0',
+			id: 'a_5',
 			type: 'Element',
 			element: 'div',
 			attributes: {class: 'c1'},
 			children: [
-				{id: 'a_1', type: 'Text', content: '1'},
+				{id: 'a_0', type: 'Text', content: '0'},
 				{
-					id: 'a_2',
+					id: 'a_3',
 					type: 'Element',
 					element: 'div',
 					attributes: {class: 'c1'},
 					children: [
-						{id: 'a_3', type: 'Text', content: '3'},
-						{id: 'a_4', type: 'Text', content: '4'},
+						{id: 'a_1', type: 'Text', content: '1'},
+						{id: 'a_2', type: 'Text', content: '2'},
 					],
 				},
-				{id: 'a_5', type: 'Text', content: '5'},
+				{id: 'a_4', type: 'Text', content: '4'},
 			],
 		},
 	);
@@ -257,10 +257,7 @@ test__parseBlocks('parses an array of blocks', () => {
 	assert.equal(parseBlocks([{type: 'Text'}], toOptions()), []);
 	assert.equal(
 		parseBlocks(
-			[
-				{type: 'Text', content: 'a'},
-				{type: 'Text', content: 'b'},
-			],
+			[{type: 'Text', content: 'a'}, {type: 'Text'}, {type: 'Text', content: 'b'}],
 			toOptions(),
 		),
 		[

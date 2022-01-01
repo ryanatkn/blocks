@@ -130,10 +130,6 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			const v = value as Partial<BaseElementBlock>; // TODO is just for type purposes
 			let parsed: BaseElementBlock = {type} as any;
 
-			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
-			if (id === undefined) return undefined;
-			parsed.id = id;
-
 			const element = parseElement(v.element, options);
 			if (element === undefined) return undefined;
 			parsed.element = element;
@@ -145,15 +141,15 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			const children = parseChildren(v.children, options);
 			if (children !== undefined) parsed.children = children; // is optional (but not for `img`, need schemas)
 
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
+			if (id === undefined) return undefined;
+			parsed.id = id;
+
 			return parsed as ElementBlock; // TODO hmm?
 		}
 		case 'Component': {
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
 			let parsed: BaseComponentBlock = {type} as any;
-
-			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
-			if (id === undefined) return undefined;
-			parsed.id = id;
 
 			const component = parseComponent(v.component, options);
 			if (component === undefined) return undefined;
@@ -163,19 +159,23 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			if (props === undefined) return undefined;
 			parsed.props = props;
 
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
+			if (id === undefined) return undefined;
+			parsed.id = id;
+
 			return parsed as ComponentBlock; // TODO hmm?
 		}
 		case 'Text': {
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
 			let parsed: TextBlock = {type} as any;
 
-			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
-			if (id === undefined) return undefined;
-			parsed.id = id;
-
 			const content = parseContent(v.content, options);
 			if (content === undefined) return undefined;
 			parsed.content = content;
+
+			const id = parseId(v.id, options) ?? (options.toId ? options.toId() : undefined);
+			if (id === undefined) return undefined;
+			parsed.id = id;
 
 			return parsed;
 		}

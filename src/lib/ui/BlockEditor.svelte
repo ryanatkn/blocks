@@ -2,7 +2,6 @@
 	import {type Writable} from 'svelte/store';
 
 	import {parseBlock, parseBlocks, type Block, type ParseBlockOptions} from '$lib/ui/block';
-	import {} from '$lib/ui/block';
 
 	export let blocks: Writable<Block[]>;
 	export let parseOptions: ParseBlockOptions;
@@ -14,12 +13,16 @@
 	$: blocksStr = JSON.stringify($blocks, null, 2);
 
 	const updateBlocks = (str: string) => {
+		let json: any;
 		try {
-			const parsed = parseBlocks(JSON.parse(str), parseOptions);
-			if (parsed) {
-				$blocks = parsed;
-			}
-		} catch (err) {}
+			json = JSON.parse(str);
+		} catch (err) {
+			// TODO display JSON parse error
+		}
+		const parsed = parseBlocks(json, parseOptions);
+		if (parsed) {
+			$blocks = parsed;
+		}
 	};
 
 	const addBlock = (block: Block) => {
