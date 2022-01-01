@@ -1,8 +1,9 @@
 <script lang="ts">
-	import {getApp} from '$lib/app/app';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
-	import type {Block, ButtonElementBlock} from '$lib/ui/block';
 	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
+
+	import {getApp} from '$lib/app/app';
+	import {type Block, type ButtonElementBlock} from '$lib/ui/block';
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
 	// TODO `a` should not override `target`/`rel` if it's an internal or trusted host

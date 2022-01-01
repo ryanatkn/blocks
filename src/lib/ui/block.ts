@@ -1,4 +1,4 @@
-import type {ClientEvent} from '$lib/app/events';
+import {type ClientEvent} from '$lib/app/events';
 import {type Json} from '@feltcoop/felt/util/json.js';
 import {type SvelteComponent} from 'svelte';
 

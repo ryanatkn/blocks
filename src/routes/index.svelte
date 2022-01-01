@@ -1,10 +1,11 @@
 <script lang="ts">
+	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
+
 	import {getApp} from '$lib/app/app';
 	import {parseOptions} from '$lib/app/blocks';
-	import type {Block} from '$lib/ui/block';
+	import {type Block} from '$lib/ui/block';
 	import BlockView from '$lib/ui/BlockView.svelte';
 	import Editor from '$lib/ui/Editor.svelte';
-	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
 	const {blocks, selectedLayout, layouts} = getApp();
 

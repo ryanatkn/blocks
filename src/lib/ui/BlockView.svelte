@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {getApp} from '$lib/app/app';
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
-	import type {Block, ButtonElementBlock} from '$lib/ui/block';
+	import {type Block, type ButtonElementBlock} from '$lib/ui/block';
 	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 

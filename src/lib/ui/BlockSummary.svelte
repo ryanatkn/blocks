@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type {Block} from '$lib/ui/block';
+	import {type Block} from '$lib/ui/block';
 
 	// A succict view of a block, suitable for a single line in a list.
 

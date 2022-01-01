@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {fly} from 'svelte/transition';
 
-	import type {Block} from '$lib/ui/block';
+	import {type Block} from '$lib/ui/block';
 
 	export let block: Block;
 
