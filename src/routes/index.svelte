@@ -53,5 +53,6 @@
 		right: 0;
 		/* TODO refactor -- only makes sense on the `Column` layout */
 		width: calc(((100vw - (2 * (100vw - 100%))) - var(--column_width)) / 2);
+		min-width: var(--column_width_min);
 	}
 </style>
