@@ -8,7 +8,7 @@
 	// TODO `a` should not override `target`/`rel` if it's an internal or trusted host
 	// TODO make the backtick-quoted entities in the error messages interactive UI components
 
-	const {components} = getApp();
+	const {parseOptions} = getApp();
 
 	export let block: Block;
 
@@ -28,7 +28,7 @@
 
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}<svelte:component
-		this={components.get(block.component)}
+		this={parseOptions.components.get(block.component)}
 		{...block.props}
 	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.element === 'a'}<a
 			{...block.attributes}

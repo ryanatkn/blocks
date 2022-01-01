@@ -1,27 +1,17 @@
 <script lang="ts">
-	import {toToClientId} from '@feltcoop/felt/util/id.js';
+	import {type Writable} from 'svelte/store';
 
-	import type {Block} from '$lib/ui/block';
-	import {parseBlocks} from '$lib/ui/block';
-	import {toBlockId} from '$lib/app/blocks';
-	import type {Writable} from 'svelte/store';
-	import {components} from '$lib/app/components';
-	import {elements} from '$lib/app/elements';
+	import {parseBlock, parseBlocks, type Block, type ParseBlockOptions} from '$lib/ui/block';
+	import {} from '$lib/ui/block';
 
 	export let blocks: Writable<Block[]>;
+	export let parseOptions: ParseBlockOptions;
 
 	// TODO extract this behavior to a component
 	let editingBlocks = true;
 
 	// TODO problem is this doesn't update when `$blocks` changes
 	$: blocksStr = JSON.stringify($blocks, null, 2);
-
-	// TODO get from where?
-	const parseOptions = {
-		toId: toToClientId('block'),
-		components,
-		elements,
-	};
 
 	const updateBlocks = (str: string) => {
 		try {
@@ -35,22 +25,15 @@
 	const addBlock = (block: Block) => {
 		$blocks = $blocks.concat(block);
 	};
-</script>
 
-<button
-	on:click={() => {
+	const onClickAdd = () => {
 		const src = prompt('enter iframe src:', 'https://spiderspace.github.io/about');
 		if (!src) return;
-		addBlock({
-			id: toBlockId(),
-			type: 'Component',
-			component: 'Iframe',
-			props: {src},
-		});
-	}}
->
-	add block
-</button>
+		addBlock(parseBlock({type: 'Component', component: 'Iframe', props: {src}}, parseOptions)!);
+	};
+</script>
+
+<button on:click={onClickAdd}> add block </button>
 <button on:click={() => (editingBlocks = !editingBlocks)}>
 	{#if editingBlocks}close{:else}open{/if} block editor
 </button>

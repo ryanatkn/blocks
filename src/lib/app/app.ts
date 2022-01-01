@@ -1,9 +1,9 @@
-import type {Block} from '$lib/ui/block';
 import {getContext, setContext} from 'svelte';
-import type {Writable} from 'svelte/store';
 import {writable} from 'svelte/store';
-import {components} from '$lib/app/components';
-import {defaultBlocks} from '$lib/app/blocks';
+import type {Writable} from 'svelte/store';
+
+import type {Block} from '$lib/ui/block';
+import {defaultBlocks, parseOptions} from '$lib/app/blocks';
 import {defaultLayouts, type Layout} from '$lib/app/layouts';
 
 const KEY = Symbol();
@@ -31,6 +31,6 @@ export const createApp = () => {
 		// profiles,
 		layouts,
 		selectedLayout,
-		components,
+		parseOptions,
 	};
 };
