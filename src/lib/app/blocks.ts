@@ -31,6 +31,7 @@ export const defaultBlocks: Block[] = [
 				id: toBlockId(),
 				type: 'Element',
 				tagname: 'h1',
+				attributes: {class: 'flex'},
 				children: [
 					{
 						id: toBlockId(),
