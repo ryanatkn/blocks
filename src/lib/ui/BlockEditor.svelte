@@ -1,8 +1,12 @@
 <script lang="ts">
+	import {toToClientId} from '@feltcoop/felt/util/id.js';
+
 	import type {Block} from '$lib/ui/block';
 	import {parseBlocks} from '$lib/ui/block';
 	import {toBlockId} from '$lib/app/blocks';
 	import type {Writable} from 'svelte/store';
+	import {components} from '$lib/app/components';
+	import {elements} from '$lib/app/elements';
 
 	export let blocks: Writable<Block[]>;
 
@@ -12,9 +16,16 @@
 	// TODO problem is this doesn't update when `$blocks` changes
 	$: blocksStr = JSON.stringify($blocks, null, 2);
 
+	// TODO get from where?
+	const parseOptions = {
+		toId: toToClientId('block'),
+		components,
+		elements,
+	};
+
 	const updateBlocks = (str: string) => {
 		try {
-			const parsed = parseBlocks(JSON.parse(str));
+			const parsed = parseBlocks(JSON.parse(str), parseOptions);
 			if (parsed) {
 				$blocks = parsed;
 			}
