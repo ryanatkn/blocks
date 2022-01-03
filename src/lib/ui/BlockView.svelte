@@ -5,9 +5,6 @@
 	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
-	// TODO `a` should not override `target`/`rel` if it's an internal or trusted host
-	// TODO make the backtick-quoted entities in the error messages interactive UI components
-
 	const {parseOptions} = getApp();
 
 	export let block: Block;
@@ -38,7 +35,7 @@
 			data-entity={block.id}
 			target="_blank"
 			rel="noreferrer noopener nofollow"
-		>
+			><!--TODO should not override `target`/`rel` if it's an internal or trusted host-->
 			<BlockViewChildren {block} />
 		</a>{:else if block.element === 'button'}<button
 			{...block.attributes}
@@ -69,6 +66,7 @@
 			{...block.attributes}
 			data-entity={block.id}
 		/>{:else}<Message status="error"
-			>unknown element <code>'{block.element}'</code>
+			><!-- TODO make these entities interactive UI components -->
+			unknown element <code>'{block.element}'</code>
 			for <code>Block</code> <code>{block.id}</code></Message
 		>{/if}{/if}
