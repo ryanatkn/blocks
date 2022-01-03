@@ -1,5 +1,6 @@
 import {getContext, setContext} from 'svelte';
 import {writable, type Writable} from 'svelte/store';
+import {produce} from 'immer';
 
 import {type Block} from '$lib/ui/block';
 import {defaultBlocks, parseOptions} from '$lib/app/blocks';
@@ -17,6 +18,27 @@ export const getApp = (): App => {
 
 export type App = ReturnType<typeof createApp>;
 
+// Traverses JSON value `value` and returns an array of keys to the path
+// where `test` first returns `true`.
+// TODO types
+// const findKeypath = (value: any, test: (value: any) => boolean): string[] | undefined => {
+// const keys: string[] | undefined = undefined;
+// if (!value) return;
+// if (Array.isArray(value)) {
+// 	for (const v of value) {
+// 		if (test(v)) {
+// 			keys.push(index);
+// 			return keys;
+// 		}
+// 	}
+// } else {
+// } else if (test(value)) {
+// 	return
+// }
+
+// return keys;
+// };
+
 export const createApp = () => {
 	// TODO `block` that gets updated from the page store
 	// TODO should probably be `Writable<Block>`?
@@ -29,6 +51,22 @@ export const createApp = () => {
 	const setBlockProps = (blockId: string, props: any) => {
 		console.log('setBlockProps blockId, props', blockId, props);
 		// TODO maybe get a keypath string[] for `blockId` and then immer `produce`?
+		blocks.update(($blocks) =>
+			produce($blocks, (b) => {
+				// const keypath = findKeypath($blocks, (block) => block.id === blockId);
+				// console.log('keypath', keypath);
+				// if (!keypath) return b;
+				// let v: any = b;
+				// for (let i = keypath.length - 1; i >= 0; i--) {
+				// 	const key = keypath[i];
+				// 	console.log('setting key', key);
+				// 	v = v[key];
+				// }
+				// console.log('final v', v, props);
+				// Object.assign(v.props, props);
+				return b;
+			}),
+		);
 	};
 
 	// TODO expose this in app panel

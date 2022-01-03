@@ -103,14 +103,26 @@ export interface AElementBlock extends BaseElementBlock {
 	children: Block[];
 }
 
+// TODO this doesn't work because we're given the ID
+// export const parseInfo = new WeakMap<any, string[]>();
+// So instead we want to parse blocks and track an id to keypath map.
+// Do we need a generic traverse function?
+
 // TODO schema
 export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 	if (!Array.isArray(value)) return undefined;
 	const parsed: Block[] = [];
-	for (const v of value) {
+	for (let i = 0; i < value.length; i++) {
+		const v = value[i];
+		options.keypath.push(i.toString());
 		const p = parseBlock(v, options);
-		if (p !== undefined) parsed.push(p);
+		if (p !== undefined) {
+			parsed.push(p);
+			parseInfo.set(p, options.keypath.slice());
+		}
+		options.keypath.pop();
 	}
+	parseInfo.set(parsed, options.keypath.slice());
 	return parsed;
 };
 
@@ -119,6 +131,7 @@ export interface ParseBlockOptions {
 	components: Map<string, typeof SvelteComponent>; // TODO value type? make it generic?
 	elements: Map<string, any>; // TODO value type? make it generic?
 	events: Map<string, any>; // TODO value type? make it generic?
+	keypath: string[]; // TODO make this optional?
 }
 
 export const parseBlock: ParseValue<Block> = (value, options) => {

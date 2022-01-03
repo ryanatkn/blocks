@@ -18,6 +18,7 @@ const toOptions = (): ParseBlockOptions => ({
 	components,
 	elements,
 	events,
+	keypath: [],
 });
 
 const toOptionsWithoutId = () => ({

@@ -11,6 +11,7 @@ export const parseOptions: ParseBlockOptions = {
 	components,
 	elements,
 	events,
+	keypath: [],
 };
 
 // TODO make a schema for this and use it to validate/parse
