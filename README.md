@@ -51,6 +51,8 @@ a serializable block data structure that renders as Svelte components for layout
   - simpler than Svelte AST (though this may change? ultimately should this be a MDsveX+Svelte
     [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)?)
   - safe to share (e.g. sanitized style attributes and allowlisted domains when loading any URLs)
+  - support both text input as well as structured editing
+    (so the canonical representation is likely a JSON AST)
 
 Is `block` the preferred word?
 
