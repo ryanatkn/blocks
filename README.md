@@ -50,11 +50,7 @@ a serializable block data structure that renders as Svelte components for layout
   that's safe to share with strangers
   - simpler than Svelte AST (though this may change? ultimately should this be a MDsveX+Svelte
     [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)?)
-  - safe to share (e.g. sanitized style attributes)
-    (currently insecure by splatting attributes on DOM elements, relies on
-    [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
-    to block external network connections,
-    and maybe we'll want to stick with this and add trusted domains as a UX affordance)
+  - safe to share (e.g. sanitized style attributes and allowlisted domains when loading any URLs)
 
 Is `block` the preferred word?
 
