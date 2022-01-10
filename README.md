@@ -36,8 +36,9 @@ The source code is all public domain so you may you use it however you wish. Use
 
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
-The goal is to support users authoring and sharing rich content and dynamic end-user-programmable UI.
-See [motivation.md](motivation.md) for the walkthrough, and share your thoughts
+The goal is to support users authoring and sharing rich content
+and dynamic end-user-programmable UI in a structured editing WYSIWYG-like environment.
+Share your thoughts
 [in the GitHub discussions](https://github.com/spiderspace/spiderspace/discussions)!
 
 ## design
