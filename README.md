@@ -53,8 +53,8 @@ a serializable block data structure that renders as Svelte components for layout
   - safe to share (e.g. sanitized style attributes and allowlisted domains when loading any URLs)
   - support both text input as well as structured editing
     (so the canonical representation is likely a JSON AST)
-
-Is `block` the preferred word?
+  - should it include dynamic data loading, like what JSON-LD provides with Activity Streams?
+  - is `Block` the preferred word?
 
 ## innards
 
