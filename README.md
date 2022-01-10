@@ -37,8 +37,8 @@ The source code is all public domain so you may you use it however you wish. Use
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
 The goal is to support users authoring and sharing rich content and dynamic end-user-programmable UI.
-There are _many_ possible implementations that could support these affordances,
-and we would love to [hear about them](https://github.com/spiderspace/spiderspace/discussions)!
+See [motivation.md](motivation.md) for the walkthrough, and share your thoughts
+[in the GitHub discussions](https://github.com/spiderspace/spiderspace/discussions)!
 
 ## design
 
@@ -47,7 +47,8 @@ a serializable block data structure that renders as Svelte components for layout
 
 - create layouts, spaces, and documents with a serializable JSON data structure
   that's safe to share with strangers
-  - simpler than Svelte AST (though this may change? ultimately should this be a mdsvex+Svelte AST?)
+  - simpler than Svelte AST (though this may change? ultimately should this be a MDsveX+Svelte
+    [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)?)
   - safe to share (e.g. sanitized style attributes)
     (currently insecure by splatting attributes on DOM elements, relies on
     [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
@@ -71,11 +72,12 @@ Is `block` the preferred word?
 
 ## todo
 
-- should `Element` `children` be `items`?
-- component children/slots (really creeping into AST territory...)
+- center on [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)
+  instead of the current simplified `Block`?
+- dynamic remote async data loading? at odds with SVAST? (e.g. following Activity Streams URLs)
+- component children/slots? (really creeping into AST territory...)
+- implement `Fragment`
 - more direct manipulation
-- change block data structure to be Activity Streams?
-- dynamic async resolution (e.g. following Activity Streams URLs)
 - views
   - 2d block view (add optional `x`/`y` properties or maybe `location.x/y`)
 - authoring
