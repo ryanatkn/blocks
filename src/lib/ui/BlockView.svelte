@@ -26,6 +26,8 @@
 
 <!-- TODO consider passing `{block}` to components -->
 
+<!-- TODO follow the <svelte:element> proposal: https://github.com/sveltejs/svelte/issues/2324 -->
+
 <!-- svelte-ignore a11y-missing-attribute -->
 {#if block.type === 'Component'}<svelte:component
 		this={parseOptions.components.get(block.component)}

@@ -31,8 +31,8 @@ and the issues in [the appropriate repos](https://github.com/spiderspace).
 
 Spiderspace does not publish to any package registries.
 The projects here are meant to be extracted and published to registries by anyone who wishes,
-which could include _you_.
-The source code is all public domain so you may you use it however you wish. Use wisely!
+which could include you!
+The source code is all public domain so you may use it however you wish. Use wisely!
 
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
@@ -48,13 +48,14 @@ a serializable block data structure that renders as Svelte components for layout
 
 - create layouts, spaces, and documents with a serializable JSON data structure
   that's safe to share with strangers
-  - simpler than Svelte AST (though this may change? ultimately should this be a MDsveX+Svelte
-    [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)?)
+  - currently simpler than Svelte AST, though this is going to change to use
+    [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)
   - safe to share (e.g. sanitized style attributes and allowlisted domains when loading any URLs)
   - support both text input as well as structured editing
     (so the canonical representation is likely a JSON AST)
   - should it include dynamic data loading, like what JSON-LD provides with Activity Streams?
   - is `Block` the preferred word?
+  - watch [the `svelte:element` proposal](https://github.com/sveltejs/svelte/issues/2324)
 
 ## innards
 
