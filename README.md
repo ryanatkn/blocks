@@ -6,10 +6,11 @@
 
 > **work in progress**: experimental
 
-| [🕸️](https://www.spiderspace.org)                                  | [🐙🐱](https://github.com/spiderspace)                    | 🧪                                                                          |
-| ------------------------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [**www.spiderspace.org**](https://www.spiderspace.org)             | **spiderspace/spiderspace**                               | Svelte; safe&serializable layout&content blocks                             |
-| [spiderspace.github.io/about](https://spiderspace.github.io/about) | [spiderspace/about](https://github.com/spiderspace/about) | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
+| [🕸️](https://www.spiderspace.org)                                      | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [**www.spiderspace.org**](https://www.spiderspace.org)                 | **spiderspace/spiderspace**                                   | Svelte; safe&serializable layout&content blocks                             |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)     | [spiderspace/about](https://github.com/spiderspace/about)     | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
+| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | [spiderspace/mutable](https://github.com/spiderspace/mutable) | Svelte; mutable store values w/ `immutable` on                              |
 
 ## goals
 
