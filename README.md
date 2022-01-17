@@ -26,14 +26,16 @@
 Spiderspace is a bunch of prototypes using a particular web software toolkit:
 Svelte, SvelteKit, [and more](#credits-). See the table above for the currently active repos.
 
-If you find yourself intrigued by any particular prototype, you can visit the
+If you find yourself intrigued by any particular prototype, visit the
 [discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
 and the issues in [the appropriate repos](https://github.com/spiderspace).
+You're also invited to propose more prototypes!
 
 Spiderspace does not publish to any package registries.
 The projects here are meant to be extracted and published to registries by anyone who wishes,
 which could include you!
-The source code is all public domain so you may use it however you wish. Use wisely!
+The source code is all public domain so you may use it however you wish.
+(and also, note that any contributions you make will be licensed the same)
 
 This repo's prototype explores data-driven rich text authoring and UI creation
 using the same data structure and rendering patterns.
