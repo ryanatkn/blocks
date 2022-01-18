@@ -90,6 +90,19 @@ export const defaultBlocks: Block[] = parseBlocks(
 			],
 		},
 		{
+			type: 'Element',
+			element: 'a',
+			attributes: {
+				href: 'https://github.com/spiderspace/mutable',
+			},
+			children: [
+				{
+					type: 'Text',
+					content: 'spiderspace/mutable',
+				},
+			],
+		},
+		{
 			type: 'Component',
 			component: 'Iframe',
 			props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
