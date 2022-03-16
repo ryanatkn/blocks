@@ -3,7 +3,7 @@
 	import '$lib/ui/style.css';
 	import {createApp, setApp} from '$lib/app/app';
 	import {setDevmode} from '@feltcoop/felt/ui/devmode.js';
-	import Devmode from '@feltcoop/felt/ui/Devmode.svelte';
+	import DevmodeControls from '@feltcoop/felt/ui/DevmodeControls.svelte';
 	// import FeltWindowHost from '@feltcoop/felt/ui/FeltWindowHost.svelte';
 
 	const app = createApp();
@@ -21,4 +21,4 @@
 
 <!-- <FeltWindowHost query={} /> -->
 
-<Devmode {devmode} />
+<DevmodeControls {devmode} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {type Writable} from 'svelte/store';
+	import type {Writable} from 'svelte/store';
 
 	import {parseBlock, parseBlocks, type Block, type ParseBlockOptions} from '$lib/ui/block';
 
@@ -57,6 +57,7 @@
 
 <style>
 	pre {
+		display: flex;
 		flex: 1;
 	}
 	/* TODO style this better, it is really bad */

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {type Block} from '$lib/ui/block';
+	import type {Block} from '$lib/ui/block';
 	import BlockView from '$lib/ui/BlockView.svelte';
 
 	export let block: Block;

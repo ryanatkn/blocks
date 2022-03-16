@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BlockView from '$lib/ui/BlockView.svelte';
-	import {type Block} from '$lib/ui/block';
+	import type {Block} from '$lib/ui/block';
 	import BlockSummary from './BlockSummary.svelte';
 
 	export let blocks: Block[];
@@ -11,7 +11,7 @@
 <!-- TODO instead of this, maybe pass a slot to `BlockView` to wrap the section -->
 
 <div class="dashboard">
-	<div class="nav column-min">
+	<div class="nav column-sm">
 		<nav>
 			<!-- TODO show nested items -->
 			<ol>

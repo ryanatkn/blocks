@@ -3,8 +3,8 @@
 
 	import BlockEditor from '$lib/ui/BlockEditor.svelte';
 	import EditorNav from '$lib/ui/EditorNav.svelte';
-	import {type Block, type ParseBlockOptions} from '$lib/ui/block';
-	import {type Layout} from '$lib/app/layouts';
+	import type {Block, ParseBlockOptions} from '$lib/ui/block';
+	import type {Layout} from '$lib/app/layouts';
 
 	export let block: Block;
 	export let blocks: Writable<Block[]>;

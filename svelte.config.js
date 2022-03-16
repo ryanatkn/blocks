@@ -9,14 +9,11 @@ export default {
 	},
 	kit: {
 		adapter: static_adapter(),
-		target: '#root',
 		files: {assets: 'src/static'},
+		prerender: {default: true},
 		vite: {
 			ssr: {
 				noExternal: ['@feltcoop/felt'],
-			},
-			optimizeDeps: {
-				exclude: ['@feltcoop/felt'],
 			},
 		},
 	},

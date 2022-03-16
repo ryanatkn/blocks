@@ -2,7 +2,7 @@
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 
 	import BlockView from '$lib/ui/BlockView.svelte';
-	import {type Block} from '$lib/ui/block';
+	import type {Block} from '$lib/ui/block';
 	import BlockViewControls from '$lib/ui/BlockViewControls.svelte';
 
 	const devmode = getDevmode(); // TODO maybe make this a prop instead?

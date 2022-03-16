@@ -1,7 +1,7 @@
 import {getContext, setContext} from 'svelte';
 import {writable, type Writable} from 'svelte/store';
 
-import {type Block} from '$lib/ui/block';
+import type {Block} from '$lib/ui/block';
 import {defaultBlocks, parseOptions} from '$lib/app/blocks';
 import {defaultLayouts, type Layout} from '$lib/app/layouts';
 

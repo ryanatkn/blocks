@@ -3,7 +3,7 @@
 
 	import {getApp} from '$lib/app/app';
 	import {parseOptions} from '$lib/app/blocks';
-	import {type Block} from '$lib/ui/block';
+	import type {Block} from '$lib/ui/block';
 	import BlockView from '$lib/ui/BlockView.svelte';
 	import Editor from '$lib/ui/Editor.svelte';
 
@@ -54,6 +54,6 @@
 		right: 0;
 		/* TODO refactor -- only makes sense on the `Column` layout */
 		width: calc(((100vw - (2 * (100vw - 100%))) - var(--column_width)) / 2);
-		min-width: var(--column_width_min);
+		min-width: var(--column_width_sm);
 	}
 </style>

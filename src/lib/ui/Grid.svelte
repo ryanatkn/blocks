@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BlockView from '$lib/ui/BlockView.svelte';
-	import {type Block} from '$lib/ui/block';
+	import type {Block} from '$lib/ui/block';
 
 	// TODO name?
 
