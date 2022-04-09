@@ -60,47 +60,25 @@ export interface TextBlock {
 	content: string;
 }
 
-// TODO not sure about this definition, maybe make it generic
-export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBlock | AElementBlock;
-
-// TODO uh oh complexity
-export interface BaseElementBlock {
+export interface ElementBlock {
 	id: string;
 	type: 'Element';
 	element: string;
+	// TODO use zod and parse attrs
 	// TODO could support `style` if properly sanitized,
 	// but that's not a light process until it's builtin to the platform:
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
-	attributes?: {class?: string};
-	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
-	onClick?: ClientEvent;
-}
-
-export interface OtherElementBlock extends BaseElementBlock {
-	element: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
-	children: Block[];
-}
-
-export interface ImgElementBlock extends BaseElementBlock {
-	element: 'img';
-	attributes: {
+	attributes?: {
+		[key: string]: any;
+		class?: string;
 		src: string;
 		alt?: string;
 		width?: number;
 		height?: number;
-	} & BaseElementBlock['attributes'];
-}
-export interface ButtonElementBlock extends BaseElementBlock {
-	element: 'button';
-	children: Block[];
-	onClick?: ClientEvent; // TODO rename? `event`? `action`? `click`? `onclick`?
-}
-export interface AElementBlock extends BaseElementBlock {
-	element: 'a';
-	attributes: {
 		href: string;
-	} & BaseElementBlock['attributes'];
-	children: Block[];
+	};
+	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
+	onClick?: ClientEvent;
 }
 
 // TODO schema

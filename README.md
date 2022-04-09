@@ -58,7 +58,6 @@ a serializable block data structure that renders as Svelte components for layout
     (so the canonical representation is likely a JSON AST)
   - should it include dynamic data loading, like what JSON-LD provides with Activity Streams?
   - is `Block` the preferred word?
-  - watch [the `svelte:element` proposal](https://github.com/sveltejs/svelte/issues/2324)
 
 ## innards
 
@@ -76,7 +75,6 @@ a serializable block data structure that renders as Svelte components for layout
 
 ## todo
 
-- use `<svelte:element>`
 - center on [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)
   instead of the current simplified `Block`
 - dynamic remote async data loading? at odds with SVAST? (e.g. following Activity Streams URLs)
