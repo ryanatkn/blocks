@@ -2,14 +2,12 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 import {type Block, parseBlocks, type ParseBlockOptions} from '$lib/ui/block';
 import {components} from '$lib/app/components';
-import {elements} from '$lib/app/elements';
 import {events} from '$lib/app/events';
 
 // TODO where does this belong?
 export const parseOptions: ParseBlockOptions = {
 	toId: toToClientId('block'),
 	components,
-	elements,
 	events,
 };
 

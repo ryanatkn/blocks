@@ -33,6 +33,6 @@
 		{...block.attributes}
 		data-entity={block.id}
 		on:click={block.onClick ? toClickHandler(block) : undefined}
-		>
+	>
 		<BlockViewChildren {block} />
 	</svelte:element>{/if}

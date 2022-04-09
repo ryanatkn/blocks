@@ -21,7 +21,7 @@ export const parseJson: ParseValue<Json> = (value) =>
 // TODO add `type: 'Fragment'` to handle arrays?
 
 // TODO more types? `Html`, `Markdown` -- security tho
-interface BaseBlock {
+export interface BaseBlock {
 	[key: string]: Json;
 }
 export type Block = ComponentBlock | TextBlock | ElementBlock;
@@ -98,7 +98,6 @@ export const parseBlocks: ParseValue<Block[]> = (value, options) => {
 export interface ParseBlockOptions {
 	toId?: () => string;
 	components: Map<string, typeof SvelteComponent>; // TODO value type? make it generic?
-	elements: Map<string, any>; // TODO value type? make it generic?
 	events: Map<string, any>; // TODO value type? make it generic?
 }
 
@@ -189,8 +188,7 @@ export const parseProps: ParseValue<Props> = (value, options) => {
 	return parsed;
 };
 
-export const parseElement: ParseValue<string> = (value, options) =>
-	options.elements.has(value as string) ? (value as string) : undefined;
+export const parseElement: ParseValue<string> = (value, _options) => value as string; // TODO ?
 
 export const parseEvent: ParseValue<ClientEvent> = (value, options) =>
 	value && options.events.has((value as ClientEvent).name) ? (value as ClientEvent) : undefined;

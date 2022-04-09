@@ -4,7 +4,6 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 
 import {parseBlock, parseBlocks, type ParseBlockOptions} from '$lib/ui/block';
 import {components} from '$lib/app/componentsTestHack';
-import {elements} from '$lib/app/elements';
 import {events} from '$lib/app/events';
 
 // TODO do this automatically
@@ -16,7 +15,6 @@ const toToId = (name = 'a') => toToClientId(name);
 const toOptions = (): ParseBlockOptions => ({
 	toId: toToId(),
 	components,
-	elements,
 	events,
 });
 
