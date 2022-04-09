@@ -32,7 +32,7 @@
 {#if block.type === 'Component'}<svelte:component
 		this={parseOptions.components.get(block.component)}
 		{...block.props}
-	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}{#if block.element === 'a'}<a
+	/>{:else if block.type === 'Text'}{block.content}{:else if block.type === 'Element'}<svelte:element
 			{...block.attributes}
 			data-entity={block.id}
 			target="_blank"
