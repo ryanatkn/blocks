@@ -103,8 +103,8 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 	const type = (value as Block)?.type;
 	switch (type) {
 		case 'Element': {
-			const v = value as Partial<BaseElementBlock>; // TODO is just for type purposes
-			let parsed: BaseElementBlock = {type} as any;
+			const v = value as Partial<ElementBlock>; // TODO is just for type purposes
+			let parsed: ElementBlock = {type} as any;
 
 			const element = parseElement(v.element, options);
 			if (element === undefined) return undefined;
@@ -112,7 +112,7 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 
 			if (v.attributes) {
 				const attributes = parseAttributes(v.attributes, options);
-				if (attributes !== undefined) parsed.attributes = attributes;
+				if (attributes !== undefined) parsed.attributes = attributes as ElementBlock['attributes'];
 			}
 
 			if (v.children) {

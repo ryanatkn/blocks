@@ -3,7 +3,7 @@
 	import Message from '@feltcoop/felt/ui/Message.svelte'; // TODO maybe remove this dependency
 
 	import {getApp} from '$lib/app/app';
-	import {type Block, type ButtonElementBlock} from '$lib/ui/block';
+	import type {Block, ElementBlock} from '$lib/ui/block';
 	import BlockViewChildren from '$lib/ui/BlockViewChildren.svelte';
 
 	// TODO `a` should not override `target`/`rel` if it's an internal or trusted host
@@ -16,7 +16,7 @@
 	const devmode = getDevmode();
 
 	const toClickHandler =
-		(block: ButtonElementBlock): any =>
+		(block: ElementBlock): any =>
 		(e: MouseEvent) => {
 			// TOOD `dispatch(block.onClick.name)` ?
 			if (block.onClick!.name === 'ToggleDevmode') {
