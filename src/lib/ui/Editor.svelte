@@ -12,7 +12,7 @@
 	export let layouts: Writable<Layout[]>;
 	export let parseOptions: ParseBlockOptions;
 
-	let view: Writable<'page' | 'app'> = writable('page');
+	const view: Writable<'page' | 'app'> = writable('page');
 </script>
 
 <div class="editor">
