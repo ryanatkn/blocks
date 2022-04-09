@@ -203,6 +203,10 @@ export const parseSrc: ParseValue<string> = parseString;
 
 export const parseAlt: ParseValue<string> = parseString;
 
+export const parseRel: ParseValue<string> = parseString; // TODO use MDN data ?
+
+export const parseTarget: ParseValue<string> = parseString; // TODO use MDN data?
+
 export const parseDimension: ParseValue<number> = parseNumber;
 
 // TODO parameterize like `toId`?
@@ -214,27 +218,28 @@ export const parseAttributes: ParseValue<Attributes> = (value, options) => {
 		const v = (value as {[key: string]: any})[key];
 		let p: Json | undefined;
 		switch (key) {
-			case 'class': {
+			case 'class':
 				p = parseClass(v, options);
 				break;
-			}
-			case 'href': {
+			case 'href':
 				p = parseHref(v, options);
 				break;
-			}
-			case 'src': {
+			case 'src':
 				p = parseSrc(v, options);
 				break;
-			}
-			case 'alt': {
+			case 'alt':
 				p = parseAlt(v, options);
 				break;
-			}
+			case 'rel':
+				p = parseRel(v, options);
+				break;
+			case 'target':
+				p = parseTarget(v, options);
+				break;
 			case 'width':
-			case 'height': {
+			case 'height':
 				p = parseDimension(v, options);
 				break;
-			}
 			// TODO optionally return warnings for ignored attributes (other warnings/diagnostics too)
 		}
 		if (p !== undefined) parsed[key] = p;
