@@ -25,11 +25,13 @@ interface BaseBlock {
 	[key: string]: Json;
 }
 export type Block = ComponentBlock | TextBlock | ElementBlock;
+export type Props = Record<string, Json>;
+export type Attributes = Record<string, Json>;
 
 // TODO should this be a generic?
 export interface BaseComponentBlock<
 	TComponent extends string = string,
-	TProps extends {[key: string]: Json} = {[key: string]: Json},
+	TProps extends Props = Props,
 > {
 	id: string;
 	type: 'Component';
@@ -43,16 +45,17 @@ export type ComponentBlock =
 	| GridComponentBlock
 	| BackgroundComponentBlock;
 // TODO prop types of each impl are duplicated in their components
-export interface ColumnComponentBlock extends BaseComponentBlock<'Column', {blocks: BaseBlock[]}> {}
-export interface IframeComponentBlock
-	extends BaseComponentBlock<
-		'Iframe',
-		{src: string; width?: number | string; height?: number | string; class?: string}
-	> {}
-export interface DashboardComponentBlock extends BaseComponentBlock<'Dashboard', {}> {}
-export interface GridComponentBlock extends BaseComponentBlock<'Grid', {}> {}
-export interface BackgroundComponentBlock
-	extends BaseComponentBlock<'Background', {src: string; alt: string; classes?: string}> {}
+export type ColumnComponentBlock = BaseComponentBlock<'Column', {blocks: BaseBlock[]}>;
+export type IframeComponentBlock = BaseComponentBlock<
+	'Iframe',
+	{src: string; width?: number | string; height?: number | string; class?: string}
+>;
+export type DashboardComponentBlock = BaseComponentBlock<'Dashboard', Record<string, any>>;
+export type GridComponentBlock = BaseComponentBlock<'Grid', Record<string, any>>;
+export type BackgroundComponentBlock = BaseComponentBlock<
+	'Background',
+	{src: string; alt: string; classes?: string}
+>;
 
 export interface TextBlock {
 	id: string;
@@ -104,7 +107,7 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 	switch (type) {
 		case 'Element': {
 			const v = value as Partial<ElementBlock>; // TODO is just for type purposes
-			let parsed: ElementBlock = {type} as any;
+			const parsed: ElementBlock = {type} as any;
 
 			const element = parseElement(v.element, options);
 			if (element === undefined) return undefined;
@@ -129,11 +132,11 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
-			return parsed as ElementBlock; // TODO hmm?
+			return parsed;
 		}
 		case 'Component': {
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
-			let parsed: BaseComponentBlock = {type} as any;
+			const parsed: BaseComponentBlock = {type} as any;
 
 			const component = parseComponent(v.component, options);
 			if (component === undefined) return undefined;
@@ -151,7 +154,7 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 		}
 		case 'Text': {
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
-			let parsed: TextBlock = {type} as any;
+			const parsed: TextBlock = {type} as any;
 
 			const content = parseContent(v.content, options);
 			if (content === undefined) return undefined;
@@ -176,9 +179,9 @@ export const parseComponent: ParseValue<string> = (value, options) =>
 	options.components.has(value as string) ? (value as string) : undefined;
 
 // TODO specific impls for each component type
-export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) => {
+export const parseProps: ParseValue<Props> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
-	const parsed: {[key: string]: Json} = {};
+	const parsed: Props = {};
 	for (const key in value) {
 		const p = parseJson((value as {[key: string]: any})[key], options); // TODO parse JSON?
 		if (p !== undefined) parsed[key] = p;
@@ -206,9 +209,9 @@ export const parseDimension: ParseValue<number> = parseNumber;
 
 // TODO parameterize like `toId`?
 // TODO custom per `element`
-export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, options) => {
+export const parseAttributes: ParseValue<Attributes> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
-	const parsed: {[key: string]: Json} = {};
+	const parsed: Attributes = {};
 	for (const key in value) {
 		const v = (value as {[key: string]: any})[key];
 		let p: Json | undefined;

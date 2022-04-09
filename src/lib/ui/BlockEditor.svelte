@@ -34,7 +34,7 @@
 	};
 
 	const onClickAdd = () => {
-		const src = prompt('enter iframe src:', 'https://spiderspace.github.io/about');
+		const src = prompt('enter iframe src:', 'https://spiderspace.github.io/about'); // eslint-disable-line no-alert
 		if (!src) return;
 		addBlock(parseBlock({type: 'Component', component: 'Iframe', props: {src}}, parseOptions)!);
 	};
