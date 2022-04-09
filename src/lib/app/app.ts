@@ -17,6 +17,7 @@ export const getApp = (): App => {
 
 export type App = ReturnType<typeof createApp>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createApp = () => {
 	// TODO `block` that gets updated from the page store
 	// TODO should probably be `Writable<Block>`?

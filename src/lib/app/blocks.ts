@@ -94,6 +94,8 @@ export const defaultBlocks: Block[] = parseBlocks(
 			element: 'a',
 			attributes: {
 				href: 'https://github.com/spiderspace/mutable',
+				rel: 'noreferrer',
+				target: '_blank',
 			},
 			children: [
 				{
@@ -121,6 +123,8 @@ export const defaultBlocks: Block[] = parseBlocks(
 			element: 'a',
 			attributes: {
 				href: 'https://github.com/spiderspace',
+				rel: 'noreferrer',
+				target: '_blank',
 			},
 			children: [
 				{

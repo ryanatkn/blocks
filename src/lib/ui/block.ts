@@ -25,11 +25,13 @@ interface BaseBlock {
 	[key: string]: Json;
 }
 export type Block = ComponentBlock | TextBlock | ElementBlock;
+export type Props = Record<string, Json>;
+export type Attributes = Record<string, Json>;
 
 // TODO should this be a generic?
 export interface BaseComponentBlock<
 	TComponent extends string = string,
-	TProps extends {[key: string]: Json} = {[key: string]: Json},
+	TProps extends Props = Props,
 > {
 	id: string;
 	type: 'Component';
@@ -43,16 +45,17 @@ export type ComponentBlock =
 	| GridComponentBlock
 	| BackgroundComponentBlock;
 // TODO prop types of each impl are duplicated in their components
-export interface ColumnComponentBlock extends BaseComponentBlock<'Column', {blocks: BaseBlock[]}> {}
-export interface IframeComponentBlock
-	extends BaseComponentBlock<
-		'Iframe',
-		{src: string; width?: number | string; height?: number | string; class?: string}
-	> {}
-export interface DashboardComponentBlock extends BaseComponentBlock<'Dashboard', {}> {}
-export interface GridComponentBlock extends BaseComponentBlock<'Grid', {}> {}
-export interface BackgroundComponentBlock
-	extends BaseComponentBlock<'Background', {src: string; alt: string; classes?: string}> {}
+export type ColumnComponentBlock = BaseComponentBlock<'Column', {blocks: BaseBlock[]}>;
+export type IframeComponentBlock = BaseComponentBlock<
+	'Iframe',
+	{src: string; width?: number | string; height?: number | string; class?: string}
+>;
+export type DashboardComponentBlock = BaseComponentBlock<'Dashboard', Record<string, any>>;
+export type GridComponentBlock = BaseComponentBlock<'Grid', Record<string, any>>;
+export type BackgroundComponentBlock = BaseComponentBlock<
+	'Background',
+	{src: string; alt: string; classes?: string}
+>;
 
 export interface TextBlock {
 	id: string;
@@ -60,47 +63,25 @@ export interface TextBlock {
 	content: string;
 }
 
-// TODO not sure about this definition, maybe make it generic
-export type ElementBlock = OtherElementBlock | ImgElementBlock | ButtonElementBlock | AElementBlock;
-
-// TODO uh oh complexity
-export interface BaseElementBlock {
+export interface ElementBlock {
 	id: string;
 	type: 'Element';
 	element: string;
+	// TODO use zod and parse attrs
 	// TODO could support `style` if properly sanitized,
 	// but that's not a light process until it's builtin to the platform:
 	// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
-	attributes?: {class?: string};
-	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
-	onClick?: ClientEvent;
-}
-
-export interface OtherElementBlock extends BaseElementBlock {
-	element: 'h1' | 'h2' | 'h3' | 'blockquote' | 'p' | 'span' | 'div' | 'code';
-	children: Block[];
-}
-
-export interface ImgElementBlock extends BaseElementBlock {
-	element: 'img';
-	attributes: {
+	attributes?: {
+		[key: string]: any;
+		class?: string;
 		src: string;
 		alt?: string;
 		width?: number;
 		height?: number;
-	} & BaseElementBlock['attributes'];
-}
-export interface ButtonElementBlock extends BaseElementBlock {
-	element: 'button';
-	children: Block[];
-	onClick?: ClientEvent; // TODO rename? `event`? `action`? `click`? `onclick`?
-}
-export interface AElementBlock extends BaseElementBlock {
-	element: 'a';
-	attributes: {
 		href: string;
-	} & BaseElementBlock['attributes'];
-	children: Block[];
+	};
+	children?: Block[]; // TODO problem here is some elements cannot have children, but this makes the current usage cleaner
+	onClick?: ClientEvent;
 }
 
 // TODO schema
@@ -125,8 +106,8 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 	const type = (value as Block)?.type;
 	switch (type) {
 		case 'Element': {
-			const v = value as Partial<BaseElementBlock>; // TODO is just for type purposes
-			let parsed: BaseElementBlock = {type} as any;
+			const v = value as Partial<ElementBlock>; // TODO is just for type purposes
+			const parsed: ElementBlock = {type} as any;
 
 			const element = parseElement(v.element, options);
 			if (element === undefined) return undefined;
@@ -134,7 +115,7 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 
 			if (v.attributes) {
 				const attributes = parseAttributes(v.attributes, options);
-				if (attributes !== undefined) parsed.attributes = attributes;
+				if (attributes !== undefined) parsed.attributes = attributes as ElementBlock['attributes'];
 			}
 
 			if (v.children) {
@@ -151,11 +132,11 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 			if (id === undefined) return undefined;
 			parsed.id = id;
 
-			return parsed as ElementBlock; // TODO hmm?
+			return parsed;
 		}
 		case 'Component': {
 			const v = value as Partial<BaseComponentBlock>; // TODO is just for type purposes
-			let parsed: BaseComponentBlock = {type} as any;
+			const parsed: BaseComponentBlock = {type} as any;
 
 			const component = parseComponent(v.component, options);
 			if (component === undefined) return undefined;
@@ -173,7 +154,7 @@ export const parseBlock: ParseValue<Block> = (value, options) => {
 		}
 		case 'Text': {
 			const v = value as Partial<TextBlock>; // TODO is just for type purposes
-			let parsed: TextBlock = {type} as any;
+			const parsed: TextBlock = {type} as any;
 
 			const content = parseContent(v.content, options);
 			if (content === undefined) return undefined;
@@ -198,9 +179,9 @@ export const parseComponent: ParseValue<string> = (value, options) =>
 	options.components.has(value as string) ? (value as string) : undefined;
 
 // TODO specific impls for each component type
-export const parseProps: ParseValue<{[key: string]: Json}> = (value, options) => {
+export const parseProps: ParseValue<Props> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
-	const parsed: {[key: string]: Json} = {};
+	const parsed: Props = {};
 	for (const key in value) {
 		const p = parseJson((value as {[key: string]: any})[key], options); // TODO parse JSON?
 		if (p !== undefined) parsed[key] = p;
@@ -228,9 +209,9 @@ export const parseDimension: ParseValue<number> = parseNumber;
 
 // TODO parameterize like `toId`?
 // TODO custom per `element`
-export const parseAttributes: ParseValue<{[key: string]: Json}> = (value, options) => {
+export const parseAttributes: ParseValue<Attributes> = (value, options) => {
 	if (!value || typeof value !== 'object') return undefined;
-	const parsed: {[key: string]: Json} = {};
+	const parsed: Attributes = {};
 	for (const key in value) {
 		const v = (value as {[key: string]: any})[key];
 		let p: Json | undefined;

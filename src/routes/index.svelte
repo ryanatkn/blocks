@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
+	import {scale} from 'svelte/transition';
 
 	import {getApp} from '$lib/app/app';
 	import {parseOptions} from '$lib/app/blocks';
@@ -27,7 +28,7 @@
 		<BlockView {block} />
 	</section>
 	{#if $devmode}
-		<section class="editor">
+		<section class="editor" in:scale={{start: 0.8}} out:scale={{duration: 92}}>
 			<Editor {blocks} {block} {selectedLayout} {layouts} {parseOptions} />
 		</section>
 	{/if}
@@ -49,6 +50,7 @@
 		align-items: center;
 	}
 	.editor {
+		transform-origin: center top;
 		position: fixed;
 		top: 0;
 		right: 0;
