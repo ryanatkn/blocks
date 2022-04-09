@@ -76,6 +76,7 @@ a serializable block data structure that renders as Svelte components for layout
 
 ## todo
 
+- use `<svelte:element>`
 - center on [SVAST](https://github.com/pngwn/MDsveX/tree/master/packages/svast)
   instead of the current simplified `Block`
 - dynamic remote async data loading? at odds with SVAST? (e.g. following Activity Streams URLs)
