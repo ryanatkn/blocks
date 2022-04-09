@@ -33,6 +33,6 @@
 		{...block.attributes}
 		data-entity={block.id}
 		on:click={block.onClick ? toClickHandler(block) : undefined}
-		><!--TODO should not override `target`/`rel` if it's an internal or trusted host-->
+		>
 		<BlockViewChildren {block} />
 	</svelte:element>{/if}
