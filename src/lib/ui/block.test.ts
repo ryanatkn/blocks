@@ -210,7 +210,6 @@ test__parseBlock('parses data into an ElementBlock or not', () => {
 		),
 		{id: 'a_0', type: 'Element', element: 'div', attributes: {}},
 	);
-	assert.equal(parseBlock({type: 'Element', element: 'doesntexist'}, toOptions()), undefined);
 	assert.equal(
 		parseBlock(
 			{type: 'Element', element: 'div', onClick: {type: 'ClientEvent', name: 'ToggleDevmode'}},
