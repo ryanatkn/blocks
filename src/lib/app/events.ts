@@ -4,7 +4,6 @@
 // TODO or (or `Command` and `Effect`?)
 export interface ClientEvent {
 	name: string;
-	type?: 'ClientEvent'; // TODO not currently being used
 	params?: any;
 }
 

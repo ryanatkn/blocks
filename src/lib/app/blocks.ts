@@ -33,6 +33,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 						{
 							type: 'Element',
 							element: 'img',
+							onClick: {name: 'ToggleDevmode'},
 							attributes: {
 								class: 'pixelated rotating-hue',
 								src: 'favicon.png',
@@ -51,7 +52,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 			children: [
 				{
 					type: 'Text',
-					content: 'be advised: press ',
+					content: 'press ',
 				},
 				{
 					type: 'Element',
@@ -59,14 +60,18 @@ export const defaultBlocks: Block[] = parseBlocks(
 					attributes: {
 						class: 'inline',
 					},
-					onClick: {
-						type: 'ClientEvent',
-						name: 'ToggleDevmode',
-					},
+					onClick: {name: 'ToggleDevmode'},
 					children: [
 						{
-							type: 'Text',
-							content: '`',
+							type: 'Element',
+							element: 'img',
+							attributes: {
+								class: 'pixelated rotating-hue',
+								src: 'favicon.png',
+								alt: 'spiderspace logo',
+								width: 32,
+								height: 32,
+							},
 						},
 					],
 				},
@@ -77,28 +82,17 @@ export const defaultBlocks: Block[] = parseBlocks(
 						// TODO make this a button with a declarative action that triggers that event?
 						{
 							type: 'Text',
+							content: '`',
+						},
+						{
+							type: 'Text',
 							content: 'Backtick',
 						},
 					],
 				},
 				{
 					type: 'Text',
-					content: ' at your own risk',
-				},
-			],
-		},
-		{
-			type: 'Element',
-			element: 'a',
-			attributes: {
-				href: 'https://github.com/spiderspace/mutable',
-				rel: 'noreferrer',
-				target: '_blank',
-			},
-			children: [
-				{
-					type: 'Text',
-					content: 'spiderspace/mutable',
+					content: ' to enter devmode',
 				},
 			],
 		},
@@ -118,25 +112,15 @@ export const defaultBlocks: Block[] = parseBlocks(
 		},
 		{
 			type: 'Element',
-			element: 'a',
+			element: 'img',
+			onClick: {name: 'ToggleDevmode'},
 			attributes: {
-				href: 'https://github.com/spiderspace',
-				rel: 'noreferrer',
-				target: '_blank',
+				class: 'pixelated rotating-hue',
+				src: 'favicon.png',
+				alt: 'spiderspace logo',
+				width: 256,
+				height: 256,
 			},
-			children: [
-				{
-					type: 'Element',
-					element: 'img',
-					attributes: {
-						class: 'pixelated rotating-hue',
-						src: 'favicon.png',
-						alt: 'spiderspace logo',
-						width: 256,
-						height: 256,
-					},
-				},
-			],
 		},
 	],
 	parseOptions,
