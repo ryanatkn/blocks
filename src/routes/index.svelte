@@ -2,34 +2,39 @@
 	import {getDevmode} from '@feltcoop/felt/ui/devmode.js';
 	import {scale} from 'svelte/transition';
 
-	import {getApp} from '$lib/app/app';
-	import {parseOptions} from '$lib/app/blocks';
-	import type {Block} from '$lib/ui/block';
-	import BlockView from '$lib/ui/BlockView.svelte';
-	import Editor from '$lib/ui/Editor.svelte';
+	// import {getApp} from '$lib/app/app';
+	import {defaultText} from '$lib/app/blocks';
+	// import type {Block} from '$lib/ui/block';
+	import SvastEditor from '$lib/ui/SvastEditor.svelte';
+	import SvastView from '$lib/ui/SvastView.svelte';
+	import {parseView} from '$lib/ui/view';
 
-	const {blocks, selectedLayout, layouts} = getApp();
+	// const {blocks, selectedLayout, layouts} = getApp();
 
 	const devmode = getDevmode();
 
-	let block: Block;
+	// let block: Block;
 	// TODO should this parse?
-	$: block = {
-		id: parseOptions.toId!(), // TODO hmm very hacky, should these be directly on app?
-		type: 'Component',
-		component: $selectedLayout as any, // TODO hmmm
-		props: {blocks: $blocks},
-	};
+	// $: block = {
+	// 	id: parseOptions.toId!(), // TODO hmm very hacky, should these be directly on app?
+	// 	type: 'Component',
+	// 	component: $selectedLayout as any, // TODO hmmm
+	// 	props: {blocks: $blocks},
+	// };
+
+	$: view = parseView(defaultText); // TODO BLOCK where should this source of truth be?
 </script>
 
 <!-- TODO maybe don't show editor when !$editing -->
 <main class:devmode={$devmode}>
 	<section class="content">
-		<BlockView {block} />
+		<SvastView {view} />
+		<!-- <BlockView {block} /> -->
 	</section>
 	{#if $devmode}
 		<section class="editor" in:scale={{start: 0.8}} out:scale={{duration: 92}}>
-			<Editor {blocks} {block} {selectedLayout} {layouts} {parseOptions} />
+			<!-- TODO BLOCK design this API -->
+			<SvastEditor {view} viewCode={defaultText} />
 		</section>
 	{/if}
 </main>

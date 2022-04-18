@@ -22,7 +22,10 @@
 			this={components.get(view.tagName)}
 			{...props}
 			>{#each view.children as child (child)}<svelte:self view={child} />{/each}</svelte:component
-		>{/if}{:else if view.type === 'svelteElement'}<svelte:element this={view.tagName} {...props}
+		>{/if}{:else if view.type === 'svelteElement'}<svelte:element
+		this={view.tagName}
+		{...props}
+		on:click={view.onClick ? toClickHandler(block) : undefined}
 		>{#each view.children as child (child)}<svelte:self view={child} />{/each}</svelte:element
 	>{:else if view.type === 'root'}{#each view.children as child (child)}<svelte:self
 			view={child}
