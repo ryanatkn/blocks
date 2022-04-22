@@ -50,7 +50,6 @@ export const toViewInfo = (view: ViewNode): ViewInfo => {
 			}
 		}
 	}
-	if (directives) console.log(`props, directives`, props, directives);
 	return {props, directives};
 };
 

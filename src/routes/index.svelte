@@ -27,7 +27,7 @@
 
 <!-- TODO maybe don't show editor when !$editing -->
 <main class:devmode={$devmode}>
-	<section class="content">
+	<section class="view">
 		<SvastView {view} />
 		<!-- <BlockView {block} /> -->
 	</section>
@@ -49,7 +49,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	.content {
+	.view {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
