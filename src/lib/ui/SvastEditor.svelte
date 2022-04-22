@@ -1,8 +1,12 @@
 <script lang="ts">
+	import {createEventDispatcher} from 'svelte';
+
 	import type {ViewData} from '$lib/ui/view';
 
 	export let view: ViewData;
 	export let viewCode: string;
+
+	const dispatch = createEventDispatcher<{change: ViewData | string}>();
 
 	$: viewStr = JSON.stringify(view, null, 2);
 </script>
@@ -20,13 +24,19 @@
     <textarea
 			value={viewCode}
 			on:input={(e) => {
-				console.log('code changed', e.currentTarget.value.length);
+				dispatch('change', e.currentTarget.value);
 			}}
 		/>
     <textarea
 			value={viewStr}
 			on:input={(e) => {
-				console.log('json changed', e.currentTarget.value.length);
+				try {
+					const parsed = JSON.parse(e.currentTarget.value);
+					dispatch('change', parsed);
+				} catch (err) {
+					console.log(`err`, err);
+					// TODO display the error
+				}
 			}}
 		/>
   </pre>
