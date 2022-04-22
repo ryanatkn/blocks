@@ -9,32 +9,19 @@
 
 	const devmode = getDevmode();
 
-	// TODO `toComponentViewProps` and `toElementViewProps`? or expand this API?
-	// Maybe `toViewInfo` with optional allowlist of property names?
-	// A simple allowlist is not enough: it needs the flexibility to, for example,
-	// remove external links but preserve internal ones.
-	// But should that be done upstream, before the properties are saved in the `view`,
-	// through a `sanitize` helper that converts a parsed SVAST to a sanitized one?
-	// Then this component wouldn't have to concern itself with security.
 	$: ({props, directives} = toViewInfo(view) || EMPTY_OBJECT);
 
 	// type MouseEventHandler = any; // TODO Svelte builtin?
 	const toClickHandler = (e: MouseEvent): any => {
-		if (!(directives && 'click' in directives)) {
-			return undefined;
-		}
-		// TODO is there a Svelte bug that prevents `toClickHandler` being called inline? or is my brain broken?
-		// return () => {
-		console.log(`e`, e);
 		e.stopPropagation();
 		e.preventDefault();
-		const handler = directives!.click; // TODO refactor
-		if (handler === 'ToggleDevmode') {
+		const event = directives!.onClick; // TODO refactor
+		if (event === 'ToggleDevmode') {
 			$devmode = !$devmode;
 		} else {
-			console.log('TODO handle', handler);
+			// TODO how to pass params to events? inline JSON?
+			console.log('TODO handle click with event system', event);
 		}
-		// };
 	};
 </script>
 
@@ -49,7 +36,7 @@
 		</div>{/if}{:else if view.type === 'svelteElement'}<svelte:element
 		this={view.tagName}
 		{...props}
-		on:click={toClickHandler}
+		on:click={directives && 'onClick' in directives ? toClickHandler : undefined}
 		>{#each view.children as child (child)}<svelte:self view={child} />{/each}</svelte:element
 	>{:else if view.type === 'root'}{#each view.children as child (child)}<svelte:self
 			view={child}

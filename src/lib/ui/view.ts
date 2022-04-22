@@ -16,6 +16,11 @@ export interface ViewInfo {
 	directives: ViewDirectives | undefined;
 }
 
+// Svelte errors with string directive values, so to keep the code Svelte-compatible,
+// we use specially named properties like `onClick` instead
+export type ViewDirective = 'onClick';
+export const viewDirectives: Set<ViewDirective> = new Set(['onClick'] as const);
+
 /**
  * Returns the props object for a Svelte component SVAST,
  * e.g. `<Foo a="A" b="B" />` returns `{a: 'A', b: 'B'}`.
@@ -28,24 +33,21 @@ export const toViewInfo = (view: ViewNode): ViewInfo => {
 	if ('properties' in view) {
 		for (const property of view.properties) {
 			if (property.type === 'svelteProperty') {
+				// TODO refactor
+				const {name} = property;
+				const v = viewDirectives.has(name as any) // TODO better type handling?
+					? directives || (directives = {})
+					: props || (props = {});
 				for (const value of property.value) {
 					if (value.type === 'text') {
-						const p = props || (props = {});
-						if (property.name in p) {
-							p[property.name] += value.value;
+						if (name in v) {
+							v[name] += value.value;
 						} else {
-							p[property.name] = value.value;
+							v[name] = value.value;
 						}
 					} // else unhandled dynamic content
 				}
-			} else if (property.type === 'svelteDirective') {
-				// TODO BLOCK problem with directives used like this is `on:click="SomeString"` fails with a parse error in Svelte
-				// TODO handle multiples and/or other types?
-				const value = property.value[0];
-				if (value.type === 'text') {
-					(directives || (directives = {}))[property.specifier] = value.value;
-				} // else unhandled dynamic content
-			} // else never
+			}
 		}
 	}
 	if (directives) console.log(`props, directives`, props, directives);
