@@ -39,6 +39,7 @@ export const toViewInfo = (view: ViewNode): ViewInfo => {
 					} // else unhandled dynamic content
 				}
 			} else if (property.type === 'svelteDirective') {
+				// TODO BLOCK problem with directives used like this is `on:click="SomeString"` fails with a parse error in Svelte
 				// TODO handle multiples and/or other types?
 				const value = property.value[0];
 				if (value.type === 'text') {
