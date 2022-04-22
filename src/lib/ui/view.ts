@@ -9,23 +9,46 @@ export type ViewData = Root;
 
 export type ViewNode = Root | SvelteChild; // TODO does this technically need to include `Node`?
 
+export type ViewProps = Record<string, any>;
+export type ViewDirectives = Record<string, any>;
+export interface ViewInfo {
+	props: ViewProps | undefined;
+	directives: ViewDirectives | undefined;
+}
+
 /**
  * Returns the props object for a Svelte component SVAST,
  * e.g. `<Foo a="A" b="B" />` returns `{a: 'A', b: 'B'}`.
  * @param view
  * @returns Props object that can be splatted into a Svelte component.
  */
-export const toViewProps = (view: ViewNode): Record<string, any> | undefined => {
-	let props: Record<string, any> | undefined;
+export const toViewInfo = (view: ViewNode): ViewInfo => {
+	let props: ViewProps | undefined;
+	let directives: ViewProps | undefined;
 	if ('properties' in view) {
-		for (const prop of view.properties) {
-			const v = prop.value[0];
-			if (v?.type === 'text') {
-				(props || (props = {}))[prop.name] = v.value;
-			}
+		for (const property of view.properties) {
+			if (property.type === 'svelteProperty') {
+				for (const value of property.value) {
+					if (value.type === 'text') {
+						const p = props || (props = {});
+						if (property.name in p) {
+							p[property.name] += value.value;
+						} else {
+							p[property.name] = value.value;
+						}
+					} // else unhandled dynamic content
+				}
+			} else if (property.type === 'svelteDirective') {
+				// TODO handle multiples and/or other types?
+				const value = property.value[0];
+				if (value.type === 'text') {
+					(directives || (directives = {}))[property.specifier] = value.value;
+				} // else unhandled dynamic content
+			} // else never
 		}
 	}
-	return props;
+	if (directives) console.log(`props, directives`, props, directives);
+	return {props, directives};
 };
 
 export const toComponentViewData = (tagName: string): ViewData => ({
