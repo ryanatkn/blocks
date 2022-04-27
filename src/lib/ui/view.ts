@@ -72,7 +72,7 @@ const KEY = Symbol();
 export const getViewContext = (): Readable<ViewContext> => getContext(KEY);
 export const setViewContext = (ctx: Readable<ViewContext>): void => setContext(KEY, ctx);
 
-export const parseView = (value: string, generatePositions = false): ViewData =>
+export const parseView = (value: string, generatePositions = true): ViewData =>
 	parseSvast({value, generatePositions});
 
 export const parseViewString = (value: string): Result<{value: string}, {message: string}> => {

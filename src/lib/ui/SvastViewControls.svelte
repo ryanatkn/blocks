@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {fly} from 'svelte/transition';
 
-	import type {Block} from '$lib/ui/block';
+	import type {ViewNode} from '$lib/ui/view';
 
-	export let block: Block;
+	export let view: ViewNode;
 
 	const onInput = (e: Event) => {
 		// TODO dispatch event? use immer to change immutably
@@ -14,9 +14,9 @@
 
 <div class="controls panel-inset" transition:fly|local={{y: 25, duration: 500}}>
 	<!-- TODO generic component -->
-	{#if block.type === 'Component' && block.component === 'Iframe'}
-		<input value={block.props.src} on:input={onInput} />
-		<a href={block.props.src}>🔗</a>
+	{#if view.type === 'Component' && view.component === 'Iframe'}
+		<input value={view.props.src} on:input={onInput} />
+		<a href={view.props.src}>🔗</a>
 	{:else}
 		<code>TODO</code> controls
 	{/if}
