@@ -9,7 +9,7 @@
 
 	const devmode = getDevmode();
 
-	$: ({props, directives} = toViewInfo(view) || EMPTY_OBJECT);
+	$: ({props = EMPTY_OBJECT, directives} = toViewInfo(view) || EMPTY_OBJECT);
 
 	// type MouseEventHandler = any; // TODO Svelte builtin?
 	const toClickHandler = (e: MouseEvent): any => {
