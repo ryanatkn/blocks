@@ -4,8 +4,6 @@
 > web experiments with a focus on
 > [Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit)
 
-test
-
 > **work in progress**: experimental
 
 | [🕸️](https://www.spiderspace.org)                                      | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
