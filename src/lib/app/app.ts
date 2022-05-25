@@ -1,9 +1,10 @@
 import {getContext, setContext} from 'svelte';
 import {writable, type Writable} from 'svelte/store';
+import {compile} from 'svast-stringify';
 
-import type {Block} from '$lib/ui/block';
-import {defaultBlocks, parseOptions} from '$lib/app/blocks';
 import {defaultLayouts, type Layout} from '$lib/app/layouts';
+import {defaultCode} from '$lib/app/defaultCode';
+import {parseView, type ViewData} from '$lib/ui/view';
 
 const KEY = Symbol();
 
@@ -19,18 +20,29 @@ export type App = ReturnType<typeof createApp>;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createApp = () => {
-	// TODO `block` that gets updated from the page store
-	// TODO should probably be `Writable<Block>`?
-	const blocks: Writable<Block[]> = writable(defaultBlocks);
-	// const profiles: Writable<Profile[]> = writable(defaultProfiles); // TODO use path?
-	const layouts: Writable<Layout[]> = writable(defaultLayouts); // TODO use path?
-	const selectedLayout: Writable<Layout> = writable(defaultLayouts[0]); // TODO use path?
+	// const profiles: Writable<Profile[]> = writable(defaultProfiles);
+	const layouts: Writable<Layout[]> = writable(defaultLayouts);
+	const selectedLayout: Writable<Layout> = writable(defaultLayouts[0]);
+
+	const viewCode = writable(defaultCode);
+	const view = writable(parseView(defaultCode));
+
+	const updateView = (updated: ViewData | string): void => {
+		if (typeof updated === 'string') {
+			viewCode.set(updated);
+			view.set(parseView(updated));
+		} else {
+			view.set(updated);
+			viewCode.set(compile(updated));
+		}
+	};
 
 	return {
-		blocks,
 		// profiles,
 		layouts,
 		selectedLayout,
-		parseOptions,
+		viewCode,
+		view,
+		updateView,
 	};
 };

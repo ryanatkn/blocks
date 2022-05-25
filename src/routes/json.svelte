@@ -3,7 +3,7 @@
 	import {scale} from 'svelte/transition';
 
 	import SvastEditor from '$lib/ui/SvastEditor.svelte';
-	import SvastView from '$lib/ui/SvastView.svelte';
+	import SvastTree from '$lib/ui/SvastTree.svelte';
 	import {getApp} from '$lib/app/app';
 
 	const devmode = getDevmode();
@@ -13,7 +13,7 @@
 
 <main class:devmode={$devmode}>
 	<section class="view">
-		<SvastView view={$view} />
+		<SvastTree view={$view} />
 	</section>
 	{#if $devmode}
 		<section class="editor" in:scale={{start: 0.8}} out:scale={{duration: 92}}>
