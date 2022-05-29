@@ -2,6 +2,7 @@
   "name": "spiderspace",
   "description": "spiderspace is web prototypes",
   "license": "Unlicense",
+  "homepage": "https://www.spiderspace.org/",
   "version": "0.0.1",
   "type": "module",
   "engines": {

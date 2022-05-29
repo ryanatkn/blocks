@@ -99,7 +99,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 		{
 			type: 'Component',
 			component: 'Iframe',
-			props: {src: 'https://spiderspace.github.io/about', width: 380, height: 300},
+			props: {src: 'https://about.spiderspace.org', width: 380, height: 300},
 		},
 		{
 			type: 'Component',
