@@ -4,6 +4,7 @@
 	import {createApp, setApp} from '$lib/app/app';
 	import {setDevmode} from '@feltcoop/felt/ui/devmode.js';
 	import DevmodeControls from '@feltcoop/felt/ui/DevmodeControls.svelte';
+	import {base} from '$app/paths';
 	// import FeltWindowHost from '@feltcoop/felt/ui/FeltWindowHost.svelte';
 
 	const app = createApp();
@@ -14,7 +15,7 @@
 
 <svelte:head>
 	<title>spiderspace: blocks</title>
-	<link rel="icon" href="/favicon.png" />
+	<link rel="icon" href="{base}/favicon.png" />
 </svelte:head>
 
 <slot />
