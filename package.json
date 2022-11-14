@@ -2,7 +2,7 @@
   "name": "blocks",
   "description": "safe+serializable layout+content blocks",
   "license": "Unlicense",
-  "homepage": "https://blocks.spiderspace.org/",
+  "homepage": "https://spiderspace.github.io/blocks",
   "version": "0.0.1",
   "type": "module",
   "engines": {
