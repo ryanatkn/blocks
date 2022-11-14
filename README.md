@@ -5,11 +5,11 @@
 
 > **work in progress**: experimental
 
-| [🕸️](https://blocks.spiderspace.org)                                   | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [**blocks.spiderspace.org**](https://blocks.spiderspace.org)           | **spiderspace/blocks**                                        | Svelte; safe&serializable layout&content blocks                             |
-| [about.spiderspace.org](https://about.spiderspace.org)                 | [spiderspace/about](https://github.com/spiderspace/about)     | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
-| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | [spiderspace/mutable](https://github.com/spiderspace/mutable) | Svelte; mutable store values w/ `immutable` on                              |
+| [🕸️](https://spiderspace.github.io/blocks)                               | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [**spiderspace.github.io/blocks**](https://spiderspace.github.io/blocks) | **spiderspace/blocks**                                        | Svelte; safe&serializable layout&content blocks                             |
+| [spiderspace.github.io/about](https://spiderspace.github.io/about)       | [spiderspace/about](https://github.com/spiderspace/about)     | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
+| [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable)   | [spiderspace/mutable](https://github.com/spiderspace/mutable) | Svelte; mutable store values w/ `immutable` on                              |
 
 ## goals
 
