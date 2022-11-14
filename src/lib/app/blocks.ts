@@ -3,6 +3,7 @@ import {toToClientId} from '@feltcoop/felt/util/id.js';
 import {type Block, parseBlocks, type ParseBlockOptions} from '$lib/ui/block';
 import {components} from '$lib/app/components';
 import {events} from '$lib/app/events';
+import {base} from '$app/paths';
 
 // TODO where does this belong?
 export const parseOptions: ParseBlockOptions = {
@@ -36,7 +37,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 							onClick: {name: 'ToggleDevmode'},
 							attributes: {
 								class: 'pixelated rotating-hue',
-								src: 'favicon.png',
+								src: base + '/favicon.png',
 								alt: 'spiderspace logo',
 								width: 16,
 								height: 16,
@@ -67,7 +68,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 							element: 'img',
 							attributes: {
 								class: 'pixelated rotating-hue',
-								src: 'favicon.png',
+								src: base + '/favicon.png',
 								alt: 'spiderspace logo',
 								width: 32,
 								height: 32,
@@ -105,7 +106,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 			type: 'Component',
 			component: 'Background',
 			props: {
-				src: 'favicon.png',
+				src: base + '/favicon.png',
 				alt: 'spiderspace logo',
 				classes: 'pixelated rotating-hue',
 			},
@@ -116,7 +117,7 @@ export const defaultBlocks: Block[] = parseBlocks(
 			onClick: {name: 'ToggleDevmode'},
 			attributes: {
 				class: 'pixelated rotating-hue',
-				src: 'favicon.png',
+				src: base + '/favicon.png',
 				alt: 'spiderspace logo',
 				width: 256,
 				height: 256,
