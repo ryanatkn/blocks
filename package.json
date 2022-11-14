@@ -1,8 +1,8 @@
 {
-  "name": "spiderspace",
-  "description": "spiderspace is web prototypes",
+  "name": "blocks",
+  "description": "safe+serializable layout+content blocks",
   "license": "Unlicense",
-  "homepage": "https://www.spiderspace.org/",
+  "homepage": "https://blocks.spiderspace.org/",
   "version": "0.0.1",
   "type": "module",
   "engines": {

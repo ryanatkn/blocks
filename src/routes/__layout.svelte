@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>spiderspace</title>
+	<title>spiderspace: blocks</title>
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 

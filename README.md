@@ -1,22 +1,20 @@
-# spiderspace
+# spiderspace: blocks
 
-> web prototypes: [www.spiderspace.org](https://www.spiderspace.org) is a collection of
-> web experiments with a focus on
-> [Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit)
+> safe+serializable layout+content blocks with
+> [Svelte](https://github.com/sveltejs/svelte)
 
 > **work in progress**: experimental
 
-| [🕸️](https://www.spiderspace.org)                                      | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
+| [🕸️](https://blocks.spiderspace.org)                                   | [🐙🐱](https://github.com/spiderspace)                        | 🧪                                                                          |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [**www.spiderspace.org**](https://www.spiderspace.org)                 | **spiderspace/spiderspace**                                   | Svelte; safe&serializable layout&content blocks                             |
+| [**blocks.spiderspace.org**](https://blocks.spiderspace.org)           | **spiderspace/blocks**                                        | Svelte; safe&serializable layout&content blocks                             |
 | [about.spiderspace.org](https://about.spiderspace.org)                 | [spiderspace/about](https://github.com/spiderspace/about)     | Svelte+[iconify](https://github.com/iconify); spiderspace is web prototypes |
 | [spiderspace.github.io/mutable](https://spiderspace.github.io/mutable) | [spiderspace/mutable](https://github.com/spiderspace/mutable) | Svelte; mutable store values w/ `immutable` on                              |
 
 ## goals
 
 - introduce and explain Spiderspace
-- deploy Spiderspace and its repos to static GitHub Pages websites so it's fork-friendly:
-  [www.spiderspace.org](https://www.spiderspace.org)
+- deploy Spiderspace and its repos to static GitHub Pages websites so it's fork-friendly
 - in this repo, create patterns, components, and helpers around
   a serializable block data structure that renders as Svelte components for layout and content,
   that works well with a structured editor, and that can be safely used from untrusted sources
@@ -27,7 +25,7 @@ Spiderspace is a bunch of prototypes using a particular web software toolkit:
 Svelte, SvelteKit, [and more](#credits-). See the table above for the currently active repos.
 
 If you find yourself intrigued by any particular prototype, visit the
-[discussions here on spiderspace/spiderspace](https://github.com/spiderspace/spiderspace/discussions)
+[discussions here on spiderspace/blocks](https://github.com/spiderspace/blocks/discussions)
 and the issues in [the appropriate repos](https://github.com/spiderspace).
 You're also invited to propose more prototypes!
 
@@ -42,7 +40,7 @@ using the same data structure and rendering patterns.
 The goal is to support users authoring and sharing untrusted rich content
 and dynamic end-user-programmable UI in a structured editing WYSIWYG-like environment.
 Share your thoughts
-[in the GitHub discussions](https://github.com/spiderspace/spiderspace/discussions)!
+[in the GitHub discussions](https://github.com/spiderspace/blocks/discussions)!
 
 ## design
 
